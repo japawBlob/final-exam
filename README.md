@@ -122,6 +122,65 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
 
 ### 5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.
 
+**Data flow inside the processor**
+
+Stages of the pipeline:
+- **IF** instruction fetch - load instruction from the instruction memory. 
+- **ID** instruction decode - translate the instruction into correct signals for the ALU and other units, load corresponging registers
+- **EX** execute - execute the instruction like add two numbers
+- **MEM** memory access - write/load to/from memory.
+- **WB** write the result back to the register or other storage location.
+
+not all instruction go trough all stages. Like Branch, which does not go to mem and write-back phase
+
+Diversified pipelining - multiple executin units
+
+Dynamic pipelining - out of order execution
+
+![Dynamic pipelining](img/PAP_dynamic_pipelining.png)
+
+Dispatch buffer - the buffer where the prepared instructions await for the right execution unit to be available
+
+Reorder buffer - the buffer, where the out-of-order instructions are put back in the correct order. Needed to support precise exceptions (complete only the instructions that happened before the exception)
+
+The buffers can be added between all stages to support out-of-order execution on more fronts. They all need to be tracked to be correcly positoined in completion buffer.
+
+Superscalar organisation:
+- **Fetch** - the pipeline has width W (number of parallel pipelines). Fetch able to load W instructions from instruction Cache in every cycle. I-cache must be wide enough to store W instructions, that can be accessed at the same time. The loading can be degraded by unaligned instructions and jump instructions (we load not from the beginning of the line)
+Solution: Static(Compilator chooses best placement) Dynamic(Solved by Hardware during runtime)\
+The un-alignment can be solved by T-Logic - two way associative cache.
+
+![TFETCH](img/PAP_T_LOGIC.png)
+
+- **Decode** - the complexity is wildly different when decoding CISC/RISC instructions. Tasks:
+  - indetify the infividual instructions (and even lengths for CISC)  
+  - determine instruction types
+  - detect inner dependencies, determine set of independent instructions to dispatch to next stages\
+can contain Predecoding - if i-cache misses the instructions while loading from memory to the Cache are partialy decoded, to be searched for the potential jumps and identifiaction of independant instructions, which then simplyfies the Decode Process.
+- **Dispatch** - route the insturctions to the corresponding functional units for execution. The operand values might not be ready for some instructions, solved by stall, or using reservation stations (buffers). We distinguish:
+  - Centralized reservation stations
+  - Distributed reservation stations
+  - Hybrid reservation stations (or clustered)\
+  Dispatching - assign the functional unit for execution to the instruction
+  Issue - initialize execution of the instruction
+
+Centralized reservation station|  Distributed reservation station
+:-------------------------:|:-------------------------:
+![Centralized reservation station](img/PAP_centralized_reservation_station.png)  |  ![Distributed reservation station](img/PAP_distributed_reservation_station.png)
+
+- **Execute** - usually more execution units, than the width of the pipeline. Current trend: more diversified pipelines (in past only Integer operations and Floating point operations were the major ones). More execution units - more complex hardware - need the connections to connect hazard unit to all the execution units for forewarding, reservation stations need monitor for the availability(ready state) or ready operand values(tag matching)\
+Best mix of functional units? It depends, usually 2:1:2 ALU:Branch:Load/Store
+- **Complete** - instruction is completed, when it finishes execution and updates the machine state. It is when it exits execution unit and enters completion buffer. It can wait another cycles, before it is retired.
+- **Retire** - The instruction is retired, when it leaves the completion buffer and updates Data-Cache. 
+
+**Precise exception** support requieres reorder/completion buffer. The Retire of the instructions need to happen in the program order. If the exception occurs, the instruction is tagged. When a tagged instruction is detected, all preceding instructions need to be completed, the the error instruction is not completed and preceding processor state is saved. The following instructions and progress in pipelines is discarded.
+
+![Completion and reorder buffer](img/PAP_completion_reorder_buffer.png)
+
+**Tomasulo algorithm**
+
+
+
 ### 5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.
 
 ### 5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).
@@ -132,7 +191,7 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
 
 ## 6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation. 
 
-### 6.1 USB I/O subsystem, structure and functionality of elements, protocol stack,transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.
+### 6.1 USB I/O subsystem, structure and functionality of elements, protocol stack, transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.
 
 ### 6.2 PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.
 
