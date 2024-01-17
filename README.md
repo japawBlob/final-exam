@@ -2,120 +2,182 @@
 
 this repository is for knowledge for final exam of Computer engeneering - Open Informatics at CTU FEE Prague
 
-## PAL - Polynomial algorithms for standard graph problems. Combinatorial and number-theoretical algorithms, isomorphism, prime numbers. Search trees and their use. Text search based on finite automata.
+  Contents:
 
-### Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.
+  - [1. PAL - Polynomial algorithms for standard graph problems. Combinatorial and number-theoretical algorithms, isomorphism, prime numbers. Search trees and their use. Text search based on finite automata.](#1-pal---polynomial-algorithms-for-standard-graph-problems-combinatorial-and-number-theoretical-algorithms-isomorphism-prime-numbers-search-trees-and-their-use-text-search-based-on-finite-automata)
+    - [ ] [1.1 Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.](#11-notation-of-asymptotic-complexity-of-algorithms-basic-notation-of-graph-problems---degree-path-circuit-cycle-graph-representations-by-adjacency-distance-laplacian-and-incidence-matrices-adjacency-list-representation)
+    - [ ] [1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.](#12-algorithms-for-minimum-spanning-tree-prim-jarník-kruskal-borůvka-strongly-connected-components-kosaraju-sharir-tarjan-euler-trail-union-find-problem-graph-isomorphism-tree-isomorphism)
+    - [ ] [1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.](#13-generation-and-enumeration-of-combinatorial-objects---subsets-k-element-subsets-permutations-gray-codes-prime-numbers-sieve-of-eratosthenes-pseudorandom-numbers-properties-linear-congruential-generator)
+    - [ ] [1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.](#14-search-trees---data-structures-operations-and-their-complexities-binary-tree-avl-tree-red-black-tree-rb-tree-b-tree-and-b-tree-splay-tree-k-d-tree-nearest-neighbor-searching-in-k-d-trees-skip-list)
+    - [ ] [1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.](#15-finite-automata-regular-expressions-operations-over-regular-languages-bit-representation-of-nondeterministic-finite-automata-text-search-algorithms---exact-pattern-matching-approximate-pattern-matching-hamming-and-levenshtein-distance-dictionary-automata)
+  - [2, TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.](#2-tal---problemlanguage-complexity-classes-with-respect-to-the-time-complexity-of-their-solution-and-memory-complexity-including-undecidable-problemslanguages)
+    - [ ] [2.1 Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.](#21-asymptotic-growth-of-functions-time-and-space-complexity-of-algorithms-correctness-of-algorithms---variant-and-invariant)
+    - [ ] [2.2 Deterministic Turing machines, multitape Turing machines, and Nondeterministic Turing machines.](#22-deterministic-turing-machines-multitape-turing-machines-and-nondeterministic-turing-machines)
+    - [ ] [2.3 Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.](#23-decision-problems-and-languages-complexity-classes-p-np-co-np-reduction-and-polynomial-reduction-class-npc-cook-theorem-heuristics-and-approximate-algorithms-for-solving-np-complete-problems)
+    - [ ] [2.4 Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.](#24-classes-based-on-space-complexity-pspace-and-npspace-savitch-theorem)
+    - [ ] [2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.](#25-randomized-algorithms-randomized-turing-machines-classes-based-on-randomization-rp-zpp-co-rp)
+    - [ ] [2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.](#26-decidability-and-undecidability-recursive-and-recursively-enumerable-languages-diagonal-language-universal-language-and-universal-turing-machine)
+  - [3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications.](#3-ko---combinatorial-optimization-problems---formulation-complexity-analysis-algorithms-and-example-applications)
+    - [ ] [3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.](#31-integer-linear-programming-shortest-paths-problem-and-traveling-salesman-problem-ilp-formulations-branch-and-bound-algorithm-problem-formulations-using-ilp-special-ilp-problems-solvable-in-polynomial-time)
+    - [ ] [3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.](#32-shortest-paths-problem-dijkstra-bellman-ford-and-floydwarshall-algorithms-shortest-paths-in-directed-acyclic-graphs-problem-formulations-using-shortest-paths)
+    - [ ] [3.3 Network flows. Maximum flow and minimum cut problems. Ford-Fulkerson algorithm.  Feasible flow with balances. Minimum cost flow and cycle-canceling algorithm. Problem formulations using network flows. Maximum cardinality matching.](#33-network-flows-maximum-flow-and-minimum-cut-problems-ford-fulkerson-algorithm--feasible-flow-with-balances-minimum-cost-flow-and-cycle-canceling-algorithm-problem-formulations-using-network-flows-maximum-cardinality-matching)
+    - [ ] [3.4 Knapsack problem. Approximation algorithm, dynamic programming approach, approximation scheme.](#34-knapsack-problem-approximation-algorithm-dynamic-programming-approach-approximation-scheme)
+    - [ ] [3.5 Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.](#35-traveling-salesman-problem-double-tree-algorithm-and-christofides-algorithm-for-the-metric-problem-local-search-k-opt)
+    - [ ] [3.6 Scheduling - problem description and notation. One resource - Bratley algorithm, Horn algorithm. Parallel identical resources - list scheduling, dynamic programming. Project scheduling with temporal constraints - relative order and time-indexed ILP formulations.](#36-scheduling---problem-description-and-notation-one-resource---bratley-algorithm-horn-algorithm-parallel-identical-resources---list-scheduling-dynamic-programming-project-scheduling-with-temporal-constraints---relative-order-and-time-indexed-ilp-formulations)
+    - [ ] [3.7 Constraint Satisfaction Problem. AC3 algorithm.](#37-constraint-satisfaction-problem-ac3-algorithm)
+  - [4. ISC - Design and implementation of in-chip integrated systems, application specific systems.](#4-isc---design-and-implementation-of-in-chip-integrated-systems-application-specific-systems)
+    - [ ] [4.1 Main features and economical aspects of the Application specific integrated circuits systems: full custom design, gate array, standard cells, programmable array logic;](#41-main-features-and-economical-aspects-of-the-application-specific-integrated-circuits-systems-full-custom-design-gate-array-standard-cells-programmable-array-logic)
+    - [ ] [4.2 Design principles of mix-signal integrated circuits, purpose of hierarchical design, digital and analogue block interface, CAD design tools for automatic circuit generation; functional and static time analysis, formal verification; Verilog-A, Verilog-AMS, VHDL-A.](#42-design-principles-of-mix-signal-integrated-circuits-purpose-of-hierarchical-design-digital-and-analogue-block-interface-cad-design-tools-for-automatic-circuit-generation-functional-and-static-time-analysis-formal-verification-verilog-a-verilog-ams-vhdl-a)
+    - [ ] [4.3 Front end design - functional specification, RTL, logic synthesis, Gate-level netlist, behavioral stimulus extraction.](#43-front-end-design---functional-specification-rtl-logic-synthesis-gate-level-netlist-behavioral-stimulus-extraction)
+    - [ ] [4.4 Back End design - specification of Design Kit, Floorplanning, place and route, layout, parasitic extraction, layout versus schema check (LVS).](#44-back-end-design---specification-of-design-kit-floorplanning-place-and-route-layout-parasitic-extraction-layout-versus-schema-check-lvs)
+    - [ ] [4.5 Tape out and IC fabrication process, integrated systems verification, scaling and design mapping to different technologies.](#45-tape-out-and-ic-fabrication-process-integrated-systems-verification-scaling-and-design-mapping-to-different-technologies)
+  - [5. PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers.](#5-pap---advanced-architectures-of-processors-memory-and-peripheral-circuits-and-multiprocessor-computers)
+    - [ ] [5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
+    - [ ] [5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.](#52-relation-between-memory-coherency-and-consistency-their-implementation-on-systems-with-shared-bus-and-when-multiple-rings-topologies-are-used-mesi-moesi-home-directory)
+    - [ ] [5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).](#53-rules-for-execution-synchronization-and-data-exchange-in-multiprocessor-systems-mutex-implementation-relation-to-consistency-models-and-mechanisms-to-achieve-expected-algorithms-behavior-on-systems-with-relaxed-consistency-models-pram-pso-tso-pc-barrier-instructions)
+    - [ ] [5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.](#54-smp-and-numa-nodes-interconnections-networks-conflicts-and-rearrangeable-networks-beneš-network)
+    - [ ] [5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.](#55-parallel-computations-on-multiprocessor-systems-openmp-on-numa-and-mpi-on-distributed-memory-systems-their-combinations)
+  - [6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation.](#6-krp---io-and-network-interfaces-of-computer-and-embedded-systems-hardware-and-software-implementation)
+    - [ ] [6.1 USB I/O subsystem, structure and functionality of elements, protocol stack,transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.](#61-usb-io-subsystem-structure-and-functionality-of-elements-protocol-stacktransfer---transaction---packet-hierarchy-transfer-types-and-pipes-bandwidth-allocation-principles-enumeration-process-and-pnp-descriptor-hierarchy-usb-device-implementation)
+    - [ ] [6.2 PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.](#62-pci-express-pci-io-subsystems-basic-differences-and-commons-of-pci-and-pcie-protocol-stack-transaction-types-packet-routing-principles-quality-of-service-support-pnp-and-enumeration-process)
+    - [ ] [6.3 Ethernet based networking, VLAN, precision time protocol (PTP), stream reservation protocol (SRP), time sensitive networks (TSN).](#63-ethernet-based-networking-vlan-precision-time-protocol-ptp-stream-reservation-protocol-srp-time-sensitive-networks-tsn)
+    - [ ] [6.4 In-vehicle networking, Controller Area Network (CAN, CAN-FD), Local Interconnect Network (LIN), FlexRay, data-link layer algorithms, physical topology constraints and relation to system design.](#64-in-vehicle-networking-controller-area-network-can-can-fd-local-interconnect-network-lin-flexray-data-link-layer-algorithms-physical-topology-constraints-and-relation-to-system-design)
+  - [7. AVS - ARM based microcontrollers and signal processors; their functionality. Design and implementation of embedded systems for typical application areas.](#7-avs---arm-based-microcontrollers-and-signal-processors-their-functionality-design-and-implementation-of-embedded-systems-for-typical-application-areas)
+    - [ ] [7.1 Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).](#71-typical-architecture-and-main-features-of-arm-based-microcontrollers-amba-io-pin-configuration-common-used-peripheral-circuits-io-ports-timers-dma-controllers-nvic-controller-jtag-swd-ad-converters-da-converters-spi-controllers-i2c-controllers-uart-flash-and-sram-memory)
+    - [ ] [7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).](#72-typical-architecture-and-main-features-of-digital-signal-processors-dsp-common-used-peripheral-circuits-special-computational-units-and-their-features-alu-mac-shift-barrel-register-dag)
+    - [ ] [7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.](#73-digital-signal-processing-signal-spectrum-analysis-dft-idft-correlation-functions-and-their-typical-use-digital-filters-fir-iir-signal-interpolation-signal-decimation)
+    - [ ] [7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds)
+    - [ ] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
+  - [8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)](#8-pag---properties-of-parallel-and-distributed-algorithms-communication-operations-for-parallel-algorithms-parallel-algorithms-for-linear-algebra-be4m35pag-course-web-pages)
+    - [ ] [8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
+    - [ ] [8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.](#82-describe-performance-metrics-and-scalability-for-parallel-systems-how-efficiency-of-a-parallel-algorithm-depends-on-the-problem-size-and-the-number-of-processors-derive-isoefficiency-functions-of-a-parallel-algorithm-for-adding-numbers-including-communication-between-processors-and-explain-how-it-characterizes-the-algorithm)
+    - [ ] [8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.](#83-explain-and-compare-two-parallel-algorithms-for-matrix-vector-multiplication-describe-a-parallel-algorithm-for-matrix-matrix-multiplication-and-explain-the-idea-of-cannons-algorithm-discuss-the-principle-and-properties-of-the-dns-algorithm-used-for-matrix-matrix-multiplication)
+    - [ ] [8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.](#84-outline-the-principle-of-sorting-networks-and-describe-parallel-bitonic-sort-including-its-scalability-explain-parallel-enumeration-sort-algorithm-on-pram-model-including-its-scalability)
+    - [ ] [8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.](#85-explain-all-steps-of-a-parallel-algorithm-for-finding-connected-components-in-a-graph-given-by-the-adjacency-matrix-using-an-example-illustrate-a-parallel-algorithm-for-finding-a-maximal-independent-set-in-a-sparse-graph)
+  - [9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.](#9-esw---effective-algorithms-and-optimization-methods-data-structures-synchronization-and-multithreaded-programs)
+    - [ ] [9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.](#91-java-virtual-machine-memory-layout-frame-stack-oriented-machine-processing-ordinary-object-pointer-compressed-ordinary-object-pointer-jvm-bytecode-just-in-time-compiler-tired-compilation-on-stack-replacement-disassembler-decompiler-global-and-local-safe-point-time-to-safe-point-automatic-memory-management-generational-hypothesis-garbage-collectors-cpu-and-memory-profiling-sampling-and-tracing-approach-warm-up-phase)
+    - [ ] [9.2 Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).](#92-data-races-cpu-pipelining-and-superscalar-architecture-memory-barrier-volatile-variable--synchronization---thin-fat-and-biased-locking-reentrant-locks-atomic-operations-based-on-compare-and-set-instructions-atomic-field-updaters-non-blocking-algorithms-wait-free-algorithms-non-blocking-stack-lifo)
+    - [ ] [9.3 Static and dynamic memory analysis, shallow and retained size, memory leak. Data Structures, Java primitives and objects, auto-boxing and unboxing, memory efficiency of complex data structures. Collection for performance, type specific collections, open addressing hashing, collision resolution schemes. Bloom filters, complexity, false positives, bloom filter extensions. Reference types - weak, soft, phantom.](#93-static-and-dynamic-memory-analysis-shallow-and-retained-size-memory-leak-data-structures-java-primitives-and-objects-auto-boxing-and-unboxing-memory-efficiency-of-complex-data-structures-collection-for-performance-type-specific-collections-open-addressing-hashing-collision-resolution-schemes-bloom-filters-complexity-false-positives-bloom-filter-extensions-reference-types---weak-soft-phantom)
+    - [ ] [9.4 JVM object allocation, thread-local allocation buffers, object escape analysis, data locality, non-uniform memory allocation.](#94-jvm-object-allocation-thread-local-allocation-buffers-object-escape-analysis-data-locality-non-uniform-memory-allocation)
+    - [ ] [9.5 Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.](#95-networking-osi-model-c10k-problem-blocking-and-non-blocking-inputoutput-threading-server-event-driven-server-event-based-inputoutput-approaches-native-buffers-in-jvm-channels-and-selectors)
+    - [ ] [9.6 Synchronization in multi-threaded programs (atomic operations, mutex, semaphore, rw-lock, spinlock, RCU). When to use which mechanism? Performance bottlenecks of the mentioned mechanisms. Synchronization in “read-mostly workloads”, advantages and disadvantages of different synchronization mechanisms.](#96-synchronization-in-multi-threaded-programs-atomic-operations-mutex-semaphore-rw-lock-spinlock-rcu-when-to-use-which-mechanism-performance-bottlenecks-of-the-mentioned-mechanisms-synchronization-in-read-mostly-workloads-advantages-and-disadvantages-of-different-synchronization-mechanisms)
+    - [ ] [9.7 Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?](#97-cache-efficient-data-structures-and-algorithms-eg-matrix-multiplication-principles-of-cache-memories-different-kinds-of-cache-misses-self-evicting-code-false-sharing--what-is-it-and-how-deal-with-it)
+    - [ ] [9.8 Profiling and optimizations of programs in compiled languages (e.g., C/C++). Hardware performance counters, profile-guided optimization. Basics of C/C++ compilers, AST, intermediate representation, high-level and low-level optimization passes.](#98-profiling-and-optimizations-of-programs-in-compiled-languages-eg-cc-hardware-performance-counters-profile-guided-optimization-basics-of-cc-compilers-ast-intermediate-representation-high-level-and-low-level-optimization-passes)
 
-### Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.
+## 1. PAL - Polynomial algorithms for standard graph problems. Combinatorial and number-theoretical algorithms, isomorphism, prime numbers. Search trees and their use. Text search based on finite automata.
 
-### Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.
+### 1.1 Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.
 
-### Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.
+### 1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.
+
+### 1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.
+
+### 1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.
  
-### Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.
+### 1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.
 
-## TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.
+## 2, TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.
 
-### Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.
+### 2.1 Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.
 
-### Deterministic Turing machines, multitape Turing machines, and Nondeterministic Turing machines.
+### 2.2 Deterministic Turing machines, multitape Turing machines, and Nondeterministic Turing machines.
 
-### Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.
+### 2.3 Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.
 
-### Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.
+### 2.4 Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.
 
-### Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.
+### 2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.
 
-### Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.
+### 2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.
 
-## KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications. 
+## 3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications. 
 
-### Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.
+### 3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.
 
-### Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.
+### 3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.
 
-### Network flows. Maximum flow and minimum cut problems. Ford-Fulkerson algorithm.  Feasible flow with balances. Minimum cost flow and cycle-canceling algorithm. Problem formulations using network flows. Maximum cardinality matching.
+### 3.3 Network flows. Maximum flow and minimum cut problems. Ford-Fulkerson algorithm.  Feasible flow with balances. Minimum cost flow and cycle-canceling algorithm. Problem formulations using network flows. Maximum cardinality matching.
 
-### Knapsack problem. Approximation algorithm, dynamic programming approach, approximation scheme.
+### 3.4 Knapsack problem. Approximation algorithm, dynamic programming approach, approximation scheme.
 
-### Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.
+### 3.5 Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.
 
-### Scheduling - problem description and notation. One resource - Bratley algorithm, Horn algorithm. Parallel identical resources - list scheduling, dynamic programming. Project scheduling with temporal constraints - relative order and time-indexed ILP formulations.
+### 3.6 Scheduling - problem description and notation. One resource - Bratley algorithm, Horn algorithm. Parallel identical resources - list scheduling, dynamic programming. Project scheduling with temporal constraints - relative order and time-indexed ILP formulations.
 
-### Constraint Satisfaction Problem. AC3 algorithm.
+### 3.7 Constraint Satisfaction Problem. AC3 algorithm.
 
-## ISC - Design and implementation of in-chip integrated systems, application specific systems.
+## 4. ISC - Design and implementation of in-chip integrated systems, application specific systems.
 
-### Main features and economical aspects of the Application specific integrated circuits systems: full custom design, gate array, standard cells, programmable array logic;
+### 4.1 Main features and economical aspects of the Application specific integrated circuits systems: full custom design, gate array, standard cells, programmable array logic;
 
-### Design principles of mix-signal integrated circuits, purpose of hierarchical design, digital and analogue block interface, CAD design tools for automatic circuit generation; functional and static time analysis, formal verification; Verilog-A, Verilog-AMS, VHDL-A.
+### 4.2 Design principles of mix-signal integrated circuits, purpose of hierarchical design, digital and analogue block interface, CAD design tools for automatic circuit generation; functional and static time analysis, formal verification; Verilog-A, Verilog-AMS, VHDL-A.
 
-### Front end design - functional specification, RTL, logic synthesis, Gate-level netlist, behavioral stimulus extraction.
+### 4.3 Front end design - functional specification, RTL, logic synthesis, Gate-level netlist, behavioral stimulus extraction.
 
-### Back End design - specification of Design Kit, Floorplanning, place and route, layout, parasitic extraction, layout versus schema check (LVS).
+### 4.4 Back End design - specification of Design Kit, Floorplanning, place and route, layout, parasitic extraction, layout versus schema check (LVS).
 
-### Tape out and IC fabrication process, integrated systems verification, scaling and design mapping to different technologies.
+### 4.5 Tape out and IC fabrication process, integrated systems verification, scaling and design mapping to different technologies.
 
-## PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers. 
+## 5. PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers. 
 
-### Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.
+### 5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.
 
-### Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.
+### 5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.
 
-### Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).
+### 5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).
 
-### SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.
+### 5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.
 
-### Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.
+### 5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.
 
-## KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation. 
+## 6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation. 
 
-### USB I/O subsystem, structure and functionality of elements, protocol stack,transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.
+### 6.1 USB I/O subsystem, structure and functionality of elements, protocol stack,transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.
 
-### PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.
+### 6.2 PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.
 
-### Ethernet based networking, VLAN, precision time protocol (PTP), stream reservation protocol (SRP), time sensitive networks (TSN).
+### 6.3 Ethernet based networking, VLAN, precision time protocol (PTP), stream reservation protocol (SRP), time sensitive networks (TSN).
 
-### In-vehicle networking, Controller Area Network (CAN, CAN-FD), Local Interconnect Network (LIN), FlexRay, data-link layer algorithms, physical topology constraints and relation to system design.
+### 6.4 In-vehicle networking, Controller Area Network (CAN, CAN-FD), Local Interconnect Network (LIN), FlexRay, data-link layer algorithms, physical topology constraints and relation to system design.
 
-## AVS - ARM based microcontrollers and signal processors; their functionality. Design and implementation of embedded systems for typical application areas.
+## 7. AVS - ARM based microcontrollers and signal processors; their functionality. Design and implementation of embedded systems for typical application areas.
 
-### Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).
+### 7.1 Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).
 
-### Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).
+### 7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).
 
-### Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.
+### 7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.
 
-### Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).
+### 7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).
 
-### User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).
+### 7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).
 
-## PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)
+## 8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)
 
-### Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.
+### 8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.
 
-### Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.
+### 8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.
 
-### Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.
+### 8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.
 
-### Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.
+### 8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.
 
-### Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.
+### 8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.
 
-## ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.
+## 9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.
 
-### Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.
+### 9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.
 
-### Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).
+### 9.2 Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).
 
-### Static and dynamic memory analysis, shallow and retained size, memory leak. Data Structures, Java primitives and objects, auto-boxing and unboxing, memory efficiency of complex data structures. Collection for performance, type specific collections, open addressing hashing, collision resolution schemes. Bloom filters, complexity, false positives, bloom filter extensions. Reference types - weak, soft, phantom.
+### 9.3 Static and dynamic memory analysis, shallow and retained size, memory leak. Data Structures, Java primitives and objects, auto-boxing and unboxing, memory efficiency of complex data structures. Collection for performance, type specific collections, open addressing hashing, collision resolution schemes. Bloom filters, complexity, false positives, bloom filter extensions. Reference types - weak, soft, phantom.
 
-### JVM object allocation, thread-local allocation buffers, object escape analysis, data locality, non-uniform memory allocation.
+### 9.4 JVM object allocation, thread-local allocation buffers, object escape analysis, data locality, non-uniform memory allocation.
 
-### Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.
+### 9.5 Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.
 
-### Synchronization in multi-threaded programs (atomic operations, mutex, semaphore, rw-lock, spinlock, RCU). When to use which mechanism? Performance bottlenecks of the mentioned mechanisms. Synchronization in “read-mostly workloads”, advantages and disadvantages of different synchronization mechanisms.
+### 9.6 Synchronization in multi-threaded programs (atomic operations, mutex, semaphore, rw-lock, spinlock, RCU). When to use which mechanism? Performance bottlenecks of the mentioned mechanisms. Synchronization in “read-mostly workloads”, advantages and disadvantages of different synchronization mechanisms.
 
-### Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?
+### 9.7 Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?
 
-### Profiling and optimizations of programs in compiled languages (e.g., C/C++). Hardware performance counters, profile-guided optimization. Basics of C/C++ compilers, AST, intermediate representation, high-level and low-level optimization passes.
+### 9.8 Profiling and optimizations of programs in compiled languages (e.g., C/C++). Hardware performance counters, profile-guided optimization. Basics of C/C++ compilers, AST, intermediate representation, high-level and low-level optimization passes.
