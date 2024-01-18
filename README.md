@@ -43,8 +43,8 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
     - [ ] [6.3 Ethernet based networking, VLAN, precision time protocol (PTP), stream reservation protocol (SRP), time sensitive networks (TSN).](#63-ethernet-based-networking-vlan-precision-time-protocol-ptp-stream-reservation-protocol-srp-time-sensitive-networks-tsn)
     - [ ] [6.4 In-vehicle networking, Controller Area Network (CAN, CAN-FD), Local Interconnect Network (LIN), FlexRay, data-link layer algorithms, physical topology constraints and relation to system design.](#64-in-vehicle-networking-controller-area-network-can-can-fd-local-interconnect-network-lin-flexray-data-link-layer-algorithms-physical-topology-constraints-and-relation-to-system-design)
   - [7. AVS - ARM based microcontrollers and signal processors; their functionality. Design and implementation of embedded systems for typical application areas.](#7-avs---arm-based-microcontrollers-and-signal-processors-their-functionality-design-and-implementation-of-embedded-systems-for-typical-application-areas)
-    - [ ] [7.1 Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).](#71-typical-architecture-and-main-features-of-arm-based-microcontrollers-amba-io-pin-configuration-common-used-peripheral-circuits-io-ports-timers-dma-controllers-nvic-controller-jtag-swd-ad-converters-da-converters-spi-controllers-i2c-controllers-uart-flash-and-sram-memory)
-    - [ ] [7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).](#72-typical-architecture-and-main-features-of-digital-signal-processors-dsp-common-used-peripheral-circuits-special-computational-units-and-their-features-alu-mac-shift-barrel-register-dag)
+    - [x] [7.1 Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).](#71-typical-architecture-and-main-features-of-arm-based-microcontrollers-amba-io-pin-configuration-common-used-peripheral-circuits-io-ports-timers-dma-controllers-nvic-controller-jtag-swd-ad-converters-da-converters-spi-controllers-i2c-controllers-uart-flash-and-sram-memory)
+    - [x] [7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).](#72-typical-architecture-and-main-features-of-digital-signal-processors-dsp-common-used-peripheral-circuits-special-computational-units-and-their-features-alu-mac-shift-barrel-register-dag)
     - [ ] [7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.](#73-digital-signal-processing-signal-spectrum-analysis-dft-idft-correlation-functions-and-their-typical-use-digital-filters-fir-iir-signal-interpolation-signal-decimation)
     - [ ] [7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds)
     - [ ] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
@@ -203,7 +203,105 @@ Best mix of functional units? It depends, usually 2:1:2 ALU:Branch:Load/Store
 
 ### 7.1 Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).
 
+**AMBA** - *Advanced Microcontroller Bus Architecture* - ARM specific on-chip communication protocols. Different types of AMBA:
+- AMBA AXI - *Advanced eXtensible Interface* - high-speed sub-micrometer interconnect. separate address/controll and data phases. Burst based transactions with only start address issued. Older iterations named as ASB - *Advanced system bus*
+- AMBA AHB - *Advanced High-performance Bus* - two bus-cycle address phase and data phase. One bus-master at the same time. There is also AHBlight (Only one master in AHB light) [AHB vs AHBlight](http://www.vlsiip.com/amba/ahb/ahb_0002.html)
+- AMBA APB - *Advanced Peripheral Bus* - low bandwith controll access, similar to the AHB, but much slower and much simpler communication (for example no bursts)
+
+Source: [AMBA](https://en.wikipedia.org/wiki/Advanced_Microcontroller_Bus_Architecture)
+
+In the stellar SR6P6 the buses are used followingly. The AXI NIX400 crossbar connects the R52 Cores in one cluster with local NVM and RAM. AHB is used to to connect Cortex M4 accelerators domains to their peripherals. NUC can be connected to with either AXI, AHB, AHBLight. The APB is used in peripheral bridge.
+
+If you want to use certain periphery you need to start the corresponding BUS. (which is kinda obvious, but just mentioning it...)
+
+**I/O pin configuration**
+
+GPIO Schema |  Register configuration
+:-------------------------:|:-------------------------:
+![GPIO Configuration](img/AVS_gpio_structure.png) |  ![Configuration](img/AVS_configuration.png)
+
+- Mode - Output/Input/Alternate Function/Analog - Alternate function can be UART output, or the TIMER output.
+- Push-Pull / OpenDrain - Push-Pull can both provide current and sink current, the OpenDrain only sinks current. 
+- Pull-Up / Pull-Down / Floating - Set what is the default state of the pin.
+
+**Timers**
+
+There can be different timers - 16bit, 32bit, HighResolutionTimers (Good for switch-mode power supply)
+
+Useful for PWM, measuring time, Generating interrupts, connecting RotaryEncored, Counting triggers. Capture/Compare and others.
+
+**DMA - direct memory access**
+
+Module used to handle memory manipulation. Can be Periphery-to-Mem, Mem-to-periphery, Mem-to-Mem (And even Periphery to Periphery, but that is special version of the Priphery-to-Mem)
+
+**NVIC - nested vector interrupt controller**
+
+Handles interrupts to the Microcontroller. Enables multiple interrupts to be handeled with the different priority and masking them. There is (as far as I know one unmaskmable interrupt). It is possible to jump to the higher priority interrupt, while executing lower priority interrupt. When interrupt occurs, the processor saves the state of the current routine and executes the higher priority one.
+
+**JTAG + SWD**
+
+Debugging interface standards. 
+
+Jtag requieres 4 signal lines. 
+
+The SWD uses 2-pin interface, that uses the same protocol. Debugger becomes another AMBA busmaster.
+
+Source: [SWJ vs JTAG debugging](https://electronics.stackexchange.com/questions/53571/jtag-vs-swd-debugging)
+
+**A/D + D/A** 
+
+A/D - Analog to Digital converter. The base of the A/D is sampling the analog signal at regular intervals and converting this signal to digital value. About types and the sampling refer to the [7.4 Types of A/D](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds). 
+
+D/A - Digital to Analog converter. The base of the D/A convertor in converting the digital value into the Analog signal. 
+More info in [7.4 Types of A/D](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds). 
+
+**SPI** 
+
+Uses four signals to communicate. Clock, Chip select, MOSI (Master out Slave in), MISO (Master in Slave out). 
+
+Chip select in 0 - communication active. Different SPI modes. Changing the idle state and on which edge (rising/falling) the data will be sampled. Supports FULL-Duplex communication and mupliple slaves by daisychaining them.
+
+**I2C**
+
+Bidirectional, but only Half-Duplex. Master-Slave communication and the bus is Synchronous - clocked with clock signal.
+Also can be called TWI (Two-wire interface). One wire is clock, while the other is data. SDA - serial data, SCL - serial clock.
+
+![I2C Frame](img/AVS_I2C_FRAME.png)
+
+The communication is acknowledged - after every data the receiver acks the received data.
+
+**UART/USART**
+
+UART - universal asynchronous receiver/transmitter. Half-duplex. More simple than USART (Synchronous/asynchronous). Synchronous communication requieres clock signal and that means the communication is a more reliable and can be faster.
+
+UART frame - databits (7,8,9), Optional Parity bit and number of stop bits (1, 1.5, 2)
+
+**FLASH + SRAM**
+
+Flash is non-volatile memory (NVM). Different types, based on the type of manufacturing NOR-FLASH, NAND-FLASH, EEPROM...
+NOR-FLASH good random access - good for code storage in micro. NAND flash in consumer electronics, like flash drives. EEPROM electrically erasable programable memory - stable, ideal for external sotrrage for embedded devices.
+
+SRAM (Static Random Access Memory) is a volatile memory. More expensive and faster, than FLASH memory. Used for Cache and TCM. Cana be Synchronous of Asynchronous. Tha fastest RAMs, like in desktop PCs are Synchronous. 
+
 ### 7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).
+
+DSPs are designed expecially  to efficiently process digital signals in real-time. They are used for application that requiere a lot of data processing, like audio, video, telecommunication, radars...
+
+They are ussualy used with ADC and DAC. Analog data to ADC -> into DSP, carry out some mathematical operations -> DAC -> back to analog signal.
+
+The common peripheral circuits are simillar to the general microcontrollers - gpio, ADC, DAC, Timers, interrupt controllers, power management, DMAs...
+
+DSP typically has Harward architecture - the Instruction and Data memory are separated, as well as the ALU. Has limited instruction set (RISC core). Optimized for dataflow processing directly supported by hardware: circular buffers (FIR), bit reversal (FFT), special instructions for SIMD. Special ALU and MAC units (MAC=Multiply and accumulate)
+
+**ALU** has usual operations (Add sub, div, ++, --, abs, and logical operations AND, OR, XOR...).
+
+**MAC** high speed multiply and accumulate. Multiplication is very important oparatoin in DSP. can have fractional mode 1.15 or integer mode 16.0 (for 16-bit operations). 
+
+**DAG** (Data adress generator) - HW support for circular buffers. 
+
+**Shift barrel register** provides arithmetical and logical shifts. Normalization and even some derivations. 
+
+All the components are highly specialized for the targeted market (Autio, Telecommunication, Sience...)
 
 ### 7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.
 
