@@ -46,7 +46,7 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
     - [x] [7.1 Typical architecture and main features of ARM based microcontrollers. AMBA. I/O pin configuration. Common used peripheral circuits (I/O ports, timers, DMA controllers, NVIC controller, JTAG, SWD, A/D converters, D/A converters, SPI controllers, I2C controllers, UART, FLASH and SRAM memory).](#71-typical-architecture-and-main-features-of-arm-based-microcontrollers-amba-io-pin-configuration-common-used-peripheral-circuits-io-ports-timers-dma-controllers-nvic-controller-jtag-swd-ad-converters-da-converters-spi-controllers-i2c-controllers-uart-flash-and-sram-memory)
     - [x] [7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).](#72-typical-architecture-and-main-features-of-digital-signal-processors-dsp-common-used-peripheral-circuits-special-computational-units-and-their-features-alu-mac-shift-barrel-register-dag)
     - [ ] [7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.](#73-digital-signal-processing-signal-spectrum-analysis-dft-idft-correlation-functions-and-their-typical-use-digital-filters-fir-iir-signal-interpolation-signal-decimation)
-    - [ ] [7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds)
+    - [x] [7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds)
     - [ ] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
   - [8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)](#8-pag---properties-of-parallel-and-distributed-algorithms-communication-operations-for-parallel-algorithms-parallel-algorithms-for-linear-algebra-be4m35pag-course-web-pages)
     - [ ] [8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
@@ -305,7 +305,67 @@ All the components are highly specialized for the targeted market (Autio, Teleco
 
 ### 7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.
 
+**Impulse characteristic** - system response to the Dirac function
+
+**Transfer characterictic** - system response to the unit step
+
+**DFT**
+
+**IDFT**
+
+
+
 ### 7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).
+
+**Types of A/D converters**
+- **Succesive approximation register (SAR) ADC** - defacto binary search. We sample the $V_{in}$. And set the highest bit in DAC to 1. If the $V_{dac}$ is higher than *in* the bit is set to 0, otherwise it stays 1. Move to the less significant bit. This way we will create the value on our DAC, that is closest to the $V_{in}$.\
+Intermediete in speed and accuracy.
+- **Integrating ADC or Dual slope ADC** - high resolution 12-18 bit. Good accuracy, high stability, low cost. Low sampling rate around 10samples/s. Suitable for slowly changing measurements, like temperature.\
+The functionality is described in picture. First the $S_1$ is closed - the charge on the capacitor *C* is zero. Then the $S_2$ is closed for the number of clock cycles N resulting in charge in C. Then the $S_3$ is closed integrating the voltage back to zero, using the negative reference voltage. after time x the charge is 0. Now, knowing the time x, number of clock cycles N and reference voltage, we can count the $V_{in}$ 
+- **Paralel ADC or Flash converter** - Like thermometer. Not suitable for high resolution ADCs, but it is very fast. 
+- **Charge balancing ADC** - charge balancing integrator. Voltage is translated to the frequency. The pulse is generated when integrated Voltage reaches certain treshold and integrated charge is discharged (depicted as $V_{pulse}$). Number of pulses are counted and that is then translated into the Voltage.\
+Input voltage should be lowed than $V_{ref}/2$
+- **Sigma-Delta** - engeneer is buying coffee. Based on the oversampling principle. Making many errors and then taking average. 
+
+Synchronous data transfer is usually easier to handle than asynchronous, but it is dependant on the clock frequency - generates jitter. 
+
+SAR DAC | Integrating ADC
+|:---:|:--:|
+![SAR ADC](img/AVS_SAR_ADC.png)|![Integrating ADC](img/AVS_integrating_ADC.png)
+
+charge balancing | |
+|:---:|:--:|
+![Charge balancing](img/AVS_charge_balancing.png)|![Charge Balancing schema](img/AVS_charge_balancing_schema.png)
+
+Sigma-delta | Paralel ADC |
+|:---:|:--:|
+![Sigma Delta](img/AVS_sigma_delta_basics.png)|![Paralel ADC](img/AVS_parallel_adc.png)
+
+Source [Integrating and charge balancing](https://www.youtube.com/watch?v=f-6shAZL4Ak), [Sigma-Delta](https://www.youtube.com/watch?v=M5Vx-X66seg), [Parallel and SAR](https://www.youtube.com/watch?v=75GcoQ9_LFI)
+
+**Anti-aliasing filter** - also a low-pass filter. When the sampling frequency is lower, than the frequency of the signal we are sampling, we can get garbage. It is important to know this and discard the high frequencies we are not able to reliably capture. For this we use low-pass filter. Only the low frequencies, we know we can represent are sampled, and high frequencies are ignored.
+Aliasing |
+|:---:|
+![aliasing](img/AVS_aliasing.png)|
+
+**Sampling (Shannon-Kotelnik or Nyquist-Shannon) theorem** - Reverse and accurate reconstruction of a continuous frequency signal from discrete values is only possible if the sampling frequency is at least twice higher than the maximum frequency of the reconstructed signal. 
+
+$$
+f_{s} > 2f_{sig\_max}
+$$
+where $f_s$ is sampling frequency and $f_{sig_max}$ is maximum frequency of the signal we try to capture. Nyquist frequency is the $f_{s} \over 2$. Same thing, but isnted of the sampling we tank about frequency.
+
+**DDS - Direct Digital Synthesis** - used to represent some signal stored in memory.
+
+DDS with acumulator rounding|
+|:-:|
+![Acumulator Rrounding](img/AVS_DDS_se_zaokrouhlovanim.png)|
+
+Register specifies the frequency at which the output signal will be updated. If set to 1 it will be the same as the Reference clock. Acumulator is just sum, that owerflows, once the *Acumulator>size(Lookup_table)* The Converter phase-amplitude is just fancy way of saying lookup table. The acumulator to retrieve value from lookup table and display it on the D/A. 
+
+Difference between rounding and not-rounding DDS is that only the high bits are used to adress the data in lookup table (depends in the size of the table). It is ideal to put low-pass filter after the D/A converter.
+
+One need to keep in mind the Nyquist frequency - the frequency of the outputed signal needs to be lower, than the $f_{clk} \over 2$ but that ususally spawns other frequencies (higher harmonic frequencies) and it is recommend to keep the output frequency at 40%. That being $40\% {f_{clk} \over 2}$
 
 ### 7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).
 
