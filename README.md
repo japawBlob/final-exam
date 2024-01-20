@@ -50,8 +50,8 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
     - [ ] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
   - [8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)](#8-pag---properties-of-parallel-and-distributed-algorithms-communication-operations-for-parallel-algorithms-parallel-algorithms-for-linear-algebra-be4m35pag-course-web-pages)
     - [ ] [8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
-    - [ ] [8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.](#82-describe-performance-metrics-and-scalability-for-parallel-systems-how-efficiency-of-a-parallel-algorithm-depends-on-the-problem-size-and-the-number-of-processors-derive-isoefficiency-functions-of-a-parallel-algorithm-for-adding-numbers-including-communication-between-processors-and-explain-how-it-characterizes-the-algorithm)
-    - [ ] [8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.](#83-explain-and-compare-two-parallel-algorithms-for-matrix-vector-multiplication-describe-a-parallel-algorithm-for-matrix-matrix-multiplication-and-explain-the-idea-of-cannons-algorithm-discuss-the-principle-and-properties-of-the-dns-algorithm-used-for-matrix-matrix-multiplication)
+    - [x] [8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.](#82-describe-performance-metrics-and-scalability-for-parallel-systems-how-efficiency-of-a-parallel-algorithm-depends-on-the-problem-size-and-the-number-of-processors-derive-isoefficiency-functions-of-a-parallel-algorithm-for-adding-numbers-including-communication-between-processors-and-explain-how-it-characterizes-the-algorithm)
+    - [x] [8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.](#83-explain-and-compare-two-parallel-algorithms-for-matrix-vector-multiplication-describe-a-parallel-algorithm-for-matrix-matrix-multiplication-and-explain-the-idea-of-cannons-algorithm-discuss-the-principle-and-properties-of-the-dns-algorithm-used-for-matrix-matrix-multiplication)
     - [ ] [8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.](#84-outline-the-principle-of-sorting-networks-and-describe-parallel-bitonic-sort-including-its-scalability-explain-parallel-enumeration-sort-algorithm-on-pram-model-including-its-scalability)
     - [ ] [8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.](#85-explain-all-steps-of-a-parallel-algorithm-for-finding-connected-components-in-a-graph-given-by-the-adjacency-matrix-using-an-example-illustrate-a-parallel-algorithm-for-finding-a-maximal-independent-set-in-a-sparse-graph)
   - [9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.](#9-esw---effective-algorithms-and-optimization-methods-data-structures-synchronization-and-multithreaded-programs)
@@ -375,9 +375,201 @@ One need to keep in mind the Nyquist frequency - the frequency of the outputed s
 
 ### 8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.
 
+Problem of scalability - when we use x processors it does not mean the result will be x times faster. Communication overhead, interprocessor communication, deviding of the work, waiting for more work, and number of processors is dependant on the data (adding two numbers will be the same when using one or twenty processors)
+
+In short - there is exess computation, that does not to be performed by serial version of the program.
+
+The **Serial runtime** $T_s$ is time elapsed between start and end of the execution. The **Parallel runtime** $T_p$ is time between first processor starting and last processor ending the execution.
+
+We can copmute the non-usefull work by computing overhead function $T_O$. The **overhead** function is given by $T_O=pT_p-T_s$ time spent in parralel multiplied by the number of processors and substracting the amount of time the serial version would need.
+
+Benefit of the parallelism - the **Speedup** can be compuded by $S={T_s \over T_p}$. Represents Ration of how much faster is the problem computed on single proccessor to computed on p identical processors in parallel.
+
+Speedup can be as low as 0 (parallel program never terminates). The Speedup is in theory bounded by p, but there can be Superlinear Speedup (paralle program does less work, then serial counterpart). Example: some special example of depth first search.
+
+**Amdahl's law**: The program contains part that is naturally sequential - it cannot be speeded up by adding more processors. $T_p = \beta T_s + (1-\beta){T_s\over p}$ 
+$$S \leqq {T_s \over \beta T_s + (1-\beta){T_s\over p} } = {p\over \beta p+(1-\beta)}$$ 
+
+if the $p \to \infty$ then the limit is $1\over\beta$
+
+**Efficiency** is a measure of the fraction of time for which the processor is usefully employed.
+
+$$E = {S\over p}$$
+
+**Cost** or work is the product of parallel runtime and the number of processing elements used 
+$p \cdot T_p$
+. Cost represents the **Sum** of time each processing element spends solving the problem. 
+
+The parallel system is cost-optimal if the cost of solving a problem on a paralle computer is asysmptotically identical to serial cost.
+
+Since 
+
+$$E = {T_s \over p T_p}$$
+
+, for cost optima systems $E=O(1)$
+
+The E can be also rewritten as 
+
+$$E={1 \over 1 + {T_o \over T_s}}$$
+
+By adding the processors the $T_o$ goes up. 
+
+**Isoefficiency** describes the rate at which the problem size mut increase with respect to the number of processing elements to keep efficiency fixed. This rate determnes the **Scalability** the slower the rate, the better. 
+
+Lets define W as the aysmptotic number of operations associated with the best serail algorithm to solve the problem.
+
+$$T_p = {W+ T_o(W,p) \over p}$$
+
+The resulting speedup: 
+
+$$S = {W\over T_p} = {W_p\over W+T_o(W,p)}$$
+
+And efficiency:
+
+$$E = {S\over p} = {W\over W+T_o(W,p)} = {1\over 1+T_o(W,p)/W}$$
+
+If we modify the function:
+
+$$W={E\over 1-E} T_o(W,p)$$
+
+And if  $K = E/(1-E)$ is a constant function to be maintained we have:
+
+$$W=KT_o(W,p)$$
+
+The problem size W can usually be obtained as function of p. This function is called the **isoefficiency function**. This function determines the *ease* of maintaining constant efficiency. 
+
+If the W needs to grow only linearly with respect to p then the parallel system is **highly scalable**
+
+If we solve the isoeffitiency function for p=f(n) we get the maximum number of processors, that can be used to remain cost-effitient
+
+**EXAMPLE OF ADDING NUMBERS**
+
+Adding numbers $p = n$| Adding numbers $p \neq n$|
+|:-:|:-:|
+![Adding numers in parallel](img/PAG_adding_numbers_visualisation.png)|![Adding numbers cost optimal](img/PAG_adding_numbersp!=n.png)
+
+The ${T_s = \Theta(n)}$ and using all to one reduction the $T_p = \Theta(\log n)$
+
+The speedup $S={T_s\over T_p}={n\over \log n}$
+
+The efficiency $E={S\over p} = {n\over p \log n }$ if the $p=n$ the $E={1\over \log n}$ the sollution is not cost-optimal
+
+The cost = $pT_p = n \log n$ proving once again the solution is not cost-optimal, since $T_s = \Theta(n)$
+
+It the $p \neq n$
+
+$$T_p = n/p + t_w \log p$$
+
+The cost is $p \cdot T_p = n+p\log p$ and as long as $n \in \Omega(p\log p)$ the computation is cost-optimal
+
+The isoefficiency: $W=KT_o$ ; $T_o = pT_p-W = n+pt_w\log p -n = pt_w\log p$
+That means the isoefficiency is 
+$$\Theta(p\log p)$$
+
+
+
 ### 8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.
 
+**Matrix x vector multiplication**
+
+either devide by rows or devide by 2D chunks
+TODO!
+
+**Matrix x Matrix**
+
+The naive approach to the matrix x matrix multiplication would be to devide matrix to the sub-metrixes. Broadcast the sub-matrix to the corresponding line/row and then compute the final submatrix.
+
+The processors are connected in hypercube
+
+Naive matrix multiplication|
+|:-:|
+![Naive matrix multiplication](img/PAG_matrix_mult.png)
+
+The communication overhead is: 
+$$2(t_s \log\sqrt{p} + t_w{n^2\over p}(\sqrt p -1))$$
+Two broadcasts (over line and over column) of submatrix of size 
+${n\over \sqrt p}\times {n\over\sqrt p}$
+
+From that asymptotic paralel time is **APPROXIMATELY**:
+
+$$T_p = {n^3\over p} + t_S \log p + 2t_w{n^2\over \sqrt p}$$
+
+This is cost-optimal $\Theta(n^3)$ ;  $E=\Omicron(1)$
+
+Isoeffitiency: after computing $T_o = p t_s \log p + 2t_wn^2\sqrt p$. We can split the isoeffitiency function into two
+
+$$W_1 = Kpt_s\log p \to \Theta(p \log p)$$
+$$W_2 = K2t_wW^{2\over 3}\sqrt p = \Theta(p^{3\over 2})$$
+
+The isoeffitioncy is $\Theta(p^{3\over 2})$
+
+Also it is not memory optimal
+
+**Cannon algorithm**
+
+The main principle of canons algorithm is that using cleaver swaps we will achieve the memory optimal algorithm, using the same parameters as the naive one.
+
+Cannon algorithm|
+|:-:|
+![Cannon algoritm](img/PAG_cannon.png)
+
+**DNS algorithm**
+
+The base of the DNS algorithm is splitting the matrix into cube, where each plane represents single file.
+
+DNS first part | DNS second part |
+|:-:|:-:|
+![DNS first part](img/PAG_DNS_matrix_multiplication.png)|![DNS second part](img/PAG_DNS_matrix_2.png)
+
+**p=n^3**
+
+In the pictures the solution with $p=n^3$ is displayed. 
+Move each line and perform broadcast - $\log n$ time. 
+Each processor computes add
+computes single multiply and then accumulation is executed. The computation is constant, accumulation is again $\log n$ 
+
+The total runtime is $T_p \in \Theta(\log n)$
+
+It is not cost-optimal since $E = {S\over p} = {T_s\over pT_p} = {1\over log n}$
+
+It can be cost-optimal using fewer processors:
+
+**p<n^3**
+
+Let $p=q^3$
+
+1) One-to_one communication: $t_s+t_w({n\over q})^2$
+2) Two (for matrix A and B) One-to-All broadcasts: $2\log q (t_s + t_w({n\over q})^2)$
+3) Reduction: $\log q (t_s+t_w({n\over q})^2)$
+4) Multipltication takes time $({n\over q})^3$
+
+That will give us:
+
+$$T_p = {n^3\over p} + (1+3\log \sqrt[3]p)(t_s+t_w({n\over \sqrt[3]p})^2)$$
+
+The approximation (ignore sqrt in log and ignore constants):
+
+$$T_p = {n^3\over p} + t_s\log p + t_w{n^2\over p^{2\over3}}\log p$$
+
+The isoeffitiency:
+
+$$T_o = pT_p - W = t_sp\log p + t_wp^{1\over3}n^2\log p$$
+
+From the $t_w$ the isoeffitiency is $\Theta(p\log^3 p)$ 
+
+ 
+
+
 ### 8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.
+
+
+**Enumeration sort**
+
+The enumaration sort compares each element with every other element counting how many elements are smaller. Then places that element to the index that corresponds to the counted value. 
+
+The parallel implementation takes $n^2$ processors in 2D grid. Each column represents one digit. Each processor executes one compare and then adds +1 if I am bigger or +0 to the common counter. Then the lemenet is placed to the index coresponding to the common counter.
+
+This takes $\Theta(1)$ time.
 
 ### 8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.
 
