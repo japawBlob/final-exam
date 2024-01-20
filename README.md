@@ -16,7 +16,7 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
     - [ ] [2.3 Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.](#23-decision-problems-and-languages-complexity-classes-p-np-co-np-reduction-and-polynomial-reduction-class-npc-cook-theorem-heuristics-and-approximate-algorithms-for-solving-np-complete-problems)
     - [ ] [2.4 Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.](#24-classes-based-on-space-complexity-pspace-and-npspace-savitch-theorem)
     - [ ] [2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.](#25-randomized-algorithms-randomized-turing-machines-classes-based-on-randomization-rp-zpp-co-rp)
-    - [ ] [2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.](#26-decidability-and-undecidability-recursive-and-recursively-enumerable-languages-diagonal-language-universal-language-and-universal-turing-machine)
+    - [ ] [2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.](#26-decidability-and-undecidability-recursive-and-recursively-enumerab/le-languages-diagonal-language-universal-language-and-universal-turing-machine)
   - [3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications.](#3-ko---combinatorial-optimization-problems---formulation-complexity-analysis-algorithms-and-example-applications)
     - [ ] [3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.](#31-integer-linear-programming-shortest-paths-problem-and-traveling-salesman-problem-ilp-formulations-branch-and-bound-algorithm-problem-formulations-using-ilp-special-ilp-problems-solvable-in-polynomial-time)
     - [ ] [3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.](#32-shortest-paths-problem-dijkstra-bellman-ford-and-floydwarshall-algorithms-shortest-paths-in-directed-acyclic-graphs-problem-formulations-using-shortest-paths)
@@ -494,7 +494,7 @@ From that asymptotic paralel time is **APPROXIMATELY**:
 
 $$T_p = {n^3\over p} + t_S \log p + 2t_w{n^2\over \sqrt p}$$
 
-This is cost-optimal $\Theta(n^3)$ ;  $E=\Omicron(1)$
+This is cost-optimal $\Theta(n^3)$ ;  $E=O(1)$
 
 Isoeffitiency: after computing $T_o = p t_s \log p + 2t_wn^2\sqrt p$. We can split the isoeffitiency function into two
 
