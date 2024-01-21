@@ -313,8 +313,6 @@ All the components are highly specialized for the targeted market (Autio, Teleco
 
 **IDFT**
 
-
-
 ### 7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).
 
 **Types of A/D converters**
@@ -369,9 +367,132 @@ One need to keep in mind the Nyquist frequency - the frequency of the outputed s
 
 ### 7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).
 
+**Button** - can be pulled-up or down, but needs to be pulled somewhere. Debouncing needs to be solved. Debouncing can be solved on the Hardware or Software level.
+
+On Hardware we can add schmitt trigger (Histeresy) or by implementing RC circuit (low-pass filter)
+
+In Software, we can count the occurences of the HIGH/LOW signal, and we can take the definitive answer after encountering N continuous samples. We can also wait after the pressing and unpressing the button and then checking again.
+
+**Rotary-encoder** - encoder can be incremental or absolute - incremental only informs us about the direction of the encoder, while absolute (using usually gray code) specifies its absolute position.
+
+The most popular is quadrature rotary encoder. Uses two signals to represent the motion. Microcontrollers have special timers that can easily interact with the rotary encoder.
+
+**Graphic LCD** - graphical LCD can be simple like 7-segment display, or more complex LCD displays. The basic HD44780 usis data bus for selecting the segment and then writing to that segment. The segment can be chosen by special instructions, where we can move with the cursor to the left/right.
+
+Usually the LCD is connected via shift-register or specialized controller connected to the Micro via SPI or IIC, to save pins.
+
+**Audio codecs** - the most basic audio interaction from the Microcontroller is by using PWM signal connected to the Piezzo buzzer.
+
+The more complex audio requieres audio codec - single device usually connected via bus (SPI, I2C), that Encodes analog audio as digital signals and decodes digital audio back to analogsing  using ADC and DAC.
+
+**Relays** - relay can serve as the isolation of two or more Domains, in each domain there can be different signal voltage. The relay enables this isolatoin by switching the contact using magnetic force generated on the coil. 
+
+The relay can be in different instances - default off, default on. Or used as a switch with break first, then connect, or connect first, then break. They are called BBM and MBB (Break before Make and Make before Break)
+
+The donwside of the relay is slow switching speed, and degradation due to the induction and high currents.
+
+The micro is usually not powerfull enough to set relay - it might need external source and swith it using transistor.
+
+The relay can also be semi-conductor based. Using IRED LED and light-sensitive element.
+
+**Brush DC motor** - All motors are based on the magnetic field and motion created by that. The brush motor connect to the rotor using literal brushes, that concuct electricity to the part of the rotor. Around rotor, there are static magnets and field of the static magnets and the generated field try to align - creating motion. But since the brushes are not hard connected, they will stay still, not allowing the magnetic fields to align.
+
+Same probles as with relay - induction and high current needed. Can controll the motor speed using PWM. 
+
+For both way control we can use H-bridge.
+
+**Stepper motor** - stepper motor uses coils around static magnet to fine tune the position of the rotor.
+
+**Brushless DC motor controll** - simmilar to the brush DC motor, but the static magnet is rotating - no need of connection to the rotor trough brushes, but the controll is harder, since we need to know whet to send current trough the surrounding coils. Usually 3 coils connected trough half H-bridge. information about the position of the rotor can be obtained using HAL sensor.
+
+Brush Motor | Stepper motor steps
+|:-:|:-:|
+![Brush motor](img/AVS_brush_motor.png)|![Stepper motor phases](img/AVS_Stepper_motor.png)
+
 ## 8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)
 
 ### 8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.
+
+**Main terms**
+
+- NUMA - non unified memory access
+- UMA - unified memory access
+- SIMD - single instruction stream, multiple data streams
+- MIMD - multiple instruction streams multiple data streams
+- Diameter - distance between the farthest two nodes in network
+- Bisection width - The minimum number of connections that need to be cut to devide network into two equel parts.
+- Cost - total number of connections
+- Arc Connectivity - the minimum number of arcs that must be removed from the network to beak it into two disconnected networks.
+
+Evaluation of networks|
+|:-:|
+![Evaluation of networks](img/PAG_evalueation_of_networks.png)
+
+The main compute is 
+$$
+t_{comm}=t_s + (mt_w+t_h)l
+$$
+where $t_{comm}$ is time needed for communication. $t_s$ is startup time $t_h$ is per-hop time and $t_w$ is word transfer time. $m$ is size of the message and $l$ is number of traversed communication links. 
+
+Since $t_h$ is usually smaller than other variables, and $m$ is large, it is usually ignored. And due to usage of cut-trough routing the equation can be simplified to 
+
+$$
+t_{comm}=t_s+t_wm
+$$
+
+**one-to-all broadcast**
+
+Cost analysis $T=(t_s+t_wm)\log p$
+
+Due to cut-trough routing we can delegate sending the message to other nodes.
+
+One-to-All broadcast ring | One-to-All broadcast 3D mesh |
+|:-:|:-:|
+![One-to-all broadcast ring](img/PAG_one_to_all_broadcast.png)|![One-to-all boradcast 3D mesh](img/PAG_Hybercube_alltoonebroadcast.png)| 
+
+**All-to-all broadcast**
+
+The same applies for all-to-all reduction, but in reverse
+
+*Cost of all-to-all ring*:  $T=(t_s + t_wm)*(p-1)$
+
+*Cost of all-to-all mesh*: 
+1) phase on lines: $T=(t_s+t_wm)*(\sqrt{p}-1)$
+2) phase on columns: $T=(t_s+t_wm\sqrt{p})*(\sqrt{p}-1)$
+
+Sum of the phases: $T=2t_s+(\sqrt{p}-1)+t_wm(p-1)$
+
+*Cost of all-to-all hypercube*: again it can be devided into phases to more understand the problem, but the final sum is: $T=\sum_{k=1}^{\log p} t_s + t_wm*2^{k-1}$ which can be simplified to the $T=t_s\log p + t_wm(p-1)$
+
+All-to-All ring | All-to-All mesh | All-to-All hypercube | 
+|:-:|:-:|:-:|
+![all-to-all broadcast ring](img/PAG_all_to_all_ring.png)|![all-to-all broadcast mesh](img/PAG_all_to_all_mesh.png)|![all-to-all boradcast 3D mesh](img/PAG_all-to-all-hypercube.png)| 
+
+**Scatter - Gather** -  Scatter: one node has personalized message for the all others. The time cost is the same as the All-to-all broadcast $T=t_s\log p + t_wm(p-1)$, but here it is the same for the linear array, as well as 2D mesh.
+
+**All-reduce** - each node starts with buffer of size m, and at the end of the operation all nodes have identical buffers. The final buffer is created by combining all the buffers (eg vector sum)
+
+Can be implemented as all-to-one reduction and one-to-all broadcast. Or more efficiently by all-to-all broadcast patter, but the size of the message is not increasing, which results in $T=(t_s+t_wm)\log p$
+
+**Prefix-sum** - each node starts with the unique number. And at the end each node will have sum of the numbers from nodes, that have smaller ID than the Node.
+
+Can be implemented using modified all-to-all broadcast, summing only the numbers with label smaller, than my ID. But I can still summ something for my future communication partner, like show in the picture, where node $0$ summed 0+1 for the node $2$.
+
+Prefix sum|Scatter|
+|:-:|:-:|
+![Prefix-summ](img/PAG_prefix-sum.png)|![scatter](img/PAG_scatter.png)
+
+**all-to-all personalized** - also called total exchange
+
+*Cost on ring* - $T=\sum_{k=1}^{p-1}t_s+t_wm(p-k)$ after some cleaver magic it results into: $T=(t_s+t_wm{p\over 2})(p-1)$
+
+*Cost on mesh* - same as cost on 2 rings of size $\sqrt{p}$ (but message size stays the same) therfore $T=(2t_s+t_wmp)(\sqrt{p}-1)$
+
+*Cost on hypercube* - the same principle as with previous networks is not optimal - resolves in $T=(t_s+t_wm{p\over 2})\log p$ cost. The optimal algoritm cost is $T=t_wm(p-1)$
+
+Total exchange Ring|Total exchange Mesh| Total exchange Hypercube
+|:-:|:-:|:-:|
+![total exchange ring](img/PAG_total_exchange_ring.png)|![total excahnge mesh](img/PAG_total_exchange_mesh.png)|![total exchange hypercube](img/PAG_total_exchange_hypercube.png)
 
 ### 8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.
 
