@@ -47,13 +47,13 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
     - [x] [7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).](#72-typical-architecture-and-main-features-of-digital-signal-processors-dsp-common-used-peripheral-circuits-special-computational-units-and-their-features-alu-mac-shift-barrel-register-dag)
     - [ ] [7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.](#73-digital-signal-processing-signal-spectrum-analysis-dft-idft-correlation-functions-and-their-typical-use-digital-filters-fir-iir-signal-interpolation-signal-decimation)
     - [x] [7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds)
-    - [ ] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
+    - [x] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
   - [8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)](#8-pag---properties-of-parallel-and-distributed-algorithms-communication-operations-for-parallel-algorithms-parallel-algorithms-for-linear-algebra-be4m35pag-course-web-pages)
-    - [ ] [8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
+    - [x] [8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
     - [x] [8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.](#82-describe-performance-metrics-and-scalability-for-parallel-systems-how-efficiency-of-a-parallel-algorithm-depends-on-the-problem-size-and-the-number-of-processors-derive-isoefficiency-functions-of-a-parallel-algorithm-for-adding-numbers-including-communication-between-processors-and-explain-how-it-characterizes-the-algorithm)
     - [x] [8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.](#83-explain-and-compare-two-parallel-algorithms-for-matrix-vector-multiplication-describe-a-parallel-algorithm-for-matrix-matrix-multiplication-and-explain-the-idea-of-cannons-algorithm-discuss-the-principle-and-properties-of-the-dns-algorithm-used-for-matrix-matrix-multiplication)
-    - [ ] [8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.](#84-outline-the-principle-of-sorting-networks-and-describe-parallel-bitonic-sort-including-its-scalability-explain-parallel-enumeration-sort-algorithm-on-pram-model-including-its-scalability)
-    - [ ] [8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.](#85-explain-all-steps-of-a-parallel-algorithm-for-finding-connected-components-in-a-graph-given-by-the-adjacency-matrix-using-an-example-illustrate-a-parallel-algorithm-for-finding-a-maximal-independent-set-in-a-sparse-graph)
+    - [x] [8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.](#84-outline-the-principle-of-sorting-networks-and-describe-parallel-bitonic-sort-including-its-scalability-explain-parallel-enumeration-sort-algorithm-on-pram-model-including-its-scalability)
+    - [x] [8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.](#85-explain-all-steps-of-a-parallel-algorithm-for-finding-connected-components-in-a-graph-given-by-the-adjacency-matrix-using-an-example-illustrate-a-parallel-algorithm-for-finding-a-maximal-independent-set-in-a-sparse-graph)
   - [9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.](#9-esw---effective-algorithms-and-optimization-methods-data-structures-synchronization-and-multithreaded-programs)
     - [ ] [9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.](#91-java-virtual-machine-memory-layout-frame-stack-oriented-machine-processing-ordinary-object-pointer-compressed-ordinary-object-pointer-jvm-bytecode-just-in-time-compiler-tired-compilation-on-stack-replacement-disassembler-decompiler-global-and-local-safe-point-time-to-safe-point-automatic-memory-management-generational-hypothesis-garbage-collectors-cpu-and-memory-profiling-sampling-and-tracing-approach-warm-up-phase)
     - [ ] [9.2 Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).](#92-data-races-cpu-pipelining-and-superscalar-architecture-memory-barrier-volatile-variable--synchronization---thin-fat-and-biased-locking-reentrant-locks-atomic-operations-based-on-compare-and-set-instructions-atomic-field-updaters-non-blocking-algorithms-wait-free-algorithms-non-blocking-stack-lifo)
@@ -567,7 +567,7 @@ If we solve the isoeffitiency function for p=f(n) we get the maximum number of p
 
 Adding numbers $p = n$| Adding numbers $p \neq n$|
 |:-:|:-:|
-![Adding numers in parallel](img/PAG_adding_numbers_visualisation.png)|![Adding numbers cost optimal](img/PAG_adding_numbersp!=n.png)
+![Adding numers in parallel](img/PAG_adding_numbers_visualisation.png)|![Adding numbers cost optimal](img/PAG_adding_numbers.png)
 
 The ${T_s = \Theta(n)}$ and using all to one reduction the $T_p = \Theta(\log n)$
 
@@ -594,6 +594,12 @@ $$\Theta(p\log p)$$
 **Matrix x vector multiplication**
 
 either devide by rows or devide by 2D chunks
+
+1D - all-to-all bradcast and then compute
+2D - one-to-all broadcast over file compute and then acummulate.
+
+2D can use more processors, 1D has better iso-effitiency
+
 TODO!
 
 **Matrix x Matrix**
@@ -683,6 +689,33 @@ From the $t_w$ the isoeffitiency is $\Theta(p\log^3 p)$
 
 ### 8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.
 
+**Sorting networks**
+
+The main building block of the sorting networks is comparator. The comparator has two inputs and two outputs. The increasing comparator takes the inputs *x* and *y* and outputs *x' = min{x, y}* and  y' = max{x,y}. The decreasiong has the outputs swapped. The increasing comparator is marked by $\oplus$ and decreasing by $\ominus$
+
+**Bitonic sort**
+
+The bitonic sort uses sorting network to sort the bitonic sequence, depicted in the *Bitonic Sort* picture. The speed of the algorithm is proportional to the depth of the sorting network. The bitonic merging network contains $\log n$ columns, each column containing $n\over 2$ comparators.
+
+The depth of the network is 
+
+$$d(n) = d({n\over2}) + \log n \to d(n) \in \Theta(\log^2n)$$
+
+The serial implementation of the network would have the complexity of $\Theta(n \log^2 n)$
+
+The bitonic merge network can be mapped to the hypercube, using the ID of the hypercube nodes as the Wire specified in Bitonic Sort network.
+
+We need to creat a bitonic sequence out of the unsorted sequence. A sequence of length 2 is a bitonic sequence. The bitonic sequence of length 4 can be built by sorting the first two elements using $\oplus BM[2]$ and the next two by using $\ominus BM[2]$. This process can be repeated to create larger bitonic sequences.
+The process is displayed in the *Creating bitonic sequence* picture.
+
+Since each step takes $\Theta(1)$ time, the parallel time is $T_p = \Theta(\log^2 n)$
+
+The algorithm is cost-optimal when compared to the serial implementation, but it is not cost-optimal, when compared with the best sorting serial algorithm.
+
+
+Bitonic Sort| Creating Bitonic Sequence|
+|:-:|:-:|
+![Bitonic Sort](img/PAG_bitonic_sort.png)| ![Create bitonic sequence](img/PAG_create_bitonic.png)
 
 **Enumeration sort**
 
@@ -693,6 +726,35 @@ The parallel implementation takes $n^2$ processors in 2D grid. Each column repre
 This takes $\Theta(1)$ time.
 
 ### 8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.
+
+**Finding of connected components in graph**
+
+1) Graph is represented by the adjacency matrix. Devide that matrix into the processors, and each processor will compute the connected components for its nodes.
+2) We need to combine created forrests of each processor. Merging forrest A and B uses unionfind approach. For each edge of A call *Find* to check if the vertices are in the same tree of B.
+   1) If not they are united
+   2) If yes, no unification is needed.
+   
+Merging of A and B requires at most 2(n-1) find opperations and (n-1) union operations $\to \Theta(n)$ and there are $\log p$ mergings. From that the asymptotic simplification is:
+
+$$T_p = \overbrace{\Theta({n^2\over p})}^{\text{local compute}} + \overbrace{\Theta({n\log p})}^{forest merging}$$
+
+From that Isoeffitioncy: $W=p^2\log^2p \to \Theta(p^2\log^2p)$ max number of processors is $p \in O({n\over \log n})$
+
+**Maximal independent set**
+
+Luby algorithm. Each node creates random number and shares that number to neighbours. If I have minimal number out of my neighbours, I am in the maximal set, remove neighbours, and iterate again. On average the algorithm converges after $O(\log |V|)$ steps. But it does not have to. Luby algorithm is very dependant on the numbering.
+
+Graph for Luby|
+|:-:|
+![Graph for Luby](img/PAG_GRAPH_for_luby.png)
+
+Example: in the above picture if we would use the numbers in the vertexes as a random value for the Luby algorithm, the maximum independant set would be {1,2,5,6}. That is not the biggest maximum independet set, that would be {1, 2, 7, 8, 11}. If we would colour the graph using Luby-Jones algorithm (same idea, just iteratively applied) the colouring would be following
+
+| | RED | BLUE | GREEN | PURPLE 
+|:-:|:-:|:-:|:-:|:-:|
+Nodes|1, 2, 5, 6| 4, 5| 7, 11, 8| 9, 10
+
+Which is not the optimal colouring, since the graph can be coloured using only three colours.
 
 ## 9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.
 
