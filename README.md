@@ -8,7 +8,7 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [x] [1.1 Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.](#11-notation-of-asymptotic-complexity-of-algorithms-basic-notation-of-graph-problems---degree-path-circuit-cycle-graph-representations-by-adjacency-distance-laplacian-and-incidence-matrices-adjacency-list-representation)
     - [x] [1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.](#12-algorithms-for-minimum-spanning-tree-prim-jarník-kruskal-borůvka-strongly-connected-components-kosaraju-sharir-tarjan-euler-trail-union-find-problem-graph-isomorphism-tree-isomorphism)
     - [ ] [1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.](#13-generation-and-enumeration-of-combinatorial-objects---subsets-k-element-subsets-permutations-gray-codes-prime-numbers-sieve-of-eratosthenes-pseudorandom-numbers-properties-linear-congruential-generator)
-    - [ ] [1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.](#14-search-trees---data-structures-operations-and-their-complexities-binary-tree-avl-tree-red-black-tree-rb-tree-b-tree-and-b-tree-splay-tree-k-d-tree-nearest-neighbor-searching-in-k-d-trees-skip-list)
+    - [x] [1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.](#14-search-trees---data-structures-operations-and-their-complexities-binary-tree-avl-tree-red-black-tree-rb-tree-b-tree-and-b-tree-splay-tree-k-d-tree-nearest-neighbor-searching-in-k-d-trees-skip-list)
     - [ ] [1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.](#15-finite-automata-regular-expressions-operations-over-regular-languages-bit-representation-of-nondeterministic-finite-automata-text-search-algorithms---exact-pattern-matching-approximate-pattern-matching-hamming-and-levenshtein-distance-dictionary-automata)
   - [2. TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.](#2-tal---problemlanguage-complexity-classes-with-respect-to-the-time-complexity-of-their-solution-and-memory-complexity-including-undecidable-problemslanguages)
     - [ ] [2.1 Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.](#21-asymptotic-growth-of-functions-time-and-space-complexity-of-algorithms-correctness-of-algorithms---variant-and-invariant)
@@ -180,6 +180,121 @@ Tree Certificate|
 ### 1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.
 
 ### 1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.
+ 
+ **Binary tree** - for each node in the tree it holds, that smaler key values are held on the left, higher on the right. The tree does not have to be balanced. We can go through tree INORDER to obtain the sorted key list. The tree provides operations:
+ - Find - find is binary search complexity $\log n$
+ - Insert - insert is also $\log n$ find the vertex with free spot, that is closest to my number, and link it. 
+ - Delete - also $\log n$ remove the key. If it was **childrenless** node - no more work requiered. If it had **one child**, pair that child with the parent. If it had **two children** then traverse the tree for finding either leftmost on the right, or rightmost on the left and put it in the place of deleted value.
+
+ **AVL tree** - it is similar to the binary tree, as it has also Find, Insert and Delete operations, but the difference is, that AVL tree has additional properties to keep it reasonably balanced.
+
+ Each node keeps track of the depth of the left and right tree. The difference between the two depths can be at most one. (Depth of an empty tree is -1)
+
+ The operations Insert and Delete apply apropriate rotations if the balancing depths conditions are not met.
+
+ The rotations are R, L, RL, and LR. The rotations R and L are used if the *outer child* is causing the disbalance the RL and LR rotations are used when *inner child* causes the disbalance
+
+Rotation L | Rotation R
+|:-:|:-:|
+![Rotation L](img/PAL_rotationL.png)|![Rotation R](img/PAL_rotationR.png)
+
+The L and R rotation just swaps the root and the overweight child, passing one child to the old root.
+
+Rotation LR | Rotation RL
+|:-:|:-:|
+![Rotation LR](img/PAL_rotationLR.png)|![Rotation LR](img/PAL_rotationRL.png)
+
+The LR and RL swaps the node with the root, the root is pushed on the side. Now orphant trees of the new root are given to the old parent and old root.
+
+**RB tree** - special type of Binary obeying following rules:
+1) The node is either red or black. 
+2) The ROOT and NIL leaves are black. 
+3) If node is RED the children are BLACK. 
+4) All paths from a node to its NIL descendants contain the same number of black nodes.
+
+The longest path (node to the farthest NIL) is no more than twice the length of the shortest path (node to the nearest NIL) 
+
+The operations FIND, INSERT, DELETE are all $O(\log n)$ and storrage demands are also only $O(n)$ since we only need one extra bit for each node.
+
+FIND is the same as in BST
+
+INSERT has modifications. We always insert RED node. Since it can violate some the rule about Red node not having Red child, we might need to do some recolouring and rotations. There are three cases that can happen after we inset node N. If the Parent is Black we dont need to do any modifications. If the Parent is RED:
+0) The N is root -> paint it black -> DONE
+1) N.Uncle is RED -> toggle collors of Parent, GrandParent and Uncle.
+2) N.uncle is BLACK -> If the N is the inner child -> rotate in parent. Then rotate in grandparent and recolor.
+
+DELETE the deletion is the same as in BST, when the root has two children the leftmost node on right is used. After the deletion the RED-BLACK properties might be violated. The ceordering simillar to the one in INSERT need to be executed.
+
+**B tree** 0 The B tree is perfectly balanced. Keys in the nodes are kept sorted. Fixed parameter k>1 dictates the same size of all nodes. 
+- Each node contains [k; 2k] keys. And has [k+1; 2k+1] children (if it is not a leaf, then 0).
+- The root contains [1; 2k] keys. And has [2; 2k+1] children (if it is not a leaf, then 0).
+
+Alternate specification: nodes have lower and upper bound of the keys they can contain. The bounds are exressed using integer $t\geqq 2$
+- Every node must have at least *t-1* keys. Every internal node has at least *t* children. Exception is root, which can have as low as 1 key.
+- Every node may contain at most *2t-1* keys. Therefore the internal node can have at most *2t* children. 
+
+FIND - is trivial just check numbers and go to the appropriate child.
+
+For INSERT and DELETE there need to be logic associated. It can be either *Multi-phase strategy* - solve the problem when it appears or *Single-phase strategy* - avoid future problems. The following is done using *Multi-phase strategy*
+
+INSERT - find the place and insert. If the node is Full, split in two, and propagate median to higher level. If we are at root, split root into two children nodes and keep only median in root.
+
+DELETE - if we delete from leaf - and the leaf is suffitiently full, no modification is requiered. If there are not enough keys, merge the leaf with neighbouring leaf (and parent key). Handle owerflow like during insert. If after deletion the merge can be contained in leaf. Remove parent key. (After removing key, need to check, wether the parent is suffitiently filled, if not -> merge with neighbour...)
+
+B-tree Insert| B-tree Delete|
+|:-:|:-:|
+![B-Tree Insert](img/PAL_B_tree_insert.png)|![B-tree Delete](img/PAL_B_tree_delete.png)
+
+**B+ tree** is very simmilar to the B tree in the mechanisms, the only difference is the Keys are stored only in leaves and keys in the inner nodes are just duplicates of those key values. Also the leaves for a linked list - so the stored data can be accesed sequentially.
+
+B+ tree| B+ tree Insert|
+|:-:|:-:|
+![B-Plus Tree](img/PAL_bplus.png)|![B-Plus Tree Insert](img/PAL_bplusinsert.png)
+
+**Splay tree** operates on idea, that recently accessed data will be accessed again. For that the FIND INSERT and DELET operations are modified, basic functionality is the same as in BST, but after FIND and INSERT the value is splayed to the root. The splaying is also done before deletion.
+
+The splay tree does not describe the shape. Because of that all operations are $O(n)$, but amortized run times of operations are $O(\log n)$
+
+There are three types of rotations:
+1) Zig rotation - same rotation as L or R in AVL tree.
+2) Zig-Zig rotation - the LL or RR rotation.
+3) Zig-Zag rotation - the LR or RL rotation.
+
+**k-d tree** special type of the binary tree for storing multi-dimensional data. On the every depth level $d$ of the tree a $d\mod D$ where $D$ is dimension of the data is used for data routing. Refer to the **Find k-d** figure. The Red depths use dimension 1 for comparing and Green depths use dimension 2 for comparison.
+
+k-d Find| k-d FindMin|
+|:-:|:-:|
+![K-D Find](img/PAL_find_Kd.png)|![K-D FindMin](img/PAL_kd_findMin.png)|
+
+INSERT is analogous to the 1D tree, with the only need to respect the depth deciding factor.
+
+FIND MIN (dim) is also similar to the 1D version, however we need to specify which dimension we are looking for to be minimal. And we also need to go trough multiple branches in parallel, because of the splitting due to the compare using different dimension.
+
+DELETE is only carried out on leaves. To DELETE inner node, we first need to iteratively apply swap to the Delete target with the closest match, until the Delete Target is leaf. If we would remove root in the Find and FindMin structure. We would swap the [40, 55] with [50, 20] and then removed the [40, 55]
+
+**K-D nearest neighbour** - this finds the node that is closest to the point specified by the querry. We iteratively search trough the tree and compare the distance to the query - updating the distance as we go trough the tree, allowing us to prone some unwanted results.
+
+k-d Nearest neighbour 1| k-d Nearest neighbour 2|
+|:-:|:-:|
+![K-D nearest neighbour 1](img/PAL_nearest_neighbour1.png)|![K-D nearest neighbour 2](img/PAL_nearest_neighbour2.png)|
+
+The nearest neighbour find is asymptotically close to $O(2^D+\log n)$ it is apparent, that it is effective only when $2^D\lll n$
+
+**Skip list** - the ordered linked list with the search capability. In the list are so called *sentinels* that are connected, which allow for skipping multiple nodes at once. The FIND function is implemented by:
+1) Start at the begining, looking for the key x.
+2) Look at the next sentinel. If it is smaller than x, jump to the sentinel and do 2) again. If x is smaller, go to the lower level of sentinels.
+
+Trough this method we will iterate trough the linked list and find our value.
+
+Skip list| 
+|:-:|
+![Skiplist](img/PAL_skiplist.png)
+
+The degree of the sentinel is choosen during insert. After finding the place, the new node *flips* the coin. The number of times it lands heads will resolve the sentinel level.
+
+When deleting, we need to also update all sentinels that pointed to that value, and pass them our pointers.
+
+The probability p of landing heads is usually 25% - it has simmilar search properties, and stores less pointers.
  
 ### 1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.
 
