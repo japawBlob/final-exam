@@ -5,8 +5,8 @@ this repository is for knowledge for final exam of Computer engineering - Open I
   Contents:
 
   - [1. PAL - Polynomial algorithms for standard graph problems. Combinatorial and number-theoretical algorithms, isomorphism, prime numbers. Search trees and their use. Text search based on finite automata.](#1-pal---polynomial-algorithms-for-standard-graph-problems-combinatorial-and-number-theoretical-algorithms-isomorphism-prime-numbers-search-trees-and-their-use-text-search-based-on-finite-automata)
-    - [ ] [1.1 Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.](#11-notation-of-asymptotic-complexity-of-algorithms-basic-notation-of-graph-problems---degree-path-circuit-cycle-graph-representations-by-adjacency-distance-laplacian-and-incidence-matrices-adjacency-list-representation)
-    - [ ] [1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.](#12-algorithms-for-minimum-spanning-tree-prim-jarník-kruskal-borůvka-strongly-connected-components-kosaraju-sharir-tarjan-euler-trail-union-find-problem-graph-isomorphism-tree-isomorphism)
+    - [x] [1.1 Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.](#11-notation-of-asymptotic-complexity-of-algorithms-basic-notation-of-graph-problems---degree-path-circuit-cycle-graph-representations-by-adjacency-distance-laplacian-and-incidence-matrices-adjacency-list-representation)
+    - [x] [1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.](#12-algorithms-for-minimum-spanning-tree-prim-jarník-kruskal-borůvka-strongly-connected-components-kosaraju-sharir-tarjan-euler-trail-union-find-problem-graph-isomorphism-tree-isomorphism)
     - [ ] [1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.](#13-generation-and-enumeration-of-combinatorial-objects---subsets-k-element-subsets-permutations-gray-codes-prime-numbers-sieve-of-eratosthenes-pseudorandom-numbers-properties-linear-congruential-generator)
     - [ ] [1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.](#14-search-trees---data-structures-operations-and-their-complexities-binary-tree-avl-tree-red-black-tree-rb-tree-b-tree-and-b-tree-splay-tree-k-d-tree-nearest-neighbor-searching-in-k-d-trees-skip-list)
     - [ ] [1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.](#15-finite-automata-regular-expressions-operations-over-regular-languages-bit-representation-of-nondeterministic-finite-automata-text-search-algorithms---exact-pattern-matching-approximate-pattern-matching-hamming-and-levenshtein-distance-dictionary-automata)
@@ -115,6 +115,67 @@ $$\sum_{v\in V} deg(v) = 2|E|$$
 For sparse graphs the adjacency list is usually faster. Only good thing about matricies is when we want to remove edge, it is pretty easy.
 
 ### 1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.
+
+**Prim-Jarník** - greedy MST algorithm, always choose the best edge and add it, until all vertices are added.
+Rough algorithm: 
+1) Create priority queue and set. Choose random vertex from the graph, add the vertex to the set, and it's edges to the priority queue, the cost of the edge symbolises priority.
+2) Pop edge from queue. Check check if the destination is in the set. If not, add the vertex to the set and its vertices to the priority queue. Otherwise repeat 2)
+3) repeat until all vertices are in set.
+
+**Kruskal** - always adds lowest cost edge to the graph, if it does not create any cycle. Uses union-find structure. Rough Algorithm:
+1) Sort edges and add them to queue. Create set for vertices.
+2) Pop edge from queue, if it does not create cirle, add the vertices to the set. Otherwise repeat 2)
+3) repeat until all vertices are in set
+
+**Borůvka** - starts with unconnected graph of components. Iteratively from each component choose the cheapest out-edge and merge with the connected component. Rough algorithm:
+1) Each vertex is each own component. Create structure for storing edges.
+2) For each component, choose the cheapest out-facing edge and add it to the edges. Merge the two connected components.
+3) Repeat until there is only one component.
+
+**Union-find** the union find structure provides two operations: **FIND(v)** returns the representative of the connected component the **v** is member. **UNION(u,v)** merges two components together.
+
+This is achieved by each node storing pointer to the representative of the component. The representative can be identified by having this pointer NULL. Two vertices return the same value from FIND, if they are in the same component. The union is executed by finding roots and then adding one as the parent of the other.
+
+When we call FIND on the vertex, and the dirrect parent is not root, we can modify the pointer to point directry to the root in order to speed up following FINDs.
+
+**Kosaraju-Sharir** - algorithm finds strongly connected components in the directed graph. Rough algorithm:
+1) Create stack for nodes.
+2) Choose random unvisited node. Do recursively DFS, if the node does not have any unvisited neighbours, close the node and add it to the stack. 
+3) Repeat 2) until all nodes are in stack.
+4) Reverse edges.
+5) Pop vertex from stack if it is not closed do recursive DFS. The returned set of verticies by the DFS is strongly connected component. Close the verticies in the component.
+6) Repeat 5) until stack is empty.
+
+If the graph is represented by adjecency list, the algorithm runs in linear time, if the adjacency matrix is used, the algorithm runs in $O(n^2)$ time.
+
+**Tarjan** - algorithm, that finds strongly connected components, in contrast to the Kosaraju-Sharir algorithm, the Tarjan algorithm, only needs to go trough the graph once. Rough algorithm:
+
+1) Create Stack for nodes.
+2) Choose random node, set lowlink to the value of the vertex index and push the vertex to the stack. Go trough children. If unvisited call 2) on them, if child is instack, update the local lowlink to the minimum of the two lowlinks.
+3) If lowlink == ID -> head of the Super Connected component -> pop vertexes from stack, until the head is popped as well. Return popped vertecies, as the strongly connected component.
+
+**Euler trail** the graph has Euler trail iff it is connected and has 1 or 2 verticies of odd edge. To have Eulerian tour (start and end in the same vertex) every vertex must have even degree. For Euler path, the start and end must have odd, rest even degree (Domeček jedním tahem se musí začít od podlahy).
+The basic algorithm:
+```
+fn euler_trail(v: Vertex) {
+  for u in v.children {
+    remove edge(v,u) from graph;
+    euler_trail(u);
+    push(edge(v,u));
+  }
+}
+```
+
+**Graph Isomorphism** - NP-complete proble. We can only use cleaver approach, but some graphs (mainly almost regular graphs) are unsolvable in polynomial time. 
+
+When comparing graphs *g* and *g'* we can compare the graphs. Do they have same number of vertexes? Do the vertexes have same degree?... The main principle is to create mapping for graph *g* which when compared to the *g'* is identical. During mapping we can use cleaver approaches only to map the nodes with certain degree to the nodes of the certain degree. And we can also check if the neighbours have the same degree...
+
+**Isomorphism for trees** is done creating tree certificate. Each vertex has at the beginning 01 and we cerursively from the leaves put the children inside our 01. The tree can be recreated by following the certificate - the 0 is down, create node, 1 is up. The example is in the Tree Certificate picture.
+
+Tree Certificate|
+|:-:|
+![Tree Certificate](img/PAL_tree_certificate.png)
+
 
 ### 1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.
 
