@@ -1,6 +1,6 @@
 # Final exam place
 
-this repository is for knowledge for final exam of Computer engeneering - Open Informatics at CTU FEE Prague
+this repository is for knowledge for final exam of Computer engineering - Open Informatics at CTU FEE Prague
 
   Contents:
 
@@ -67,6 +67,52 @@ this repository is for knowledge for final exam of Computer engeneering - Open I
 ## 1. PAL - Polynomial algorithms for standard graph problems. Combinatorial and number-theoretical algorithms, isomorphism, prime numbers. Search trees and their use. Text search based on finite automata.
 
 ### 1.1 Notation of asymptotic complexity of algorithms. Basic notation of graph problems - degree, path, circuit, cycle. Graph representations by adjacency, distance, Laplacian and incidence matrices. Adjacency list representation.
+
+**Notation of asymptotic complexity of algorithms**
+
+There are three main notations for asymptotic complexity. 
+1) Asymptotic upper bound $f(x) \in O(g(x))$ if the value of the function f is on or below the value of the function g.
+2) Asymptotic lower bound $f(x)  \in \Omega(g(x))$ if the value of the function f is on or above the value of the function g.
+3) Asymptotic tight bound $f(x) \in \Theta(g(x))$ if the value of the function f is equal to the value of the function g.
+
+More in depth described in [TAL 2.1](#21-asymptotic-growth-of-functions-time-and-space-complexity-of-algorithms-correctness-of-algorithms---variant-and-invariant)
+
+**Basic notation of graph problems**
+- **Degree** is the property of the vertex. It symbolizes, how many edges are incident (are connected) to a given node. For directed graph these edges are further divided into **indegree** ($deg^+$) and **outdegree** ($deg^-$). The indegree symbolizes the number of edges, that have the node as destination, and outdegree as starting-point.
+
+Degree - Undirected| Degree - Directed|
+|:-:|:-:|
+![Degree Undirected Graph](img/PAL_undirected_degree.png)|![Degree Directed Graph](img/PAL_degree_directed_graph.png)
+
+Handshaking lemma: sum of all degrees in graph is 2x number of Edges. 
+
+$$\sum_{v\in V} deg(v) = 2|E|$$
+
+**Complete Graph** - graph where every node is directry connected to all other nodes.
+
+**Path** - sequence of vertices and edges, where all **vertices differ** from each other. Hamiltonian path visites every vertex. Hamiltonian cycle in addition to that starts and ends in the same node.
+
+**Trail** - sequence of vertices and edges, where all **edges differ** from each other. Eulerian trail visites every edge exactly once (domeček jedním tahem). Eulerian circuit starts and ends in the same node.
+
+**Circuit** - closed path (starts and ends in the same vertex)
+
+**Cycle** - the cycle is the same as circuit, but the edges and verteces can repeat.
+
+**Connected graph** is graph where exists path between all verteces.
+
+**Three** is connected graph, where every two vertices are connected by just one path. 
+
+**Adjecency matrix** is matrix, where $a_{i,j} = \begin{cases} 1& \text{for } \{v_i, v_j\} \in E \\ 0& \text{otherwise}\end{cases}$. The *1* in the field *i,j* symbolises weather the nodes *i* and *j* are connected.
+
+**Laplacian matrix** is matrix where $l_{i,j} = \begin{cases} deg(v_i)& \text{for } i=j\\ -1& \text{for } \{v_i, v_j\} \in E\\ 0& \text{otherwise}\end{cases}$. On the diagonal are degrees of the nodes, and each pair of nodes *i,j* that is connected is represented by -1 in the matrix. Note, that sum of row, or column is always 0.
+
+**Distance matrix** is simmiral to adrecency matrix, but instead the plain 1, there is cost of the edge insead.
+
+**Incidence matrix** the matrix has $V\times N$ dimensions. Where each column symbolizes each vertex, in each column there is -1 and 1. The -1 symbolizes start node of the edge and 1 symbolizes the end node of the edge. $(I)_{i,j}=\begin{cases} -1& \text{for } e_j = (v_i, *)\\ +1& \text{for } e_j = (*, v_i)\\ 0& \text{otherwise}\end{cases}$
+
+**Adjacency list** (list of neighbours) - each node keeps track of the neighbouring nodes. 
+
+For sparse graphs the adjacency list is usually faster. Only good thing about matricies is when we want to remove edge, it is pretty easy.
 
 ### 1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.
 
