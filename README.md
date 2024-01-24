@@ -179,6 +179,162 @@ Tree Certificate|
 
 ### 1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.
 
+**Subsets** 
+
+The main terms used are *ranking function* -> function that gives a subset its number. There is also UNRANK which is inverse function to the RANK
+
+$$\text{rank: } S\to \{0, ... , |S|-1\}$$
+
+The $S$ is finite set. We also define the *successor* function, which satisfies:
+
+$$\text{successor(s)} = t \iff \text{rank(t)} = \text{rank(s)} + 1$$
+
+The succesor has rank increased by one.
+
+These functions are useful when storing combinatorial objects (we only need to store the RANK) and when generating random objects from $S$, ensuring equal probability $1\over|S|$
+
+The *Characteristic vector* is one dimensional binary array. Let $T \subseteq S$. The characteristic vector of T symbolises which elements of S are in the T.
+
+$$\chi(T) = [x_{n-1}, x_{n-2}, ... , x_0]$$
+
+where
+
+$$x_i = \begin{cases} 1& \text{if } (n-i) \in T\\ 0& \text{if } (n-i) \notin T \end{cases}$$
+
+Characteristic Vector and RANK example|
+|:-:|
+![Characteristic Vector and RANK example](img/PAL_rank_char_vector.png)
+
+Notice that the 0s and 1s in the *Characteristic vector* correspond to the binary representation of RANK.
+
+**k-element subsets**
+
+Suppose n is positive integer $S = \{1, ... , n\}$ then $\binom{S}{k}$ consists of all *k-element subsets* of $S$
+
+To generate all k-element subset, we can use recursion. We set the first element, and then generate k-1 element subset...
+
+To RANK the k-element subset, we count the previous subsets. Lets say we have subset {5,6,10}, which was taken from the Set $S = \{1, 2, 3, ... , 10\}$. The lowest number on our subset is 5 - that means all subsets starting with 1, 2, 3 and 4 are before our subset. To get the sum of all those we can use Combinatioral numbers. To get all subsets starting with 1 we can compute $\binom{|S|-1}{2}$ -> the size of Set minus 1 (we decided thet the first number is 1, so we cannot choose it again) and we choose only two additional numbers, since the first *1* is allready chosen. Twis way we can iteratively compute the number for subsets starting with 2 $\binom{|S|-2}{2}$ (we use |S|-2 since we cannot use 1, or 2. Subsets containing 1 or 2 were included by the *1*)...
+
+We can do described approach recursively for the lower rank digits, the digits 6 and 10.
+
+To compute the RANK of subset {5,6,10} taken from set S we compute:
+
+$$\overbrace{\binom{10-1}{2} + \binom{10-2}{2} + \binom{10-3}{2} + \binom{10-4}{2}}^\text{Subsets starting with 1, 2, 3, 4} = 194$$
+
+Now we know the number of subsets before {5,x,x}. Now to resolve {5,6,x} -> the 6 is the first of the subsets, that means the following number shows the rank: 10. We normalize it by subtracting the 6 = 4;
+
+That means 
+
+$$RANK(\{5,6,10\}) = 198$$
+
+If the number was bigger thank 6 ->lets say the k-subset was {5, 8, 9} the first sum would be same, but since 8 is not first number after 5, we would need to compute number of subsets starting with {5,6,x}, and {5,7,x} -> that is the same as choosing {6,x} and {7,x} from {6,7,8,9,10}, can be normalized to {1,x}, {2,x} from {1,2,3,4,5}. -> $\binom{5-1}{1}+\binom{5-2}{1}$
+
+And +1, since the 9 is the first x in the {5,8,x} k-subset. That means
+
+$$RANK(\{5,8,9\}) = 202$$
+
+The code is in the *k-element subset RANK* picture.
+
+K-element subset RANK |
+|:-:|
+![K-element subset RANK](img/PAL_kelementSubsetRank.png)|
+
+UNRANK is similar. I have rank, and I try to subtract the combinatorial values. When I overflow, I step back and set to subtracting recursively smaller subsets, until the remainder is exactly zero.
+
+**permutations**
+
+Permutations idea is very similar to the k-element subset. Only now we work with factorials $n!$ instead of combinations.
+
+**Gray codes**
+
+Gray code is the code, where two consecutive numbers differ in only one bit.
+
+The lemma:
+
+Suppose
+- $0 \leq r \leq 2^n-1$
+- $B = n_{n-1},...,b_0$ is binary code for r
+- $G = g_{n-1},...,g_0$ is Gray code for r 
+
+For every $j\in \{0,1,...,n-1\}$
+
+$$g_j = (b_j + b_j+1) \mod 2$$
+
+This lemma can be proven by induction. From that we can create functions to convert between Binary and Gray representation. The rust-like pseudocode is used for the example code.
+
+Binary to Gray:
+
+```rust
+fn BtoG(B: u32) -> u32 {
+    B xor (B>>1)
+}
+```
+Gray to Binary:
+
+```rust
+fn GtoB (G: u32) -> u32 {
+    let mut B = 0;
+    let n = G.bits.len-1;
+    for i in 0..n {
+        B = B << 1;
+        B = B or (1 and ((B >> 1) xor (G>>n)));
+        G = G << 1;
+    }
+    B
+}
+```
+
+**Sieve of Eratosthenes**
+
+Table for finding prime numbers. The table contains all numbers 1-n. 
+1) Create table full of numbers 1..n
+2) Iterate trough numbers, if the number *a* is *unused* store it as a Prime number. And go trough the table and mark every number that is multiply of *a* as used. (They are on the table indexes i $i\mod a = 0$)
+3) when the $\sqrt n$ index is reached, all the remaining *unused* numbers are all primes.
+
+**Pseudorandom nuber properties**
+
+The pseudorandom is not entirely random, since it is generated by deterministic algorithm. It satisfies two conditions: 
+1) Local unpredictability (without knowing the internal structure of PC or algorithm, the output looks random)
+2) Statistical tests confirm the random behaviour.
+
+Peudorandom generators neet two important statistical properties:
+- Uniformity
+- Independence\
+Random number in a interval [a,b] must be independently drawn from a uniform distribution with probalibilty density function: 
+
+$$f(x) = \begin{cases} {1\over b-a}& x\in [a,b]\\ 0& \text{elsewhere}\end{cases}$$
+
+in interval [a,b] is long enough, period is b-a, generates all integers in [a,b]  
+
+To generate random float numbers in an interval [0,1) we can use the integer generator generating [a,b] integers. The float sequence can be generated using:
+
+$$\{y_n\} = \bigg\{{x_n-a\over b-a-1}\bigg\}$$
+
+When the interval is normalized -> [0, c] the formula can be simplified, by tossiong out a and substituing b with c.
+
+[a,b] = [0,512]
+
+$${x_n} = \{41, 301, 139, ...\}$$
+$${y_n} = \bigg\{{41\over511}, {301\over511}, {139\over511}, ...\bigg\}$$
+
+With the large enough b the fractions will be fine enough.
+
+**Linear congruention generator**
+
+Linear congruent generator produces ${x_n}$ defined by relations
+
+$$0 \leq x_0 \leq M$$
+$$x_{n+1} = (Ax_n+C)\mod M; n \geq 0$$
+
+Modulus $M$, seed $x_0$ multiplier and increment $A$, $C$ 
+
+To gain the maximum period length (equal to the M), the conditions of Hull-Dorbell theorem must be met:
+1) *C* and *M* are coprimes
+2) *A-1* is divisible by each prime factor of *M*
+3) If *4* divides *M*, then also *4* divides *A-1*
+
+Integers *a* and *b* are coprimes, iff their only common devisor is 1. The numbers 4 and 9 arent prime numbers, but are coprimes. 
+
 ### 1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.
  
  **Binary tree** - for each node in the tree it holds, that smaler key values are held on the left, higher on the right. The tree does not have to be balanced. We can go through tree INORDER to obtain the sorted key list. The tree provides operations:
