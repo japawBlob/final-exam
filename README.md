@@ -557,7 +557,70 @@ Best mix of functional units? It depends, usually 2:1:2 ALU:Branch:Load/Store
 
 **Tomasulo algorithm**
 
+The algorithm provides register renaming functionality. The basic example has two ALUs, one for adding and second for multiply and divide. Adding takes 2 cycles, multiply 3, divide 12. There are 3 wait stations before ADDer and 2 before Mult/Div. 
 
+When we execute some instruction, lets say R1=R2+R3 we take the values from R2 and R3, put them into reservation station and store the TAG of the reservation station in the R1 register. Once the computation is complete the register will catch the result in the common data bus.
+
+Tomasulo architecture |
+|:-:|
+![Tomasulo algorithm](img/PAP_tomasulo.png)|
+
+The computation can also wait for the unfinished instruction. We can store the Tag of the future instruction in the issue buffer.
+
+The tomasulo algorithm does NOT allow for precise exceptions. Lets say we compute R1=R2+R3 and R1=R1+R2
+
+We load end issue these instructions. The architectural register and issue unit before adder would look followingly:
+
+<table>
+<tr><th>Architecture register</th><th>Issue station before ADDer</th></tr>
+<tr><td>
+
+|Register|Data|Tag|Busy|
+|:-:|:-:|:-:|:-:|
+|R1| | 2 | Yes|
+|R2|4.0||
+|R3|5.0||
+</td><td>
+
+UnitId|Tag|Sink|Tag|Source| 
+|--|--|--|--|--|
+|1||4.0||5.0|
+|2|1|||4.0|
+</td></tr> </table>
+
+If the second instruction would cause exception during execution, we would not be able to revive the state before the execution of the function, since we already overwrited the Tag in the register R1.
+
+
+**Precise exception support**
+
+The exception or interrupts are events that requiere immidiate attention of CPU. The exception can be *internal* (caused by instruction, like devide by 0) or *external* caused by hardware. There are different types of instructions devided based on their severity and origin. They are described in following table.
+
+|Exception type | Synchronous | User requested | Maskable | Within instructions | Resumable |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|I/O device request | No | No | OS | No | Yes |
+|Invoke operating system| Yes| Yes| No| No |Yes|
+|Tracing instruction execution| Yes | Yes| No |No|Yes|
+|Breakpoint|Yes|Yes|OS|No|Yes|
+|Integer arithmetic overflow|Yes|No|User|Yes|Yes|
+|Floating-point arithmetic overflow or underflow|Yes|No|User|Yes|Yes|
+| Page fault|Yes|No|No|Yes|Yes|
+|Misaligned memory accesses|Yes|No|No/Os|Yes|Yes|
+|Memory protection violation|Yes|No|No|Yes|Yes|
+|Using undefined instruction|Yes|No|No|Yes|No|
+|Hardware malfunction|No|No|No|Yes|No|
+|Power failure|No|No|No|Yes|No|
+
+The **exception is precise** iff 
+1) Processor handles exceptions in program order (Not in the execution order)
+2) Processor state is sequentially consistent before calling exception handler. (all instrtuctions before exception are completed and retired, no instruction after exception changed state of the processor or memory)
+
+There is **commit stage** stage where we are sure, that the instruction cannot throw an exception. And after that the instruction can be retired, if all instructions before it (in program order) are also commited and retired.
+
+The commiting is done in reorder buffer. From reorder buffer we can also notify the rename register file, or we can use the reorder buffer as rename for architectural registers, and after commit update the architectural register. 
+
+In the reorder buffer we need to also store the address of the instruction, to know where to start execution if the exception would be encountered.
+
+This can be done also without register renaming. We can implement **History buffer** where all past states of archutectural register are stored and can be then copyed back to architecture register in case of exception. 
 
 ### 5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.
 
