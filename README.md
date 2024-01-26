@@ -32,7 +32,7 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [ ] [4.4 Back End design - specification of Design Kit, Floorplanning, place and route, layout, parasitic extraction, layout versus schema check (LVS).](#44-back-end-design---specification-of-design-kit-floorplanning-place-and-route-layout-parasitic-extraction-layout-versus-schema-check-lvs)
     - [ ] [4.5 Tape out and IC fabrication process, integrated systems verification, scaling and design mapping to different technologies.](#45-tape-out-and-ic-fabrication-process-integrated-systems-verification-scaling-and-design-mapping-to-different-technologies)
   - [5. PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers.](#5-pap---advanced-architectures-of-processors-memory-and-peripheral-circuits-and-multiprocessor-computers)
-    - [ ] [5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
+    - [x] [5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
     - [ ] [5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.](#52-relation-between-memory-coherency-and-consistency-their-implementation-on-systems-with-shared-bus-and-when-multiple-rings-topologies-are-used-mesi-moesi-home-directory)
     - [ ] [5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).](#53-rules-for-execution-synchronization-and-data-exchange-in-multiprocessor-systems-mutex-implementation-relation-to-consistency-models-and-mechanisms-to-achieve-expected-algorithms-behavior-on-systems-with-relaxed-consistency-models-pram-pso-tso-pc-barrier-instructions)
     - [ ] [5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.](#54-smp-and-numa-nodes-interconnections-networks-conflicts-and-rearrangeable-networks-beneš-network)
@@ -521,7 +521,7 @@ Dispatch buffer - the buffer where the prepared instructions await for the right
 
 Reorder buffer - the buffer, where the out-of-order instructions are put back in the correct order. Needed to support precise exceptions (complete only the instructions that happened before the exception)
 
-The buffers can be added between all stages to support out-of-order execution on more fronts. They all need to be tracked to be correcly positoined in completion buffer.
+The buffers can be added between all stages to support buffering on more fronts. When we execute expensive instruction, we can still load instructions for future, while the buffer is empty.
 
 Superscalar organisation:
 - **Fetch** - the pipeline has width W (number of parallel pipelines). Fetch able to load W instructions from instruction Cache in every cycle. I-cache must be wide enough to store W instructions, that can be accessed at the same time. The loading can be degraded by unaligned instructions and jump instructions (we load not from the beginning of the line)
@@ -550,8 +550,6 @@ Centralized reservation station|  Distributed reservation station
 Best mix of functional units? It depends, usually 2:1:2 ALU:Branch:Load/Store
 - **Complete** - instruction is completed, when it finishes execution and updates the machine state. It is when it exits execution unit and enters completion buffer. It can wait another cycles, before it is retired.
 - **Retire** - The instruction is retired, when it leaves the completion buffer and updates Data-Cache. 
-
-**Precise exception** support requieres reorder/completion buffer. The Retire of the instructions need to happen in the program order. If the exception occurs, the instruction is tagged. When a tagged instruction is detected, all preceding instructions need to be completed, the the error instruction is not completed and preceding processor state is saved. The following instructions and progress in pipelines is discarded.
 
 ![Completion and reorder buffer](img/PAP_completion_reorder_buffer.png)
 
@@ -620,13 +618,132 @@ The commiting is done in reorder buffer. From reorder buffer we can also notify 
 
 In the reorder buffer we need to also store the address of the instruction, to know where to start execution if the exception would be encountered.
 
-This can be done also without register renaming. We can implement **History buffer** where all past states of archutectural register are stored and can be then copyed back to architecture register in case of exception. 
+This can be done also without register renaming. We can implement **History buffer** where all past states of archutectural register are stored and can be then copyed back to architecture register in case of exception. Or simmilar idea by implementing **Future File**, where the most up to date info about out-of-order executed instructions is held and the architectural register only holds the commited values.
+
+**speculative execution**
+
+**Data speculation** - execute instruction, where data is not certain yet.
+
+The two main are Last-value predictor and Stride predictor.
+
+Last Value predictor| Stride Predictor
+|:-:|:-:|
+![Last value predictor](img/PAP_LastValuePredictor.png)|![Stride predictor](img/PAP_StridePredictor.png)
+
+The last value predictor predicts the last data. The Stride predictor is usefull when going trough cycles, or arrays. Where the value expected can be each time increased by the iteration value.
+
+**Control speculation** - speculating the program direction, branches, loops, jumps.
+
+**Branch prediction** - static or dynamic. Static in compiler (Backwards taken foreward not taken). Dynamic in computer architecture. 
+
+---
+
+**Branch predictor - do we jump?**
+
+Most basic **Smith's two bit predictor** with states StronglyTaken, WeaklyTaken, WeaklyNotTaken, StronglyNotTaken. Ideally we store this information for each ProgramCounter jump addres, so we could decide based on local data. But that would be very memory intensive -> We only have few predictors, and we associate these predictors to some instructions. Less memory needed, but new problem aliasing.
+
+We can also have a global predictor - we take low bits of ProgramCounter and combine them with global branch predictor. Them match  the result in lookup table (Pattern History Table) where we can find if the jump from this address was taken or not taken.
+
+We can upgrade that to Local-History, we take the address bits, and not combine them with the result from another lookup table. 
+
+|Pattern history table - Global History|Pattern History table - Local history| 
+|:-:|:-:|
+![Pattern history table - Global History](img/PAP_globalPredictorPatternHistoryTable.png)|![Oattern history table - Local history](img/PAP_LocalHistoryPHT.png)
+
+Instead of just combining them, we can hash those two results together - saving space of Pattern History Table. Not anything complicated, it can be just plain XOR.
+
+We can even combine two predictors, for example one based on local predictoins (better for loops) and one for global predictions (better for ifs) and then predict which of these predictors will predict the better result (yes, lot of predicting)
+
+Multi Predictor|
+|:-:|
+![Multi Predictor](img/PAP_multi_predictor.png)|
+
+We can kinda compile this logic into one PHT by combining last bits of address with local branch history register and global branch history register.
+
+**gskewed predictor** uses multiple PHTs each addressed with different hash function, and then decides wether to jump, based on the majority of the results.
+
+And more and more... new processors use principles of machine learning.
+
+**Branch predictor - where we jump?** - branch target speculation.
+
+Without asociative PHT (with hash) we could just store the target in table, but usually it is better to store this information in separate structure. We can implement it as associative cache.
+
+This is more complicated in object-oriented languages, which requere *jr $r* - jump to register. 
+
+We could use history simmilar to the *if jump* mechanisms to access the address target cache, but this is not effective.
+
+We can use **Virtual Program Counter** that can learn the patter of the jumps.
+
+**Bogus branch** we predict that instruction is branch, when it is not (JIT changed instructions)
+
+**RAS predictor** hardware stack, where the address of function call is stored. When we return, we can pop the address from the stack.
+
+**Trace cache** it is usefull when there are jumps in fetched instructinons. The trace cache stores what actuall instructions were executed, and when we get to the same address again, we know the instruction flow and can load instructions from trace cache instead of instruction cache.
+
+Trace Cache|
+|:-:|
+![Trace cache](img/PAP_Trace_cache.png)|
+
+Usually we fill the trace cache from the Reorder buffer, after we are sure, which instructionas are trully executed.
+
+**Speeding up Load-Store instructions**
+
+**Load bypassing** allows execute a load before store, if instruction are memory independent (they do not alias). If we wont find the target address in the store buffer, we can load the value from the cache knowing the store data will not change it. 
+If we find the value in the store buffer, we can use **Load Forewarding** - use the value in the store buffer for speculative execution. 
+
+We can even reorder the load and store instructions and speculatively load the value. If the store with the conflict is encountered we need to invalidate the speculative store, and can foreward the data being stored. Described in Speculative loading picture.
+
+We can speculate on this as well by using **Memory dependence predictor**
+
+**Cache**
+
+**Hit under miss** if we try to read data, that was not in cache miss -> we can try to read the next data. If it is hit, we can speculatively execute it, while we wait for the missed instruction. There is laso **miss-under-miss** (hit unnder multiple misses) where we can skip several misses, not just one. This is called non-blocking cache and can be seen in picture Nonblocking Cache.
+
+Speculative loading|Non-blocking Cache|
+|:-:|:-:|
+|![Speculative loading](img/PAP_Speculative_load.png)|![Non-blicking cache](img/PAP_non_blocking_cache.png)|
+
+**Prefetching cache** - predicting what memory will be used and load in into the case for potencial future use. Can be useful, useless, or even harmful (I overwrite something I needed with something useless)
+
+We can prefetch data into cache using Stride - simmilar to the Stride data prediction.
+
+The items stored in cache are stored based on two principles:
+- **Temporal locality** accessed data will likely be accessed again
+- **Spatial locality** data neear the accessed data is likely be accessed.
+
+Cache associativity: **Fully asociative** - expensive computation - search where the address is in the cache. **Directly mapped** cheap computation, but prone to alliasing. **N-associative cache** - each address can be mapped to the N places in cache.
+
+**Validity bit** data in cache are valid, it holds real data. **Dirty bit** data in cache differs from the value in the main memory.
+
+Resolving Cache miss, what to toss out of the cache instead of the new data? Different approaches: **LRU** (Least recently used), **LFU** (Least frequently used), **ARC** (adaptive replacement cache), Random...
+
+**Write through** as the data is written to case, they are written to the memory (asynchronously write queue-buffer)
+
+**Write back** we only store data into the cache and set dirty-bit. We write to memory only when the data is accesses, or when sync is called.
+
+**Victim cache** - insead of throwing data away, we put the in victim cache, where the data can be accesed if it would be target for hit, and put back to the main cache. Without the hit, it will be thrown away after some time.
+
+**Assist cache** - incomming data is stored in assist cache, and only after multiple hits it is moved to the main cache. 
+
+Complete processor|
+|:-:|
+![Complete processor](img/PAP_complete_processor.png)
+
+**Translation lookaside buffer** - when translating the virtual memory to physical it is expensive operation if we have multiple levels of address translation. The translated addreses we can put into the TLB and we dont need to translate them again.
 
 ### 5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.
 
-### 5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).
 
-### 5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.
+**Consistency** 
+
+**Coherency** - Multiple processors have private and shared data in cache. The private data is only local and does not need to be distributed. The shared data however need to be same across processors. The multiprocessor memory system is coherent if there are rules thet define access to individual memory locations. Solved primarily in hardware.
+
+**Cache coherent protocol** The memory system is coherent if:
+1) Read[address1] executed after Write[adresss1, data1] by same processor will always return data1. Between these instructions, no other processor executed write on address1.
+2) Read[address2] by processor P after Write[address2,data2] by proccessor Q, returns data2, it the operations Read and Write are sufficiently separated - by time or barrier instruction. Between these instructions, no other processor executed write on address2.
+3) Two writes executed by two different processors are seen by all processors in the same order.
+
+that can be achieved by **snooping** 
 
 ### 5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.
 
