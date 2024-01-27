@@ -733,17 +733,150 @@ Complete processor|
 
 ### 5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.
 
+**Consistency** - all instructions happen in some order, that can be seen from all processors. (almost impossible) **Sequential consistency** all instructions executed by one processor must be committed in the sequential order they appear in program.
 
-**Consistency** 
+Strict Consistency - we would need timestamp for each read/write operation and then sort and execute them in the time order - unrealistic and almost absurd requirement for multi-processor system. We can lower the demand by introducing **sequential consistency**
+
+More about [consistency models in chapter 5.3](#53-rules-for-execution-synchronization-and-data-exchange-in-multiprocessor-systems-mutex-implementation-relation-to-consistency-models-and-mechanisms-to-achieve-expected-algorithms-behavior-on-systems-with-relaxed-consistency-models-pram-pso-tso-pc-barrier-instructions)
 
 **Coherency** - Multiple processors have private and shared data in cache. The private data is only local and does not need to be distributed. The shared data however need to be same across processors. The multiprocessor memory system is coherent if there are rules thet define access to individual memory locations. Solved primarily in hardware.
+
+The Coherency is from the point of view of the memory location - I am address and I know that everywhere I am it is the same value (I am not responsible for the value in registers - that is only value, not address) or it will be same value after some arbitrary time. The Consistency is about instructions from the point of view of all processor. All processors should see same instructions, which is almost impossible.
+
+*Consistency* specifies the order in which the individual processes execute their memory operations and or how is this order viewed by other processes. *Coherence* Only focuses on hypothetical sequention order to individual memory locations, but guarantees neither order nor visibility of accesses to different locations. Consistency defines what is expected behavior of sharem memory regarding all reads and writes.
+
+Very simplified: 
+- **Coherence** - which value is returned by read
+- **Consistency** - when is the written value returned by read
 
 **Cache coherent protocol** The memory system is coherent if:
 1) Read[address1] executed after Write[adresss1, data1] by same processor will always return data1. Between these instructions, no other processor executed write on address1.
 2) Read[address2] by processor P after Write[address2,data2] by proccessor Q, returns data2, it the operations Read and Write are sufficiently separated - by time or barrier instruction. Between these instructions, no other processor executed write on address2.
 3) Two writes executed by two different processors are seen by all processors in the same order.
 
-that can be achieved by **snooping** 
+that can be achieved by **snooping** - each processor (or caching agent) snoops for the addresses on the bus, and if the address matches the address stored in cache, it will update the data. It is very computation demanding, so the more usual approach is that instead of update, we invalidate the data. 
+
+For this the MESI protocol was created. MESI stands for MODIFIED, EXCLUSIVE, SHARED, INVALID, which represents the states which the data in cache can be.
+
+The two caching agents can have states displayed in MESI table. The x symbolizes, that the two processors can have corresponding states, while the *o* symbolizes they cannot.
+
+|MESI table| M | E | S | I |
+|:-:|:-:|:-:|:-:|:-:|
+|M|o|o|o|x|
+|E|o|o|o|x|
+|S|o|o|x|x|
+|I|x|x|x|x|
+
+|Local Processor|Snooping processor|
+|:-:|:-:|
+![MESI - Local Processor](img/PAP_MESIlocalProcessor.png)|![MESI - Snooping processor](img/PAP_MESIsnoopingProcessor.png)
+
+First we have the value as invalid. We send BusRead if we want to read. If anybody else has that value in memory, we get the value as SHARED. If only we have it we get Exclusive. 
+
+When we want to write, we read value as ReadWithIndendToModify, forcing the most up-to-date value to the memory and invaliding all other copies. After that we can get the Data and modify it. If we have Exclusive access we just modify it and change state. 
+
+MOESI is similar to the MESI, but adds one more state - OWNED one cache agent is the owner with right to modify the cache. Others can read. It is duty of the OWNER to broadcast any change to other processors, if it made change to the value.
+
+If we would connect large amount of processors to the common bus the communication bandwidth would be too high. That's why we separate them into different broadcast groups, each group has its **Directory** that knows whether the data is in use, dirty or what processor uses the data.
+
+Request to the Directory |
+|:-:|
+![Request to the directory](img/PAP_directory_request.png)|
+
+The directory can be **FLAT** - the most basic option - the directory is placed on fixed location each mem location has its own directory. **Hierarchical directory** has notion where each block of memory is located and can point for that inforamtion into different directory. There is also **Centralized directory** that has information about all the memory.
+
+The **Flat** directory can be memory-based - information about every memory location. Or cache based - we store inforamtion only about a part of a memory - requeres less memory to implement, but is less effective.
+
+### 5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).
+
+With coherent and sequentially consistent machine, we still can get unexpected results, when the operations are not atomic, their order is not predetermined, when executed on multiple processors. 
+
+**Sequence consistency** - all instructions executed by single processor are viewed by all processors in correct order. We guarantee this sequentiallity only for single processor, not for all processors.
+
+|Sequential consistency|
+|:-:|
+![Sequential consistency](img/PAP_Sequential_consistency.png)|
+
+This is possible if we forbid speculation and only issue single read/write at the time (Very strict). Or we allow speculation, but when the write opperation over that address is executed on different processor, we need to abandon the speculation.
+
+This still does not solve mutual exclusion, which need to be solved with Mutex.
+
+The sequential consistency results in some restrictions with out-of-order executions - namely with the spill code (Storing variables that did not fit into registers). We can loosen up the requirements and solve hazards (load bypassing/forewarding but with cache cooperation).
+
+For that we need mutual exclusion - **Mutex** - mechanism. It is possible to implement it in software (Peterson's algorithm), but it is very expensive - usually the hardware support is needed.
+
+The mutex is usually implemented by using TEST-AND-SET instruction, which can be executed atomicaly. The instructions checks if the value in memory has expected value, and if it does, it overwrites it. This operation is atomic. 
+
+The mutex requires the memory in case to be MODIFIED -> the communication on bus is high, when we would spin on the lock. This spinning would cause dead-lock. It can be made usable if we would wait some arbitrary time before next attempt. 
+
+Another enhancement is to split the Test-and-set into two instructions. The first instruction does not ReadWithIntendToTodify, and only converts the value to SHARED. Then snoopes the bus, and once the lock is released it tryes to write into the address.
+
+**Load-linked** and **Store-conditional** - load linked loads the data and becomes member of data coherency (Snoops the bus and if the value of the address is changed, the value of register is changed as well). Store-conditional stores the data only if the flag set by the Load linked was not modified. Otherwise loop and load again. 
+
+However this, in rare situations can create live-lock - two processors stealing the addres from the other one idefinetely. 
+
+Alternative is to execute the whole code, then check if the memory was modified, and if wasnt - propagate it, if was, abort and use lock. 
+
+Test-and-set requires a lot of orchestration -the single point of interest, where the final execution is made is home directory of corresponding memory location.
+
+The *sequential consisntecy* can be still to restrictive and we can loosen it up by defining **Causal consistency**
+
+The reads are also causaly binding to the writes since they could change the behaviour of write.
+
+Causal consistency|
+|:-:|
+![Causal consistency](img/PAP_causal_consistency.png)
+![Causal consistecy again](img/PAP_casual_consistency_again.png)
+
+This can be even more loosen up with **PRAM**(pipelined random access memory) consistency. The writes executed on one process are seen by other processes in the correct order. But writes executed by different processes can be seen by different processes differently.
+
+Here the previous not possible instance is possible, since the write *w(x)c* from process P1 can be perceived after *w(x)d* of process P2 by P3 and P4. But none could read *a*, since that is overwritten by *w(x)c*
+
+PRAM consistency|
+|:-:|
+![PRAM consistency](img/PAP_PRAMConsistency.png)|
+
+The consistencies can be set up at will. What are benefits
+- W->R: removes write from critical path - overlapping reads and writes.
+- R->R, W->R - non-blocking cache, possible to continue execution speculatively even after miss.
+- W->W memory level parallelism
+- Read of own write before others (load forwarding)
+- Read of other processor writes before others, read the modification, before it is completely distributed among others.
+
+The **Relaxed consistencies**
+
+- **TSO - Total store ordering** 
+  - IBM: read operation can be completed before an earlier write to another address, but the read cannot return the written address until it is visible to all processors.
+  - SPARC: similar to IBM, but it is loosened up: the processor can return own written value before it is visible to all others.
+
+- **PC - Processor consistency** 
+  - Read can be completed before an earlier write is visible to all. Read can behave differently on different processors (returning old/new value and not only on writting processor).
+- **PSO - partial store ordering**
+  - simmilar to the TSO, but the write consistency is only applicable to the single memory not the system.
+
+|Relaxed consistency| Relaxed consistency - examples
+|:-:|:-:|
+![relaxed consistency](img/PAP_relaxed_consistency.png)| ![relaxed consistency - examples](img/PAP_relaxed_consistency_examples.png)|
+
+**Barrier**
+
+All data operations before barrier have to be completed and all instructions after the barrier need to wait, until the barrier instruction is completed.
+
+Barrier instructions are processed in program order.
+
+intel has instructons **sfence** (store barrier), **lfence** (load barrier) and **mfence** (memory barrier) which we can grannualy choose, what to use. 
+
+In openMP directive *flush* writes the variable to memory (simmilar to volatile, but this actually works)
+
+Synchronization events types|
+|:-:|
+![Synchronization events types](img/PAP_syncEventTypes.png)|
+
+In the picture is high-level barrier -> not only data operations, but all operations need to be synchronized.
+
+Two point sync: omp flush, Critical section: omp critical, synchronization barrier: omp barrier
+
+### 5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.
 
 ### 5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.
 
