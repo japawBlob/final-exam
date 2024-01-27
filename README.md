@@ -33,10 +33,10 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [ ] [4.5 Tape out and IC fabrication process, integrated systems verification, scaling and design mapping to different technologies.](#45-tape-out-and-ic-fabrication-process-integrated-systems-verification-scaling-and-design-mapping-to-different-technologies)
   - [5. PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers.](#5-pap---advanced-architectures-of-processors-memory-and-peripheral-circuits-and-multiprocessor-computers)
     - [x] [5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
-    - [ ] [5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.](#52-relation-between-memory-coherency-and-consistency-their-implementation-on-systems-with-shared-bus-and-when-multiple-rings-topologies-are-used-mesi-moesi-home-directory)
-    - [ ] [5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).](#53-rules-for-execution-synchronization-and-data-exchange-in-multiprocessor-systems-mutex-implementation-relation-to-consistency-models-and-mechanisms-to-achieve-expected-algorithms-behavior-on-systems-with-relaxed-consistency-models-pram-pso-tso-pc-barrier-instructions)
+    - [x] [5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.](#52-relation-between-memory-coherency-and-consistency-their-implementation-on-systems-with-shared-bus-and-when-multiple-rings-topologies-are-used-mesi-moesi-home-directory)
+    - [x] [5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).](#53-rules-for-execution-synchronization-and-data-exchange-in-multiprocessor-systems-mutex-implementation-relation-to-consistency-models-and-mechanisms-to-achieve-expected-algorithms-behavior-on-systems-with-relaxed-consistency-models-pram-pso-tso-pc-barrier-instructions)
     - [ ] [5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.](#54-smp-and-numa-nodes-interconnections-networks-conflicts-and-rearrangeable-networks-beneš-network)
-    - [ ] [5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.](#55-parallel-computations-on-multiprocessor-systems-openmp-on-numa-and-mpi-on-distributed-memory-systems-their-combinations)
+    - [x] [5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.](#55-parallel-computations-on-multiprocessor-systems-openmp-on-numa-and-mpi-on-distributed-memory-systems-their-combinations)
   - [6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation.](#6-krp---io-and-network-interfaces-of-computer-and-embedded-systems-hardware-and-software-implementation)
     - [ ] [6.1 USB I/O subsystem, structure and functionality of elements, protocol stack,transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.](#61-usb-io-subsystem-structure-and-functionality-of-elements-protocol-stacktransfer---transaction---packet-hierarchy-transfer-types-and-pipes-bandwidth-allocation-principles-enumeration-process-and-pnp-descriptor-hierarchy-usb-device-implementation)
     - [ ] [6.2 PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.](#62-pci-express-pci-io-subsystems-basic-differences-and-commons-of-pci-and-pcie-protocol-stack-transaction-types-packet-routing-principles-quality-of-service-support-pnp-and-enumeration-process)
@@ -874,11 +874,64 @@ Synchronization events types|
 
 In the picture is high-level barrier -> not only data operations, but all operations need to be synchronized.
 
-Two point sync: omp flush, Critical section: omp critical, synchronization barrier: omp barrier
+Two point sync: omp flush (or semaphore), Critical section: omp critical, synchronization barrier: omp barrier
+
+The spin-lock can be implemented by ticket-lock the krux are two atomic variables: next_ticket and now serving. Every time I want to access critical section: I take ticket and raise the ticket-number value. Then check who is serving now, and if it is my value, I can enter. After completion I raise the now-serving value.
 
 ### 5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.
 
+SMP - Shared-memory multiprocessing 
+
+NUMA - non-unified memory access
+
+Static networks are described in [PAG chapter 8.1](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
+
+
+
 ### 5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.
+
+The basis of instruction level parallelism (out-of-order execution, super-scalar pipelines...) are covered in [section 5.1](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
+
+
+The main two approaches when creating **Thread level parallelism** are when we have shared memory systems, or distributed memory systems.
+
+OpenMP: Only for shared-memory systems (SMS), simple parallelization and implicit communication.
+
+To create parallel program we can use directives such as:
+- `#pragma opm parallel for` - split for cycle into multiple processors
+- `#pragma omp critical/atomic/barrier` - synchronization between threads, critical sections
+- `schedule` - how the work should be splitted between threads? Static, dynamic, guided...
+- `private, shared` - specific directives for variables, if they are shared or not.
+- `pragma opm task/taskwait` - directive that spawns new thread - for more manual thread spawning 
+
+MPI: Message passin interface. Both for SMS and Distributed-memory system (DMS). Explicit communication.
+
+Initiate the communicator (the object that stores information about all tasks) by MPI_COMM_WORLD. The processes in the comunication world have their rank with which they can be identified. 
+
+Collective communication is always blocking and follows PAG conventions (all-to-all broadcast, one-to-all broadcast, scatter...).
+
+Collective computation - one task needs to collect all the computed info and combine it.
+
+
+
+Hybrid approach: use OpenMP between the cores on one system and MPI between processors.
+
+```C
+if (CPU_ID == 0) {
+  #pragma omp parallel for
+  for (int i = 0; i<n; i++ ){
+    taks_a(i);
+  }
+}
+if (CPU_ID == 1) {
+  #pragma omp parallel for
+  for (int i = 0; i<n; i++ ){
+    task_b(i);
+  }
+}
+```
+
+
 
 ## 6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation. 
 
