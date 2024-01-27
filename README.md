@@ -35,7 +35,7 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [x] [5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
     - [x] [5.2 Relation between memory coherency and consistency, their implementation on systems with shared bus and when multiple rings topologies are used, MESI, MOESI, home directory.](#52-relation-between-memory-coherency-and-consistency-their-implementation-on-systems-with-shared-bus-and-when-multiple-rings-topologies-are-used-mesi-moesi-home-directory)
     - [x] [5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).](#53-rules-for-execution-synchronization-and-data-exchange-in-multiprocessor-systems-mutex-implementation-relation-to-consistency-models-and-mechanisms-to-achieve-expected-algorithms-behavior-on-systems-with-relaxed-consistency-models-pram-pso-tso-pc-barrier-instructions)
-    - [ ] [5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.](#54-smp-and-numa-nodes-interconnections-networks-conflicts-and-rearrangeable-networks-beneš-network)
+    - [x] [5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.](#54-smp-and-numa-nodes-interconnections-networks-conflicts-and-rearrangeable-networks-beneš-network)
     - [x] [5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.](#55-parallel-computations-on-multiprocessor-systems-openmp-on-numa-and-mpi-on-distributed-memory-systems-their-combinations)
   - [6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation.](#6-krp---io-and-network-interfaces-of-computer-and-embedded-systems-hardware-and-software-implementation)
     - [ ] [6.1 USB I/O subsystem, structure and functionality of elements, protocol stack,transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.](#61-usb-io-subsystem-structure-and-functionality-of-elements-protocol-stacktransfer---transaction---packet-hierarchy-transfer-types-and-pipes-bandwidth-allocation-principles-enumeration-process-and-pnp-descriptor-hierarchy-usb-device-implementation)
@@ -886,7 +886,64 @@ NUMA - non-unified memory access
 
 Static networks are described in [PAG chapter 8.1](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
 
+The dynamic networks can be rearanged during runtime to provide more optimal connection. 
 
+The simplest, but very effective network is matrix, where each input can be connected with heach output. In AXI bus it is note input/output, since established connection can be used in both directions. 
+
+Matrix connection|
+|:-:|
+![Matrix connection](img/PAP_matrix_connection.png)
+
+The Multistage interconnect network can be:
+- **Interconnection type** what type of the communication the network does allow
+  - Point to point
+  - Broadcast
+  - Multicast
+- **Buffer** - how the network is buffered
+  - Internal buffers 
+  - External buffers
+  - no buffers at all
+- **Blocking** does the one communication block?
+  - Blocking
+  - external/internal non-blocking. Internal non-blocking any input to any output, but two inputs to same output cause conflict. External solve this problem using buffers.
+  - rearangebly non-blocking
+- **Transport** - if the one stream can be sent in multiple paths to support higher speed
+  - single path
+  - multi-path
+- **Controll** - how the flow trough the network is controlled
+  - Centralized - single cpu orchestrates the network
+  - Decentralized - each node decides, how to route the traffice - self-routing
+
+**Buffering**
+ - Output buffers/queing - buffers on output, need to have high speed and capacity, if all inputs would try to send data to single output
+ - Input buffers/queing - queues on the input - problem with Head-of-Line blocking - if the first in queue is blocked all messages behind are blocked as well, even tho their output is free.
+ - Copmbined buffers/queing - combined input/output buffers
+ - Shared buffer/queing - all outputs share single memory (used in consumer routers)
+ - Virtual output buffers/queing - each input has separate queue for ach output, solves head-of-lin blocking, but is expensive.
+
+**Rearangeble networks**
+
+the rearangeble network is based on simble module, that has two inputs and two outputs. And the module can either send 0->0, 1->1; or swap 0->1, 1->0; it cannot send both inputs to 1 or 0.
+
+The basis of rearangable network is permutation of inputs - it can be so called *perfect shuffle permutation* or *butterfly permutation*. Perfect shuffle splits the inputs into N groups and then combines output groups by iteratively taking the one input from each input group adn adding them to output groups. (like dealing cards [rozdávání karet]).
+
+The basic Blocking network is Omega network
+
+Omega network| Omega network example|
+|:-:|:-:|
+![Omega network](img/PAP_omega_network.png)| ![Omega network example](img/PAP_omega_network_example.png)|
+
+The omega network is blocking - each switching step is decided by the bit in the destination address (from MOST significant bit to least significant). The 0 bit is go up, 1 bit is go down. In the case of colision the lower value target address is carried, while thi higher target remainsblocking.
+
+The non-blocking, self routing network is Beneš network
+
+Beneš network| Beneš network example|
+|:-:|:-:|
+![Beneš network](img/PAP_benes_network.png)| ![Beneš network example](img/PAP_Benes_network_example.png)|
+
+Beneš network is similar to the Omega network, but it adds one additional network after the first one in inverse shuiffle. The routing is done using the destination address, going LSB->MSB->LSB. So the target addres 011. Will go 11011 -> Down,Down,Up,Down,Down.
+
+In case of conflict the lower target address has priority. The other address gets routed to the not-prefered side and then is routed as usual.
 
 ### 5.5 Parallel computations on multiprocessor systems, OpenMP on NUMA and MPI on distributed memory systems, their combinations.
 
