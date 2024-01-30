@@ -18,13 +18,13 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [ ] [2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.](#25-randomized-algorithms-randomized-turing-machines-classes-based-on-randomization-rp-zpp-co-rp)
     - [ ] [2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.](#26-decidability-and-undecidability-recursive-and-recursively-enumerab/le-languages-diagonal-language-universal-language-and-universal-turing-machine)
   - [3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications.](#3-ko---combinatorial-optimization-problems---formulation-complexity-analysis-algorithms-and-example-applications)
-    - [ ] [3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.](#31-integer-linear-programming-shortest-paths-problem-and-traveling-salesman-problem-ilp-formulations-branch-and-bound-algorithm-problem-formulations-using-ilp-special-ilp-problems-solvable-in-polynomial-time)
-    - [ ] [3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.](#32-shortest-paths-problem-dijkstra-bellman-ford-and-floydwarshall-algorithms-shortest-paths-in-directed-acyclic-graphs-problem-formulations-using-shortest-paths)
-    - [ ] [3.3 Network flows. Maximum flow and minimum cut problems. Ford-Fulkerson algorithm.  Feasible flow with balances. Minimum cost flow and cycle-canceling algorithm. Problem formulations using network flows. Maximum cardinality matching.](#33-network-flows-maximum-flow-and-minimum-cut-problems-ford-fulkerson-algorithm--feasible-flow-with-balances-minimum-cost-flow-and-cycle-canceling-algorithm-problem-formulations-using-network-flows-maximum-cardinality-matching)
-    - [ ] [3.4 Knapsack problem. Approximation algorithm, dynamic programming approach, approximation scheme.](#34-knapsack-problem-approximation-algorithm-dynamic-programming-approach-approximation-scheme)
-    - [ ] [3.5 Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.](#35-traveling-salesman-problem-double-tree-algorithm-and-christofides-algorithm-for-the-metric-problem-local-search-k-opt)
-    - [ ] [3.6 Scheduling - problem description and notation. One resource - Bratley algorithm, Horn algorithm. Parallel identical resources - list scheduling, dynamic programming. Project scheduling with temporal constraints - relative order and time-indexed ILP formulations.](#36-scheduling---problem-description-and-notation-one-resource---bratley-algorithm-horn-algorithm-parallel-identical-resources---list-scheduling-dynamic-programming-project-scheduling-with-temporal-constraints---relative-order-and-time-indexed-ilp-formulations)
-    - [ ] [3.7 Constraint Satisfaction Problem. AC3 algorithm.](#37-constraint-satisfaction-problem-ac3-algorithm)
+    - [x] [3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.](#31-integer-linear-programming-shortest-paths-problem-and-traveling-salesman-problem-ilp-formulations-branch-and-bound-algorithm-problem-formulations-using-ilp-special-ilp-problems-solvable-in-polynomial-time)
+    - [x] [3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.](#32-shortest-paths-problem-dijkstra-bellman-ford-and-floydwarshall-algorithms-shortest-paths-in-directed-acyclic-graphs-problem-formulations-using-shortest-paths)
+    - [x] [3.3 Network flows. Maximum flow and minimum cut problems. Ford-Fulkerson algorithm.  Feasible flow with balances. Minimum cost flow and cycle-canceling algorithm. Problem formulations using network flows. Maximum cardinality matching.](#33-network-flows-maximum-flow-and-minimum-cut-problems-ford-fulkerson-algorithm--feasible-flow-with-balances-minimum-cost-flow-and-cycle-canceling-algorithm-problem-formulations-using-network-flows-maximum-cardinality-matching)
+    - [x] [3.4 Knapsack problem. Approximation algorithm, dynamic programming approach, approximation scheme.](#34-knapsack-problem-approximation-algorithm-dynamic-programming-approach-approximation-scheme)
+    - [x] [3.5 Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.](#35-traveling-salesman-problem-double-tree-algorithm-and-christofides-algorithm-for-the-metric-problem-local-search-k-opt)
+    - [x] [3.6 Scheduling - problem description and notation. One resource - Bratley algorithm, Horn algorithm. Parallel identical resources - list scheduling, dynamic programming. Project scheduling with temporal constraints - relative order and time-indexed ILP formulations.](#36-scheduling---problem-description-and-notation-one-resource---bratley-algorithm-horn-algorithm-parallel-identical-resources---list-scheduling-dynamic-programming-project-scheduling-with-temporal-constraints---relative-order-and-time-indexed-ilp-formulations)
+    - [x] [3.7 Constraint Satisfaction Problem. AC3 algorithm.](#37-constraint-satisfaction-problem-ac3-algorithm)
   - [4. ISC - Design and implementation of in-chip integrated systems, application specific systems.](#4-isc---design-and-implementation-of-in-chip-integrated-systems-application-specific-systems)
     - [ ] [4.1 Main features and economical aspects of the Application specific integrated circuits systems: full custom design, gate array, standard cells, programmable array logic;](#41-main-features-and-economical-aspects-of-the-application-specific-integrated-circuits-systems-full-custom-design-gate-array-standard-cells-programmable-array-logic)
     - [ ] [4.2 Design principles of mix-signal integrated circuits, purpose of hierarchical design, digital and analogue block interface, CAD design tools for automatic circuit generation; functional and static time analysis, formal verification; Verilog-A, Verilog-AMS, VHDL-A.](#42-design-principles-of-mix-signal-integrated-circuits-purpose-of-hierarchical-design-digital-and-analogue-block-interface-cad-design-tools-for-automatic-circuit-generation-functional-and-static-time-analysis-formal-verification-verilog-a-verilog-ams-vhdl-a)
@@ -48,7 +48,7 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [ ] [7.3 Digital signal processing: signal spectrum analysis (DFT, IDFT), correlation functions and their typical use, digital filters (FIR, IIR), signal interpolation, signal decimation.](#73-digital-signal-processing-signal-spectrum-analysis-dft-idft-correlation-functions-and-their-typical-use-digital-filters-fir-iir-signal-interpolation-signal-decimation)
     - [x] [7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds)
     - [x] [7.5 User controls interfacing to microcontrollers (buttons, rotary encoders, graphic LCD, audio codecs, power switches, relays, contactors). Motion control (brush DC motor, stepper motor and brushless DC motor control).](#75-user-controls-interfacing-to-microcontrollers-buttons-rotary-encoders-graphic-lcd-audio-codecs-power-switches-relays-contactors-motion-control-brush-dc-motor-stepper-motor-and-brushless-dc-motor-control)
-  - [8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra. BE4M35PAG (Course web pages)](#8-pag---properties-of-parallel-and-distributed-algorithms-communication-operations-for-parallel-algorithms-parallel-algorithms-for-linear-algebra-be4m35pag-course-web-pages)
+  - [8. PAG - Properties of parallel and distributed algorithms. Communication operations for parallel algorithms. Parallel algorithms for linear algebra.](#8-pag---properties-of-parallel-and-distributed-algorithms-communication-operations-for-parallel-algorithms-parallel-algorithms-for-linear-algebra-be4m35pag-course-web-pages)
     - [x] [8.1 Describe basic communication operations used in parallel algorithms. Show cost analysis of one-to-all broadcast, all-to-all-broadcast, scatter, and all-to-all personalized communication on a ring, mesh, and hypercube. Describe All-Reduce and Prefix-Sum operations and outline their usage.](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
     - [x] [8.2 Describe performance metrics and scalability for parallel systems. How efficiency of a parallel algorithm depends on the problem size and the number of processors? Derive isoefficiency functions of a parallel algorithm for adding numbers (including communication between processors) and explain how it characterizes the algorithm.](#82-describe-performance-metrics-and-scalability-for-parallel-systems-how-efficiency-of-a-parallel-algorithm-depends-on-the-problem-size-and-the-number-of-processors-derive-isoefficiency-functions-of-a-parallel-algorithm-for-adding-numbers-including-communication-between-processors-and-explain-how-it-characterizes-the-algorithm)
     - [x] [8.3 Explain and compare two parallel algorithms for matrix-vector multiplication. Describe a parallel algorithm for matrix-matrix multiplication and explain the idea of Cannon’s algorithm. Discuss the principle and properties of the DNS algorithm used for matrix-matrix multiplication.](#83-explain-and-compare-two-parallel-algorithms-for-matrix-vector-multiplication-describe-a-parallel-algorithm-for-matrix-matrix-multiplication-and-explain-the-idea-of-cannons-algorithm-discuss-the-principle-and-properties-of-the-dns-algorithm-used-for-matrix-matrix-multiplication)
@@ -106,7 +106,7 @@ $$\sum_{v\in V} deg(v) = 2|E|$$
 
 **Laplacian matrix** is matrix where $l_{i,j} = \begin{cases} deg(v_i)& \text{for } i=j\\ -1& \text{for } \{v_i, v_j\} \in E\\ 0& \text{otherwise}\end{cases}$. On the diagonal are degrees of the nodes, and each pair of nodes *i,j* that is connected is represented by -1 in the matrix. Note, that sum of row, or column is always 0.
 
-**Distance matrix** is simmiral to adrecency matrix, but instead the plain 1, there is cost of the edge insead.
+**Distance matrix** is simmiral to adrecency matrix, but instead the plain 1, there is cost of the edge insead - question is what happens when two vertexes dont have common edge, but they are connected with path. The notation is not unified.
 
 **Incidence matrix** the matrix has $V\times N$ dimensions. Where each column symbolizes each vertex, in each column there is -1 and 1. The -1 symbolizes start node of the edge and 1 symbolizes the end node of the edge. $(I)_{i,j}=\begin{cases} -1& \text{for } e_j = (v_i, *)\\ +1& \text{for } e_j = (*, v_i)\\ 0& \text{otherwise}\end{cases}$
 
@@ -291,7 +291,7 @@ Table for finding prime numbers. The table contains all numbers 1-n.
 2) Iterate trough numbers, if the number *a* is *unused* store it as a Prime number. And go trough the table and mark every number that is multiply of *a* as used. (They are on the table indexes i $i\mod a = 0$)
 3) when the $\sqrt n$ index is reached, all the remaining *unused* numbers are all primes.
 
-**Pseudorandom nuber properties**
+**Pseudorandom number properties**
 
 The pseudorandom is not entirely random, since it is generated by deterministic algorithm. It satisfies two conditions: 
 1) Local unpredictability (without knowing the internal structure of PC or algorithm, the output looks random)
@@ -472,17 +472,372 @@ The probability p of landing heads is usually 25% - it has simmilar search prope
 
 ### 3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.
 
+**ILP**
+
+the goal of the ILP is to find vector $x \in \Z^n$ such that $\bf{A}\cdot x \leq b$ and $c^T \cdot x$ is maximal.
+
+The difference with LP is that LP uses convex space, which solution space of ILP is not. 
+
+ILP in NP-Hard.
+
+**Shortest paths algorithm ILP formulation:**
+
+Find the shortest path from the node $v_s$ to the $v_t$ in graph $G = (V,E)$ with $n$ total nodes. The distances between nodes will be represented by distance matrix $C: V \times V \to \R_0^+$
+
+$$
+\min \sum_{i=1..n, j=1..n} x_{i,j} * c_{i,j}\\ 
+\text{subjects to:}\\
+\begin{alignat*}
+{3}
+\sum_{(u,t)\in E} x_{u,t} &= 1\\
+\sum_{(s,u)\in E} x_{s,u} &= 1\\
+\sum_{(i,v)\in E} x_{i,v} &= \sum_{(v,j)\in E} x_{v,j} \text{ for all } v \in V-\{s, t\}\\ 
+\end{alignat*}
+$$
+
+The $c_{i,j}$ is cost from $v_i \to v_j$. The X is matrix of binary variables, each representing, whether we use that edge or not. The first two conditions say, that s has one outgoing edge and t has one incoming edge. The last condition represents that every other used node has exactly one incoming and one outcoming edge.
+
+Slightly different approach but same idea is in the Shortest paths ILP picture.
+
+|Shortest paths ILP|
+|:-:|
+![Shortest paths ILP](img/KO_skortest_paths_ILP_2.png)|
+
+**Traveling salesman problem**
+
+We have complete graph $G = (V,E)$ we use matrix $X$ of binary variables X where $x_{i,j}$ symbolizes whether the edge $i \to j$ is used.
+
+|Traveling salesman problem|
+|:-:|
+![Traveling salesman problem](img/KO_traveling_salesman_problem_ILP.png)|
+
+The single circle is enforced by using timestamps with each step of the used path. Where each subsequent must be greater, than previous. The only difference is the beginning and end, which is same -> that is why j goes only from 2..n 
+
+**Branch and bound**
+
+Method is based on splitting solution space into disjointed sets. 
+
+We solve the problem by relaxing the integers into real numbers and call the LP on it. If all returned variables by LP are integers - we solved the problem. If not, one non-integer variable $$x_i$ is chosen as *k* and we divide the solution space into two disjointed sets:
+1) $x_i \leq \lfloor k \rfloor$
+2) $x_i \geq \lfloor k \rfloor +1$
+
+The same process is called on these sets recursively, until the all-integer solution is found.
+
+|Branch and Bound|
+|:-:|
+![Branch and Bound](img/KO_Branch_and_bound.png)|
+
+**When is solution to the ILP polynomial**
+
+The ILP is solved in polynomial time when the problem is given by a totally unimodular matrix A and integer vector b. 
+
+The matrix A is totally unimodular when every square submatrix of matrix A is equal to 1,0,-1. From that if A is totally unimodular then $a_{ij} \in {-1,0,1}$
+
+**Solving problems using ILP**
+
+We can add more equations to the problem formulation to describe additional conditions.
+Lets say:
+
+We have **n** houses each costs **c** and we get profit from it **p** while our budget is limited by **b**.
+Simple equation, we introduce binary vector **x** of variables which say whether we buy the house or not. We maximize $x^T\cdot p$ while the condition $x^T \cdot c \leq b$ is met.
+
+If we get another limitations like we need to buy house $x_i$ or implication if $x_k \implies x_l$. We can add additional conditions. $x_i = 1$ and $x_l \leq x_k$
+
+
 ### 3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.
+
+**Dijkstra** iteratively go through a graph and add update the cost of node based on the path. The dijkstra algorithm is static (the value once assigned to the vertex is permanent). 
+ 
+The dijkstra can also be bi-directional (from source as well from target) which can sometimes speeup the computation.
+
+**Bellman-Ford** - find shortest paths, like dijkstra, but allows for negative edges (not negative cycles). The algorithm is based on iteratively going through each edge and updating current values. Since it uipdates the values, it is not static when compared to dijkstra.
+
+**Ford-folkerson** - all to all shortest paths, with negative edges (not negative cyrcles). The lagorithm goes trough diagonal, taking line and column and then updating all values based on the sum of corresponding vertexes. $n^3$
+
+**DAG** - directed acyclic graph - solved by dynamic programing.
+
+**Proving correctness of algorithms**: 
+- **Triangle inequality** - let l(i,j) be length of shortest path from i to j. Than holds $l(i,j) \leq l(i,k) + l(k,j)$. Either the k is allready in path - that is equal, and if is not, then it is larger. (No negative cyrcles) 
+- **Belman's principle of optimality** - shortest path from $s \to t$, where $e$ is last vertex before $t$ contains shortest path form $s \to e$
+- **Bellman's equation** - from principle of optimality we get $l(s,w) = \min_{v \neq w}\{l(s,v) + c(v,w)\}$ - the shortest path $s \to w$ is shortest path $s \to v$ plus shortest edge $e(v,w)$ 
+
+**Computing problems with shortest paths**
+
+when the operations of cost is $*$ instead of $+$ we can put the costs into log, since addition of logarithms is logarithm of product (součet logaritmů je logaritmus součinu).
+
+after we get the shortest paths in metrix, we can do somethign with that matrix. Do not be afraid to come up with "stupid" algoritms, like iterating over minimums, till I find the best one, it is usually the correct approach.
 
 ### 3.3 Network flows. Maximum flow and minimum cut problems. Ford-Fulkerson algorithm.  Feasible flow with balances. Minimum cost flow and cycle-canceling algorithm. Problem formulations using network flows. Maximum cardinality matching.
 
+**Maximum flow** - we have flow network provided by 5-tuple (G,l,u,s,t), where G is directed graph, l, u are vectors which symbolize the upper and lower bound of each edge and s, t are source and sink nodes of flow algoritm.
+
+**Kirchhoff law** - $\sum_{e \in \delta^-(v)} = \sum_{e \in \delta^+(v)}$ the sum of units that come to the node v ($\delta^-$) is the same as the sum of units that leave the node ($\delta^+$)
+
+**feasible flow** f(e) is flow that satisfies $f(e) \in [l(e), u(e)]$
+
+**maximum flow** the flow that maximizes $\sum_{e \in \delta^+(s)} - \sum_{e \in \delta^-(s)}$ (send maximum flow to t)
+
+**Formulation as LP** 
+
+|Flow formulated as LP|
+|:-:|
+![FLow formulated as LP](img/KO_Flos_as_LP.png)|
+
+**Ford fulkerson algorithm** we iteratively search graph (DFS) and find the improving flow. We ignore the directions of edges (we can add the flow to node with different source and then check if the original source can improve some other path). The only problem is, that we need a feasible flow to start the algorithm, which is not trivial if the lower bounds are not 0.
+
+**Minimum Cut problem** - finding the bottleneck in network - place where f(e)-l(e) is minimal. By cutting it, we would stop the flow. It can be found using ford-folkerson - the arcs where the DFS stops are arcs of minimal cut.
+
+**Fesible flow with balances** the graph with balances is 4-tuple (G,l,u,b) where b is balance b for every vertex, such that $\sum_{e \in \delta^+(v)}f(e) - \sum_{e \in \delta^-(v)}f(e) = b(v)$ for all $v \in G(V)$
+
+**Finding initial feasible flow** - 
+1) add edge e $t \to s$ with $l(e) = 0, u(e) = \infin$
+2) modify edges with lowerbounds $f(e) = l(e) + f'(e)$ by removing the lowerbound and adding the balance to the affected nodes to retain the kirchhoff law.
+3) add s' and t' that will be new source and sink, connected to the nodes with balance. Nodes with negative balance will be connected to t' and nodes with positive balance to 's.
+4) on this modified graph we can start ford-fulkerson algorithm to find the maximum flow, which can be used (after reversing the substitution in 2) as initial feasible flow for original graph.
+
+**Edmund-Karp** - improvement over Ford-fulkerson - find shortest path and execute the iteration over shortest path. The Ford Fulkerson can be "distracted" and iterate over small increases.
+
+**Minimum cost flow** - the edges have costs associated with them. It is described by 5-tuple (G,l,u,c,b), where G is graph, l,u are lower/upper bounds of edges, c is cost of arcs and b is balance of the nodes.
+
+Goal of minimum cost flow it to find the feasible flow, that minimizes $\sum_{e \in E(G)} f(e)\cdot c(e)$ while satisfying the balances of the nodes $\sum_{e \in \delta^+(v)}f(e) - \sum_{e \in \delta^-(v)}f(e) = b(v)$
+
+|LP formulation of minimum cost flow|
+|:-:|
+![Minimum cost flow LP](img/KO_minimum_cost_flow_LP.png)|
+
+**Cycle cancelling algorithm**
+1) Find feasible flow f while solving Feasible Flow with Balances
+2) Build residual graph with f. Find negative-cost cycle C ins residual graph. In none exist - STOP
+3) Compute $\gamma = \min _{e \in E(C) u_f(e)}$ augment f along C by $\gamma$. Goto 2
+
+Residual graph can be constructed by introducing new graph where each arc is duplicated in reverse direction. 
+
+|Residual Graph| Cycle cancelling|
+|:-:|:-:|
+|![Residual Graph](img/KO_residual_graph.png)| ![Cycle cancelling](img/KO_cycle_cancelling.png)|
+
+**Maximum cardinality matching** we maximize the number of connected pairs. Each node has exactly one connected partner, or zero. the algorithm for solving the problem works on basis of M-augmenting path (swithich between active-nonactive edges) if the path improves the graph, we have better iteration, if not, we try again, until we find one, or none at all. Once all augmenting paths are explored, we found the best matching.
+
 ### 3.4 Knapsack problem. Approximation algorithm, dynamic programming approach, approximation scheme.
+
+**Knapsack problem** we have **n** items of cost **c** and weight **w**. We want to find subset S, that  maximize the profit $\sum_{i\in S}c_j$ while not overflowing over max weight $\sum_{i\in S}w_j \leq W$.
+
+NP-hard (2-partition problem) but can be simplified (one of the easiest NP-Hard problems)
+
+**Fractional knapsack problem** - easy, just take the best value cost/weight, until you are full. We just have to sort the items - resultig in $O(n\log n) complexity$
+
+**2-approximation**
+
+To have r-approximation algorithm, we can use to approximate the optimal value.
+
+$$
+\underbrace{r J^*(I)}_{\text min} \geq J^A(I) \geq \underbrace{{1\over r} J^*(I)}_{\text{max}}
+$$
+
+The 2-approximation for knapsack problem 
+
+We sort the items by their value (cost/weight) and we either take items {1..h-1} or {h}. 
+
+$$
+J^A(I) = max \bigg\{\sum_{i=1}^{h-1}c_i, c_h\bigg\} \geq {\sum_{i=1}^h c_i \over 2} > {1\over 2}J^*(I)
+$$
+
+**Dynamic programming** - pseudopolynomial algorithm $O(nC)$, where C is large constant - $C < \sum_{i=1}^n c_i$
+
+Algorithm using table. The top row are costs, leftmost column represents individual added items. The compudet values in table are sums of weights.
+
+We can simplyfi the commputation by lowering the cost of items - divide all cost by 2. Which will not yield the optimal solution, but it will be kinda close.
+
+**Approximation scheme**
+1) run 2-approximation problem, use it as upper bound
+2) find $t = \max\{1, {\epsilon c(S_1) \over n}\}$ and compute new costs by dividing them by t.
+3) Run the Dynamic knapsack with new instance and new upper bound. Getting solution  $S_2$
+4) Return the better cost out of $S_1$ and $S_2$
 
 ### 3.5 Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.
 
+**Metric TSP** complete undirected graph with weights, that satisfy triangle inequality ($c(l(i,k)) \leq c(l(i,j)) + c(l(j,k))$). Goal: find Hamiltonian circuit with minimal cost.
+
+**Double tree algorithm** we have Metric graph - we create minimmum spanning tree, double the edges in the MST and do Eulerian walk on the edges. We create the Hamiltonian cycle by following the eulerian path, ignoring all present nodes. $O(n^2)$
+
+1) Due to triangular inequality when we do not follow the euler path and go directly the path is shorter.
+2) Minimmum spanining tree mus have smaller cost than minimum cycle over the graph (we leave the last edge in MST) - optimal solution for Hamiltonian cycle is greater than MST.
+3) Cost of euler walk is 2 MST cost.
+
+Therefore the created hamiltonian cyrcle is 2-approximation of Hamiltonian cycle.
+
+**Christofides algorithm**
+
+$O(n^3)$ it is ${3\over 2 }$ approximation algorithm
+
+improvement for Double tree algorithm:
+We have metric graph G
+1) find MST T in G
+2) get verticies from MST T with odd degree and put the in set W
+3) find minimum weight matching M of nodes from W in graph G
+4) merge T and M and find eulerian walk
+5) transform eulerian walk to hammiltonian cycle.
+
+The idea behind algorithm is simmilar to the Double tree algorithm. When we add perfect matching (alternating path) is is certainly lower, than cost of cycle / 2.
+
+**Local seach k-opt**
+
+Idea - find hamiltonian cycle, and using local modifications we try to find better solutions (I try to remove x edges and then reconstruct cycle by adding different x)
+
+- Local search modifications are allowed, 
+- When to modify the solution (one possibility is, to allow improvements only)
+
+It takes k-element subset and tries to swap the edges and computes the new value and so on and on...
+
 ### 3.6 Scheduling - problem description and notation. One resource - Bratley algorithm, Horn algorithm. Parallel identical resources - list scheduling, dynamic programming. Project scheduling with temporal constraints - relative order and time-indexed ILP formulations.
 
+**Problem description and notation** - multiple different problem formulations: Scheduling on one resource, scheduling on parallel identical resources and project scheduling.
+
+Scheduling is assigning tasks to resources in time. Every task needs to be completed, to be feasible. This is difference from planning.
+
+Basic terms: 
+- **Tasks** T - what needs to be done, each task can be assignet at most to one resource at a time. Tasks have release data r and deadline $\~{d}$. The task needs to be completed between $\lang r, \~{d} \rang$. Tasks can have precedence - $T_1 \prec T_2$ task $T_1$ must be completed before task $T_2$. Can be preemptive/non-preemptive (tasks can be stopped adn resumed/cannot)
+- **resources** P - processors, workers... each resource is capable of executing one task at the time.
+
+|Basic terms graphically|
+|:-:|
+![Basic scheduling terms](img/KO_scheduling_terms.png)|
+
+
+The usual is Graham notation $\alpha |\beta |\gamma$ symbolizing *resources|tasks|criterion*
+
+<!--$\alpha$ - Resources $\alpha_1,\alpha_2$.-->
+
+|$\alpha$ - resources|$\beta$ - tasks|$\gamma$ - criterion|
+|:-:|:-:|:-:|
+![alpha](img/KO_sched_resources.png)| ![beta](img/KO_sched_tasks.png)| ![gamma](img/KO_criterion.png)|
+
+
+
+|Position based formulation of $1\mid r_j,\~{d}_j\mid C_{max}$ as ILP|
+|:-:|
+![Fomulation of sched as ILP](img/KO_sched_ilp.png)|
+
+$x_{iq}$ - is task on the q position? $t_q$ start time of task on the q-th position. 
+
+**Bratley algorithm** -solves $1\mid r_j,\~{d}_j\mid C_{max}$
+
+Branch and bound algorithm - "cleaver brute-force" algorithm. Creating tree of possible task sequences. Each new level has included tasks and completion time. We can cut trough solution space using cleaver rules:
+1) eliminate node exceeding deadline and its sibilings (we can eliminate the sibilings because the critical task will have to be scheduled anyway, so we can cut them as well)
+2) If the completion time of v-th tasks on level k. If their completion time is lower then release time of the yet unscheduled tasks, we can take v as new root and there are n-k task to be scheduled.
+3) BRTP - Block with release time property. First task starts at release time T[1] all following k tastk start without idle waiting. $r[1]\leq r[i]$ for all $i = 2...k$. If BRTP exists, the schedule is optimal.
+
+**Horn algorithm**
+
+for $P!\mid prmt, r_j\mid L_{max}$ - minimize maximal lateness
+
+We decide the start time = release time of first task. And we will start the task with earliest due date. We end the execution at time $\delta$ which is either the end of execution of first task, or release date of next one. If the execution was interrupted by the release of task with higher priority we modify the execution time of first task and start executing the second one. This process iterates untill the solution is found.
+
+for $P\mid prmt, r_j, d_j = \~{d}_j $earliest due date first.
+
+**On parallel processors** - with preemption can be solved by McNaughton algorithm - choose max from maximal processing time of tasks, and sum of tasks divided by all processors. We set the deadline to that time and freely fill the schedule with tasks.
+
+|McNaughton|
+|:-:|
+![McNaughton](img/KO_McNoughton.png)
+
+**List scheduling** for approximating $P\mid prec \mid C_{max}$ precedence of tasks represented by DAG
+
+We have some list of tasks once the some resource is free, we take task from the list and execute it. If the preemting task is not ready we need to wait, untill it will be ready.
+
+With randomly sorted list it is approximation algorithm with factor $2 - {1\over R}$
+
+|Lish scheduling with random sorted list|
+|:-:|
+![List scheduling with random sorted list](img/KO_list_schedule_random.png)|
+
+It is not only dependant on the list, but also exhibits anomalies. ($C_{max}$ is suprisingly increasing when relaxing some constrains/parameters) caused by:
+1) Decreasing processing time
+2) Removing some precedence
+3) Increasing number of resources
+
+We can improve the list scheduling using LPT - longest processing time first. That has factor ${4\over3} - {1\over 3R}$ time complexity is $O(n\log n)$ due to sorting
+
+**Dynamic programming** - for solving $P\mid\mid C_{max}$
+
+|Dynamic programming for scheduling $P\mid\mid C_{max}$|
+|:-:|
+![DynProg for scheduling](img/KO_sched_dynamic_programming.png)
+
+The complexity is $O(n\cdot \text{UB}^R)$
+
+**Project scheduling with temporal constrains** 
+
+$PS1\mid temp \mid C_{max}$
+
+We have set of non-preemptive tasks T in directed graph (which may include negative cyrcles). Each task has processing time p. Each edge represents temporal constrains. Each temporal constrain is characterized by one inequality $s_i+l_{ij} \leq s_j$
+
+|Temporal constrains basics|
+|:-:|
+![Temporal constrains basics](img/KO_temporal_constrains_basic.png)
+
+Different types of $l_{ij}$
+1) $j_{ij} = p_i$ normal precedence relation
+2) $l_{ij} > p_i$ drying wall, following task needs to wait some time. Or pipelined ALU.
+3) $0<l_{ij}<p_i$ cut-trough mechanism in swithes, we need to wait only the time needed to parse the header. While the message is still being received, we can allready send it. 
+4) $l_{ij} = 0$ $T_i$ has to start at the sime time or earlier as $T_j$
+5) $l_{ij} < 0$ $T_i$ has to start earlier or at most $|l_{ij}|$ later than $T_j$ 
+
+Graph cant have positive cycle - deadlock
+
+**Time indexed**
+
+ILP formulation in the picture Time-indexed ILP. The binary variable $x_jt$ represents task t starts at time j.
+
+1) First constrain is just fancy way of writting temporal constrain $s_j \geq s_i + l_{ij}$
+2) Second contrain - two task cannot run in parallel. Since $x$ represents only start time and the rest of the execution is without noting the $x = 1$ we cannot just add constrain that sum of the column must be max 1. (it would be enough if all tasks has processing time of 1). Each line must be checked to the past, if the task started before p time.
+3) Third condition - every task needs to be executed
+4) Fourth condition - every task must fir into $C_{max}$
+
+UB - upper bound of $C_{max}$ 
+
+Can be drawn as graph with time with on the x axis, max value UB and each task having separate row on y axis (2D matrix of $x_{ij}$ variables).
+
+|Time-indexed ILP|Relative-order ILP|
+|:-:|:-:|
+![TIme-indexed ILP](img/KO_time_indexed_ILP.png)|![Relative-order](img/KO_relative_order.png)|
+
+**Relative-order**
+
+ILP formulation is based on the idea where we describe about all pairs whether the order is i,j or j,i
+
+the UB is used as big M notation in the ILP formulation in the picture Relative-order ILP.
+
+Constrains:
+1) First constrain is just basisi of temporal constrains
+2) Second constrain represents the order of tasks ij. If $x_{ij}$ is 1, then only the right inequality is interesting (we subtract UB from the inequation) and if $x_{ij} is 0$ then only the left part is interesting.
+3) third constrain specifies that the schedule must be feasible - every task must be done before $C_{max}$
+
+Comparison:\
+Time-indexed has fewer constraints and can be expanded for multiple processors. But the size of model grows with UB.\
+Relative-order has big number of constraints, but is not dependant on UB
+
 ### 3.7 Constraint Satisfaction Problem. AC3 algorithm.
+
+Constrain programming - sudoku
+
+Constrain satisfaction problem is defined by triplet (X,D,C), where X finite number of variables, D number of domains (all possible values the $x_i$ can have) C set of constrains.
+
+Constrain $C_i$ is couple ($S_i, R_i$) where $S_i \subseteq X$ and $R_i$ is relation over set of variables $S_i$.
+
+**binary csp** every CSP can be converted to binary CSP, binary CSP can be represented by digraph G.
+
+**REVISE** algorithm iteratively go trough arcs and nodify variables.
+
+**AC3** - Arc Consistency algorithm
+
+|AC3 example|
+|:-:|
+![AC3](img/KO_ac3.png)
+
+1) Create graph, and initialize queue with all edges.
+2) pop from queue and revise based on constraints. If some variable is modified, put the variable referencing the modified variable back to queue (put only variables which arcs are not currently revided - in the picture at step 3 we remove 3 from $D_2$, we add back ($x_1,x_2$) but do not add ($x_3, x_2$) since it is the currently revised arkc).
+3) repeat 2) untill queue empty
 
 ## 4. ISC - Design and implementation of in-chip integrated systems, application specific systems.
 
