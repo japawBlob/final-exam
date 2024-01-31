@@ -55,14 +55,14 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [x] [8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.](#84-outline-the-principle-of-sorting-networks-and-describe-parallel-bitonic-sort-including-its-scalability-explain-parallel-enumeration-sort-algorithm-on-pram-model-including-its-scalability)
     - [x] [8.5 Explain all steps of a parallel algorithm for finding connected components in a graph given by the adjacency matrix. Using an example, illustrate a parallel algorithm for finding a maximal independent set in a sparse graph.](#85-explain-all-steps-of-a-parallel-algorithm-for-finding-connected-components-in-a-graph-given-by-the-adjacency-matrix-using-an-example-illustrate-a-parallel-algorithm-for-finding-a-maximal-independent-set-in-a-sparse-graph)
   - [9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.](#9-esw---effective-algorithms-and-optimization-methods-data-structures-synchronization-and-multithreaded-programs)
-    - [ ] [9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.](#91-java-virtual-machine-memory-layout-frame-stack-oriented-machine-processing-ordinary-object-pointer-compressed-ordinary-object-pointer-jvm-bytecode-just-in-time-compiler-tired-compilation-on-stack-replacement-disassembler-decompiler-global-and-local-safe-point-time-to-safe-point-automatic-memory-management-generational-hypothesis-garbage-collectors-cpu-and-memory-profiling-sampling-and-tracing-approach-warm-up-phase)
-    - [ ] [9.2 Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).](#92-data-races-cpu-pipelining-and-superscalar-architecture-memory-barrier-volatile-variable--synchronization---thin-fat-and-biased-locking-reentrant-locks-atomic-operations-based-on-compare-and-set-instructions-atomic-field-updaters-non-blocking-algorithms-wait-free-algorithms-non-blocking-stack-lifo)
+    - [x] [9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.](#91-java-virtual-machine-memory-layout-frame-stack-oriented-machine-processing-ordinary-object-pointer-compressed-ordinary-object-pointer-jvm-bytecode-just-in-time-compiler-tired-compilation-on-stack-replacement-disassembler-decompiler-global-and-local-safe-point-time-to-safe-point-automatic-memory-management-generational-hypothesis-garbage-collectors-cpu-and-memory-profiling-sampling-and-tracing-approach-warm-up-phase)
+    - [x] [9.2 Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).](#92-data-races-cpu-pipelining-and-superscalar-architecture-memory-barrier-volatile-variable--synchronization---thin-fat-and-biased-locking-reentrant-locks-atomic-operations-based-on-compare-and-set-instructions-atomic-field-updaters-non-blocking-algorithms-wait-free-algorithms-non-blocking-stack-lifo)
     - [ ] [9.3 Static and dynamic memory analysis, shallow and retained size, memory leak. Data Structures, Java primitives and objects, auto-boxing and unboxing, memory efficiency of complex data structures. Collection for performance, type specific collections, open addressing hashing, collision resolution schemes. Bloom filters, complexity, false positives, bloom filter extensions. Reference types - weak, soft, phantom.](#93-static-and-dynamic-memory-analysis-shallow-and-retained-size-memory-leak-data-structures-java-primitives-and-objects-auto-boxing-and-unboxing-memory-efficiency-of-complex-data-structures-collection-for-performance-type-specific-collections-open-addressing-hashing-collision-resolution-schemes-bloom-filters-complexity-false-positives-bloom-filter-extensions-reference-types---weak-soft-phantom)
     - [ ] [9.4 JVM object allocation, thread-local allocation buffers, object escape analysis, data locality, non-uniform memory allocation.](#94-jvm-object-allocation-thread-local-allocation-buffers-object-escape-analysis-data-locality-non-uniform-memory-allocation)
-    - [ ] [9.5 Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.](#95-networking-osi-model-c10k-problem-blocking-and-non-blocking-inputoutput-threading-server-event-driven-server-event-based-inputoutput-approaches-native-buffers-in-jvm-channels-and-selectors)
-    - [ ] [9.6 Synchronization in multi-threaded programs (atomic operations, mutex, semaphore, rw-lock, spinlock, RCU). When to use which mechanism? Performance bottlenecks of the mentioned mechanisms. Synchronization in “read-mostly workloads”, advantages and disadvantages of different synchronization mechanisms.](#96-synchronization-in-multi-threaded-programs-atomic-operations-mutex-semaphore-rw-lock-spinlock-rcu-when-to-use-which-mechanism-performance-bottlenecks-of-the-mentioned-mechanisms-synchronization-in-read-mostly-workloads-advantages-and-disadvantages-of-different-synchronization-mechanisms)
-    - [ ] [9.7 Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?](#97-cache-efficient-data-structures-and-algorithms-eg-matrix-multiplication-principles-of-cache-memories-different-kinds-of-cache-misses-self-evicting-code-false-sharing--what-is-it-and-how-deal-with-it)
-    - [ ] [9.8 Profiling and optimizations of programs in compiled languages (e.g., C/C++). Hardware performance counters, profile-guided optimization. Basics of C/C++ compilers, AST, intermediate representation, high-level and low-level optimization passes.](#98-profiling-and-optimizations-of-programs-in-compiled-languages-eg-cc-hardware-performance-counters-profile-guided-optimization-basics-of-cc-compilers-ast-intermediate-representation-high-level-and-low-level-optimization-passes)
+    - [x] [9.5 Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.](#95-networking-osi-model-c10k-problem-blocking-and-non-blocking-inputoutput-threading-server-event-driven-server-event-based-inputoutput-approaches-native-buffers-in-jvm-channels-and-selectors)
+    - [x] [9.6 Synchronization in multi-threaded programs (atomic operations, mutex, semaphore, rw-lock, spinlock, RCU). When to use which mechanism? Performance bottlenecks of the mentioned mechanisms. Synchronization in “read-mostly workloads”, advantages and disadvantages of different synchronization mechanisms.](#96-synchronization-in-multi-threaded-programs-atomic-operations-mutex-semaphore-rw-lock-spinlock-rcu-when-to-use-which-mechanism-performance-bottlenecks-of-the-mentioned-mechanisms-synchronization-in-read-mostly-workloads-advantages-and-disadvantages-of-different-synchronization-mechanisms)
+    - [x] [9.7 Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?](#97-cache-efficient-data-structures-and-algorithms-eg-matrix-multiplication-principles-of-cache-memories-different-kinds-of-cache-misses-self-evicting-code-false-sharing--what-is-it-and-how-deal-with-it)
+    - [x] [9.8 Profiling and optimizations of programs in compiled languages (e.g., C/C++). Hardware performance counters, profile-guided optimization. Basics of C/C++ compilers, AST, intermediate representation, high-level and low-level optimization passes.](#98-profiling-and-optimizations-of-programs-in-compiled-languages-eg-cc-hardware-performance-counters-profile-guided-optimization-basics-of-cc-compilers-ast-intermediate-representation-high-level-and-low-level-optimization-passes)
 
 ## 1. PAL - Polynomial algorithms for standard graph problems. Combinatorial and number-theoretical algorithms, isomorphism, prime numbers. Search trees and their use. Text search based on finite automata.
 
@@ -649,10 +649,12 @@ Algorithm using table. The top row are costs, leftmost column represents individ
 We can simplyfi the commputation by lowering the cost of items - divide all cost by 2. Which will not yield the optimal solution, but it will be kinda close.
 
 **Approximation scheme**
-1) run 2-approximation problem, use it as upper bound
+1) run 2-approximation problem, use found $S_1$ as upper bound
 2) find $t = \max\{1, {\epsilon c(S_1) \over n}\}$ and compute new costs by dividing them by t.
 3) Run the Dynamic knapsack with new instance and new upper bound. Getting solution  $S_2$
 4) Return the better cost out of $S_1$ and $S_2$
+
+Time complexity is $O(nC) = O(n{c(S_1)\over t}) = O(n{c(S_1)n\over \epsilon c(S_1)}) = O(n^2 {1\over \epsilon})$
 
 ### 3.5 Traveling salesman problem. Double-tree algorithm and Christofides algorithm for the metric problem. Local search k-OPT.
 
@@ -718,7 +720,13 @@ The usual is Graham notation $\alpha |\beta |\gamma$ symbolizing *resources|task
 |:-:|
 ![Fomulation of sched as ILP](img/KO_sched_ilp.png)|
 
-$x_{iq}$ - is task on the q position? $t_q$ start time of task on the q-th position. 
+$x_{iq}$ - is task on the q position? $t_q$ start time of task on the q-th position. Basic idea is matrix, where rows represent tasks and columns what order they are in. (if task *a* has *1* in column 3 it is third task scheduled for processor.) 
+1) First condition - Only one 1 in row
+2) second condition - only one 1 in column 
+3) start time $t_q$ must be greater than release time.
+4) execution cannot start before previous task ended
+5) start time must be before deadline-processing time
+6) $C_{max}$ is greater or equal to the finishing of the last task.
 
 **Bratley algorithm** -solves $1\mid r_j,\~{d}_j\mid C_{max}$
 
@@ -1914,9 +1922,66 @@ Which is not the optimal colouring, since the graph can be coloured using only t
 
 ## 9. ESW - Effective algorithms and optimization methods. Data structures, synchronization and multithreaded programs.
 
-### 9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tired compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.
+### 9.1 Java Virtual Machine, memory layout, frame, stack-oriented machine processing, ordinary object pointer, compressed ordinary object pointer. JVM bytecode, Just-in-time compiler, tiered compilation, on-stack replacement, disassembler, decompiler. Global and local safe point, time to safe point. Automatic memory Management, generational hypothesis, garbage collectors. CPU and memory profiling, sampling and tracing approach, warm-up phase.
+
+**JVM** - interprets java bytecode. Acts as runtime environment. Idea is thet we only create JVM for each architecture, and then the bytecode can run everywhere (write once run everywhere). It is part of JRE - java runtime environment.
+
+Memory layout - each thread has its private memory space and then there is ememory space shared between threads. Each thread has stack with the frames. Frame is invoked each time the method is called.
+- interpreted frame - one-per-method
+- compiled frame - includes all in-lined methods
+
+**Stack oriented machine processing** each instruction is 1 byte and manipulates data on stack (no registers). 
+
+**Ordinary object pointer** java fancy way of saying reference. Can be compressed 32bit or regular 64 bit.
+
+**JVM bytecode** 1 byte - oeperationn
+
+**JIT** just in time compilation - the code can be interpreted or compiled into native code. The JVM can compile the byte code to native code to improve the speed of code. Multiple different compilers C1, C2 - C1 faster compile time, not that fast, C2 slower compile time, faster. This different types of compilation is called tiered compilation.
+
+on-stack replacement - optimization during execution of a method - can switch between two variants of code - i try assumption, that this code will be better - is not? Go back...
+
+**Global and local safe point** - safepoint is place in code, where the state is well defined. It is know interaction with heap - all references on stack are mapped on heap at know location. As long as thread remains in safepoint, we can manipulate heap + stack. After leaving the safepoint the threads view of world is unchanged.  
+
+Global safepoint all threads stopped  (stop the world) used for garbage colection.
+
+time to safepoint - suspension needs to be quick, since getting all threads to safepoint contributes to garbage collection pause. 
+
+**Automatic memory management** garbage collection - the JVM handles all allocated memory. 
+- General hypotesis - **weak** most objects die young, younger objects die earlier, than older. Java uses two generations YOung, which is frequently collected during minor colection. And Old which are handeled in rare slow collections. During minor collectionsobjects can be promoted to older.
+
+Garbage collection can be executed in serial or in parallel. Another is Garbage-FIrst collector introduced in java 7. it is designed to impove predictability and lower latency.
+
+**Profiling** monitoring cpu time spent in methods, memory usage... Sampling - periodic sampling of stacks of running tasks - small overhead - few percent impact on performance. Tracing - more demanding - adding additional bytecode for orchestration.
+
+**warm-up** time to utilize benefits of JIT and tiered compilation.
 
 ### 9.2 Data races, CPU pipelining and superscalar architecture, memory barrier, volatile variable.  Synchronization - thin, fat and biased locking, reentrant locks. Atomic operations based on compare-and-set instructions, atomic field updaters. Non-blocking algorithms, wait free algorithms, non-blocking stack (LIFO).
+
+**Data races** - multiple threads some reading, some writing - unnecesary result without orchestration.
+
+[**CPU pipelining and superscalar achitecture in PAP**](#51-superscalar-techniques-used-in-nodes-of-multiprocessor-systems-data-flow-inside-the-processor-tomasulo-algorithm-and-its-deficiencies-precise-exceptions-support-architectural-state-register-renaming-reservation-station-reorder-buffer-instruction-fetch-decode-dispatch-issue-execute-finish-complete-reorder-branch-prediction-store-forwarding-hit-under-miss)
+
+Memory barrier - barrier operation, all memory operations must be done before barrier, and no operation can start.
+
+**Volatile variable** - we communicate to the compiler, that the value can change without interacting with it (memory mapped periphery). Compiler does no optimizations on the variable - in C. In Java the volatile variable is variable, when written to it is imidiadly written back to memory. Guarantees atomic operation.
+
+**Fat lock** - lock with history of contention - who is waiting, how long, how many wanted to enter...
+
+**Thin lock** - without history - just lock / mutex.
+
+**Recursive lock** - lock taken multiple times by the same thread.
+
+**Lazy lock** - is not released after leaving critical sesction, other threads in need of that lock need to confirm, that lock can be released.
+
+**Reentrant lock** thread can re-enter the lock more than once, before giving up resource. The counter is raised each time the lock is reentered. 
+
+**Biased lock** - lock is "biased" toward the thread that first aquired the lock. Subsequent entries into that lock by the biased thread are much faster on multi-procesor machines.
+
+**compare-and-set** is compare and set, but in java.
+
+**Lock-free** not wait free - based on CAS and other fancy things
+
+**Non-blocking algorithms** - usually outperform blocking algorithms, since CAS usually suceeds on the first try. Removes cost for synchronization, thread suspension and context swithing.
 
 ### 9.3 Static and dynamic memory analysis, shallow and retained size, memory leak. Data Structures, Java primitives and objects, auto-boxing and unboxing, memory efficiency of complex data structures. Collection for performance, type specific collections, open addressing hashing, collision resolution schemes. Bloom filters, complexity, false positives, bloom filter extensions. Reference types - weak, soft, phantom.
 
@@ -1924,8 +1989,128 @@ Which is not the optimal colouring, since the graph can be coloured using only t
 
 ### 9.5 Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.
 
+OSI - physical, data-linked, network, transport, session, presentation, application. 
+
+**C10k** 10k concurrent client connections on one server. Event-driven I/O Nginx, or thread-per-request Apache. Now C1M, C10M
+
+Event driven - epoll/poll/select
+
+**Native buffer** is buffer creates specially for handling binary data. It is stored outside of garbage collection heap in native memory, which can lead to more effitient I/O operations. Interaction with the data is provided by **Channels**. The **Selector** can be used in conjunction with channels to perform non/blocking i/o operations. With a selector thread can monitor multiple channels. 
+
+Basic analogy - buffer is just buffer, channel is socket and selector is epoll.
+
 ### 9.6 Synchronization in multi-threaded programs (atomic operations, mutex, semaphore, rw-lock, spinlock, RCU). When to use which mechanism? Performance bottlenecks of the mentioned mechanisms. Synchronization in “read-mostly workloads”, advantages and disadvantages of different synchronization mechanisms.
+
+**Basics of synchronization** - since most systems are not consistent we need synchronization mechanisms. It can be implemented in software, but almost always needs hardware implementation to be feasible in sensible time and execution complexity.
+
+**Atomic operations** - costly, need orchestration of all CPUs beased on test-and-set or compare-and-swap instruction.
+
+**Barriers** - all memory operations before barrier need to be completed before issuing instructions after the barrier. Can be weak for only stores/loads or strong for all memory operations.
+
+**Spin-lock** - *lets try spinning, thats a good trick* - busy waiting. Usually we want to avoid the spin-lock, but sometimes it is unavoidable - interrupt handlers cannot go to sleep -> device drivers often use spin-locks. OS scheduler also cannot go to sleep (who would wake up the scheduler?)
+
+**Mutex** - the most basic locking mechanism - mutual exclusion - can be implemented in different ways - semaphore, futex...
+All mutex implementations involve atomic operations. Tasks waiting for mutex release sleep - orchestration with scheduler.
+
+Kernel Mutex implementation is often slow, and more precise control is usually advised.
+
+**Futex** *Fast Userspace Mutex* the linux Mutex implementaion for more effitient mutex. Atomic counter in userspace and wait queue in kernel. Counter is accessed using atomic instructions (userspace code) and system calls are called only when needed.
+
+The futex is cornerstone of other mutual exclusion mechanisms, like Semaphores, Mutexes, Conditional variables, Thread barriers, Read-write locks and so on...
+
+Futex can be tricky - what happens when process with locked futex crashes? -> deadlock. Solved by *Robus futex*. The locations of futex counters are registered in kernel at init time and when the process crashes its memory is scanned for any potential locked mutexes. 
+
+**R-W lock** allows multiple readers at the same time, but only one write. The write is blocking. Writers or readers can have priority over the other. Reader priority does not make sence for R-W lock.
+
+|R-W lock|
+|:-:|
+![RW lock](img/ESW_RW_lock.png)
+
+**RCU** read-copy-update is scallable, write does not block, and reads can have zero overhead, since read instructions does not require atomic operations. The RCU has following steps:
+1) Original list
+2) Copy updated item
+3) Change the copy
+4) Cange pointer
+5) Free the original, once nooe is using it (tricky part)
+
+The QSBR requires reader orchestration (calling reader_qsbr_state, also needs to call rcu_thread_on/off before/after blocking calls) General purpose RCU, requires some read overhead, but only mem-barrier, not atomic variable.
+
+Since reference counting is expensive the RCU uses mechanism, where after updater updates the data, it calls synchronize_rcu() which starts grace period, which extends until all readers are finished. Once synchronize_rcu() finishes it is guaranteed that all processors have new copy. Readers call rcu_state periodically, which uses only memory barrier, and can be run only run periadocally, not every time there is read.
 
 ### 9.7 Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?
 
+**Cache basics** - spacial locality, temporal locality - data near each other might be used as well, recently used data will most likely be used again. Temporal locality is also active when we malloc/free memory. Freed memory location should be re-used, since the memory is already in cache. 
+
+Cache hit - the data we were looking for was found in cache, miss - was not. Differend types of cache misses discussed lower.
+
+Cache line eviction: cache line is removed from the cache to make space for new data
+
+Cache replacement policy - what to toss out, when we want new data? Least recently used, random...?
+
+Different associativity degree of cache... 
+
+TLB - translation lookaside buffer - buffer for translated Virtual memories to physical memories.
+
+When context switching betwen threads - the swithed thread wil encounter lot of cache misses.
+
+**Kinds of cache misses**
+- cold miss - first access to the block
+- capacity miss - black was discarded, since cache did not have enough space
+- conflict miss - two piecess of memory mapped to the same cache line.
+- true sharing/false sharing
+
+**Self-evicting code** - we can use wtire-trough when we know we will not need the variable in forseeable time.
+
+**False sharing/true sharing** 
+- true sharing - code is slow, since we access the same value on multiple processors and cache coherency is expensive
+- false sharing - code is slow, but we do not use the same value on multiple processors. We just use different wariables, that happened to be on the same cache line.
+
+[**Example with cache - matrix multiplication**](https://www.youtube.com/playlist?list=PLB_aWiiTt1af-dICxt6E7pNJWrfcqHE2g)
+
 ### 9.8 Profiling and optimizations of programs in compiled languages (e.g., C/C++). Hardware performance counters, profile-guided optimization. Basics of C/C++ compilers, AST, intermediate representation, high-level and low-level optimization passes.
+
+**Hardware performance counter**
+
+Special counters implemented in hardware aimed to store counts of hardware-related activities - cache misses, number of interrupts, branch misprediction... 
+
+Compared to software profiler the hardware counter has lower overhead. However it can provide more information and hardware counters very from platform to platform. 
+
+Can be implemented in software eg as event sampling or just timestamping - periodically checking where the program is at - where it spends most of the time.
+
+For profiling we can use PERF, which uses both hardware counters, as well as software performance counters.
+
+**Profile-guided optimization**
+
+We can run program with profiler first and then recompile the program again with the profiling data. The compiled code will be better for the specific profiling data we provided. It can worsen the performance, if the data supplied to the program would wildly differ from profiling data.
+
+The interpreted languages can run the program during first runs with profiling and than JIT the code to more optimize the code.
+
+**Basics of C/C++ compilers**
+
+Compiler translates high-level language source code into machine readable code for specific architecture. We can cross-compile (compile code for different architectrure, than that that is running on compiling device) -> compiling code for ARM micro on x86 desktop.
+
+Common optimizations -O0 .. O3 Os Og
+
+-O2 nearly all optimizations taht dont involve space-speed tradeoff. 
+
+The Compilation has 4 phases:
+1) **Pre-processing** - removal of comments expansion of macros, expansion of included files and conditional compilation. Conditional compilation is useful when compiling for different hardware. Result of pre-processing is *.i file.
+2) **Compilation** - the .i file is translated into .s file containing assembly instructions.
+3) **Assembly** - in this phase the *.s file is translated into machine code *.o file.
+4) **Linking** - function calls are linked with their definitions and final executable file is created. Some optimizations can be done here (rearanging the code to be mode cache optimal)
+
+**AST** - abstract syntax tree - created by the frontend of the compiler - checks if code does not contain semantic errors. If the compiler is able to compile the code.
+
+**intermediate representation** - intermediate representation - code simmilar to the assembly, but architecture independant - most of the optimizations that compiler does happen on the intermediate represented code.
+
+**high-level and low-level optimizaton passes**
+- **High-level** - language dependant - inlining, loop enroling, padding, allignment
+  - dead store elimination - write-after-write, first write is not used - ignore it
+  - unroll loops
+  - dead code elimination
+  - global variable optimizing
+  - symplifying control-flow graph
+- **low-level** - architecture dependant - register alocation, instruction scheduling, branch prediction, profile-based oprimization
+  - peephole optimization - optimization on small set of instructions(instead of push and the again pop) dont do anything
+  - machine instruction combiner
+
