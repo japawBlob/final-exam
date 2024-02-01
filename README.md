@@ -10,12 +10,12 @@ this repository is for knowledge for final exam of Computer engineering - Open I
     - [x] [1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.](#13-generation-and-enumeration-of-combinatorial-objects---subsets-k-element-subsets-permutations-gray-codes-prime-numbers-sieve-of-eratosthenes-pseudorandom-numbers-properties-linear-congruential-generator)
     - [x] [1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.](#14-search-trees---data-structures-operations-and-their-complexities-binary-tree-avl-tree-red-black-tree-rb-tree-b-tree-and-b-tree-splay-tree-k-d-tree-nearest-neighbor-searching-in-k-d-trees-skip-list)
     - [ ] [1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.](#15-finite-automata-regular-expressions-operations-over-regular-languages-bit-representation-of-nondeterministic-finite-automata-text-search-algorithms---exact-pattern-matching-approximate-pattern-matching-hamming-and-levenshtein-distance-dictionary-automata)
-  - [2. TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.](#2-tal---problemlanguage-complexity-classes-with-respect-to-the-time-complexity-of-their-solution-and-memory-complexity-including-undecidable-problemslanguages)
-    - [ ] [2.1 Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.](#21-asymptotic-growth-of-functions-time-and-space-complexity-of-algorithms-correctness-of-algorithms---variant-and-invariant)
-    - [ ] [2.2 Deterministic Turing machines, multitape Turing machines, and Nondeterministic Turing machines.](#22-deterministic-turing-machines-multitape-turing-machines-and-nondeterministic-turing-machines)
-    - [ ] [2.3 Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.](#23-decision-problems-and-languages-complexity-classes-p-np-co-np-reduction-and-polynomial-reduction-class-npc-cook-theorem-heuristics-and-approximate-algorithms-for-solving-np-complete-problems)
-    - [ ] [2.4 Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.](#24-classes-based-on-space-complexity-pspace-and-npspace-savitch-theorem)
-    - [ ] [2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.](#25-randomized-algorithms-randomized-turing-machines-classes-based-on-randomization-rp-zpp-co-rp)
+  - [2. TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.[IN CZECH, since math in english is hard for me]](#2-tal---problemlanguage-complexity-classes-with-respect-to-the-time-complexity-of-their-solution-and-memory-complexity-including-undecidable-problemslanguages-in-czech-since-math-in-english-is-hard-for-me)
+    - [x] [2.1 Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.](#21-asymptotic-growth-of-functions-time-and-space-complexity-of-algorithms-correctness-of-algorithms---variant-and-invariant)
+    - [x] [2.2 Deterministic Turing machines, multitape Turing machines, and Nondeterministic Turing machines.](#22-deterministic-turing-machines-multitape-turing-machines-and-nondeterministic-turing-machines)
+    - [x] [2.3 Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.](#23-decision-problems-and-languages-complexity-classes-p-np-co-np-reduction-and-polynomial-reduction-class-npc-cook-theorem-heuristics-and-approximate-algorithms-for-solving-np-complete-problems)
+    - [x] [2.4 Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.](#24-classes-based-on-space-complexity-pspace-and-npspace-savitch-theorem)
+    - [x] [2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.](#25-randomized-algorithms-randomized-turing-machines-classes-based-on-randomization-rp-zpp-co-rp)
     - [ ] [2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.](#26-decidability-and-undecidability-recursive-and-recursively-enumerab/le-languages-diagonal-language-universal-language-and-universal-turing-machine)
   - [3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications.](#3-ko---combinatorial-optimization-problems---formulation-complexity-analysis-algorithms-and-example-applications)
     - [x] [3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.](#31-integer-linear-programming-shortest-paths-problem-and-traveling-salesman-problem-ilp-formulations-branch-and-bound-algorithm-problem-formulations-using-ilp-special-ilp-problems-solvable-in-polynomial-time)
@@ -454,17 +454,310 @@ The probability p of landing heads is usually 25% - it has simmilar search prope
  
 ### 1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.
 
-## 2. TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages.
+## 2. TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages. [IN CZECH, since math in english is hard for me]
 
 ### 2.1 Asymptotic growth of functions, time and space complexity of algorithms. Correctness of algorithms - variant and invariant.
 
+**Asymptotic growth of functions**
+
+Máme pět rozdělení asynptotických růstů funkcí. Je dána nezáporná funkce $g(x)$
+
+1) $O$. Řekneme, že funkce $f(x) \in O(g(x))$, jestliže existuje konstanta $c$ a přirozené číslo $n_0$ takové, že $f(x) \leq cg(n)$ pro všechny $n \geq n_0$
+
+$$
+O(g(n)) = \{f(n) \mid \exist c > 0, n_0 \in \N \text{ tak, že } f(n) \leq cg(n) \forall n \geq n_0\}
+$$
+
+říkáme, že funkce $f$ je zezhora omezana funkcí $g$
+
+2) $\Omega$. Řekneme, že funkce $f(x) \in \Omega(g(x))$, jestliže existuje konstanta $c$ a přirozené číslo $n_0$ takové, že $f(x) \geq cg(n)$ pro včechny $n \geq n_0$ 
+
+$$
+\Omega(g(n)) = \{f(n) \mid \exist c > 0, n_0 \in \N \text{ tak, že } f(n) \geq g(n) \forall n \geq n_0\}
+$$
+
+říkáme, že fuknce $f$ je zdola omezena funkcí $g$
+
+3) $\Theta$. Řeknceme, že funkce $f(x) \in \Theta(g(x))$, jestliže existují konstanty $c_0, c_1$ a přirozené číslo $n_0$ takové, že $c_0g(n) \leq f(n) \leq c_1g(n)$ pro všechny $n \geq n_0$
+
+$$
+\Theta(g(n)) = \{f(n) \mid \exist c_0, c_1 > 0, n_0 \in \N\text{ tak, že } c_0g(n) \leq f(n) \leq c_1g(n) \forall n \geq n_0 \}
+$$
+
+platí, že $f(x) \in \Theta(g(x)) \iff f(x) \in \Omega(g(x)) \text{ a současně } f(x) \in \Omicron(g(x))$
+
+4) malé $o$. Řekneme, že funkce $f(x) \in o(g(x))$, jestliže pro každou konstantu $c$ existuje přirozené číslo $n_0$ takové, že $0 \leq f(x) < cg(n)$ pro všechny $n \geq n_0$
+
+$$
+o(g(n)) = \{f(n) \mid \forall c > 0\space \exist n_0 \in \N \text{ tak, že } f(n) < cg(n) \forall n \geq n_0\}
+$$
+
+říkáme, že funkce $f$ je zezhora ostře omezana funkcí $g$
+
+5) malé $\omega$. Řekneme, že funkce $f(x) \in \omega(g(x))$, jestliže pro každou konstantu $c$ existuje přirozené číslo $n_0$ takové, že $f(x) < cg(n)$ pro včechny $n \geq n_0$ 
+
+$$
+\omega(g(n)) = \{f(n) \mid \forall c > 0\space\exist n_0 \in \N \text{ tak, že } f(n) < g(n) \forall n \geq n_0\}
+$$
+
+říkáme, že fuknce $f$ je zdola omezena funkcí $g$
+
+všechny funkce asymptotického růstu jsou tranzitivní, a mimo funkce malé $o$ a $\omega$ jsou i reflexivní.
+
+**Gausova věta** - může se hodit $n^{n\over 2} \leq n! \leq \big( {n-1\over 2} \big)^n$ užitečné pro např: $O(\log n!) = O(n \log n)$
+
+Může se také hodit věta, kde pro nezápornou neklesající funknci $f(n)$, pokud platí $f({n\over 2}) \in \Theta(f(n))$ pak 
+
+$$
+\sum_{i=1}^n f(i) \in \Theta(nf(n))
+$$
+
+**řešení rekurzivních vztahů**
+1) Přímá metoda - odhadneme růst a matematickou indukcí ho dokážeme. 
+2) Řešení pomocí stromu rekurze - vyrobím si strom rekurze, kde v nulté hladině mám pouze hodnotu a nemám další větvení. A vypočítám posloupnost složitostí na každé úrovni stromu.
+3) Master Theorem - jdou dána přirozená čísla $a \geq 1,\space b > 1$ a nezáporná funkce $f(n)$. Předpokládáme, že funkce $T(n)$ je dána na přirozených celých číslech.
+ 
+$$
+T(n) = a T({n\over b}) + f(n)
+$$
+
+kde $n\over b$ je $\lfloor{n\over b}\rfloor$ nebo $\lceil{n\over b}\rceil$ 
+
+1) jestliže $f(n) \in O(n^{\log_b a-\epsilon})$ pro nějakou konstantu $\epsilon > 0$, pak $T(n) \in \Theta(n^{\log_b a})$ 
+2) jestliže $f(n) \in \Theta(n^{\log_b a})$, pak $T(n) \in \Theta(n^{\log_b a} \log n)$ 
+3) jestliže $f(n) \in \Omega(n^{\log_b a+\epsilon})$ pro nějakou konstantu $\epsilon > 0$ a jestliže $f({n\over b}) \leq c f(n)$ pro nějakou konstantu c < 1 pro všechna dostatečně velká n, pak $T(n) \in \Theta(f(n))$ 
+
+**Time-space complexity of algorithms**
+
+**Variant, invariant**
+**Variant** je hodnota daná přirozeným číslem, které se v průběhu algoritmu snižuje, až nabyde nejmenší možnou hodnotu a tím se algoritmus zastaví - zaručujeme zastavení algoritmu po konečně mnoha krocích.
+
+**Invariant** též podmíněná správnost algoritmu je tvrzení, které
+- platí před vykonáním prvního cyklu algoritmu, nebo po prvním vykonání cyklu
+- platí-li před vykonáním cyklu, platí i po vykonání
+- při ukončení algoritmu zaručuje správnost řešení
+
+Příklad **MST** Primův algoritmus:
+- Variant: množina vrcholů, které se musí přidat do MST je konečná, každou iterací algoritmu snižujeme počet ještě nepřidaných vrcholů. 
+- Invariant: Jestliže množina $K$ (minimálníé kostra) je součástí některé minimální kostry, tak i přidáním nejlevnější hrany $e$ dle algoritmu bude součástí minimální kostry.
+
+
 ### 2.2 Deterministic Turing machines, multitape Turing machines, and Nondeterministic Turing machines.
+
+**Definice turingova stroje**
+
+- Řídící jednotka, která se může nacházet v jednom z konečně mnoha stavů
+- Pontenciálně nekonečná páska rozdělená na jednotlivé pole
+- hlava, které umožňuje číst a přepisovat obsah polí na pásce.
+
+**Formální definice** - Turingův stroj je 7-tuple $(Q,\Sigma,\Gamma,\delta,q_0,B,F)$, kde
+- $Q$ je konečná množina stavů
+- $\Sigma$ je konečná množina vstupních symbolů
+- $\Gamma$ je konečná množina páskových symbolů, přitom $\Sigma \subset \Gamma$
+- $B$ je prázdný simbol - *blank*. Jedná se o symbol, který není vstupním symbolem.
+- $\delta$ je přechodová funkce - parciální zobrazení z množiny $(Q\backslash F) \times \Gamma$ do množiny $Q\times \Gamma \times \{L, R\}$, kde L je pohyb hlavy doleva, R je pohyb hlavy do prava. (o jedno pole)
+- $q_0 \in Q$ je počáteční stav a
+- $F\subseteq Q$ je množina koncových stavů
+
+**Situace TM** popisuje obsah páýsky a na ni umístěný TM. $X_1, X_2 ... X_{i-1}, q X_i, ... X_k$, kde hlava načítá symbol $X_i$
+
+**Krok TM** přechod mezi dvěma situacemi. Značí se $\vdash$. Pokud není přechod definovaný TM se zastaví.
+
+**Výpočet TM** pokud se TM dostane do jednoho z koncových stavů $q' \in F$, pak říkáme, že se TM úspěšně zastavil. Pokud se zastaví jinde - neúspěšně zastavil.
+
+**Jazyk přijímaný TM** - wstupní slovo $w \in \Sigma$ je přijato TM M, pokud se TM na slově úspěšně zastaví.
+Množina slov, které TM přijímá nazýváme jazyk přijímaný M a značíme ji L(M)
+
+**Časová složitost TM** - parciální zobrazení $T(n)$ $\N \to \N$. Pokud se TM nezastaví - $T(M)$ není definováno. Pokud se zastaví, tak je $T(M)$ rovno maximálnímu počtu kroků potřebných k zastavení. Maximum se bere přes všechny vstupy délky n.
+
+**Deterministický turingův stroj** - paměťová složitost $S(n)$. Pokud stroj použije nekonečnou délku pásky, nemůže se ani zastavit. Pokud se zastaví, $S(n)$ je rovno největšímu rozdílu pořadových čísel polí, které byly při výpočtu použity. Bere se pro vstup délky n.
+
+**Jazyk přijímaný/rozhodovaný** jazyk je přijímaný, pokud L=L(M), rozhodovaný je ve chvíli, kdy se na každém vstupy který není přijímaný neúspěšně zastaví.
+
+**Turingův stroj s k páskami** je turingův stroj, který má místo jedné pásky, pásek více -> místo aby četl jeden symbol, tak čte k-tici symbolů. Každý pásek má svoji hlavu, která se hýbe nezávisle na ostatních.
+
+Na začátku je vstuní slovo na jedné pásce, zbytek pásek je zaplněno B.
+
+Ke každému TM $M_1$ s k páskami, můžeme vytvořit TM $M_2$ s jednou páskou, který má stejné chování. Pokud $M_1$ potřebuje $n$ kroků na zastavení, tak $M_2$ potřebuje kroků $O(n^2)$
+
+Idea: Jednu pásku si rozdělím na 2k stop. Jednu stopu na informaci, kde je hlava a ve druhé je informace o tom, co je na pásce. Projdu jednou směrem $\to$ najde polohu hlavy a upraví ji a poté upraví i obah pásky  na sudých stopách.
+
+**Nedeterministický turingův stroj** - pokud připustíme, že TM může v jedné situaci mohl provést několik různých kroků, dostáváme nedeterministický TM.
+
+TM je sedmice $(Q,\Sigma,\Gamma,\delta,q_0,B,F)$
+- $Q$ je konečná množina stavů
+- $\Sigma$ je konečná množina vstupních symbolů
+- $\Gamma$ je konečná množina páskových symbolů, přitom $\Sigma \subset \Gamma$
+- $B$ je prázdný simbol - *blank*. Jedná se o symbol, který není vstupním symbolem.
+- $\delta$ je přechodová funkce - parciální zobrazení z množiny $(Q\backslash F) \times \Gamma$ do množiny $P_f(Q\times \Gamma \times \{L, R\})$, $P_f(X)$ je množina  konečných podmnožin X
+- $q_0 \in Q$ je počáteční stav a
+- $F\subseteq Q$ je množina koncových stavů
+
+**Jazyk přijímaný NTM** slovo $w$ je přijato NTM, iff když existuje *přijímací výpočet* - posloupnost kroků po které se stroj dostane do koncového stavu. Pokud se neuspěšně zastaví pro jazyky které nejsou přijímaný, tak rozhoduje.
+
+**časová složitost a paměťová složitost** stejná, jako u deterministického TM, ale maximum se bere přes všechny větve vykonávání.
+
+Je-li jazyk L přijímán/rozhodován NTM, tak existuje deterministický TM s jednou páskou, který L přijímá/rozhoduje. IDEA: defacto prohledávání do šířky - možné věci, jak jsem se mohl dostat si zapisuji za vstup.
 
 ### 2.3 Decision problems and languages. Complexity classes P, NP, co-NP. Reduction and polynomial reduction, class NPC. Cook theorem. Heuristics and approximate algorithms for solving NP complete problems.
 
+Rozhodovací problémy jsou problémy, jejimž řešení je puďto odpověď ANO, nebo NE. Např SAT- ptáme se, jestli existuje ohodnocení, neptáme se už ale jaké.
+
+Existují různé verze:
+- Rozhodovací verze - odpověď ano/ne - existuje min kostra o hodnotě nejvíše K?
+- Vyhodnocovací verze - najít cenu minimální kostry
+- Optimalizační verze - najít minimální kostru (včetně hran. nestačí cena)
+
+Pokud je řešitelná jedna polynomiálně jsou polynomiálně řešitelné i ostatní. Např Rozhodovací verzi můžeme použit nějako jako "binary search" pro nalezení vyhodnocovací verze.
+
+Příklad TSP -> mám Rozhodovací verzi. Vezmu strop součet všech hran a provedu binary search. Až najdu finální hodnotu, tak: Budu procházet hranu po hraně, každou zvětším a zavolám Algoritmus, pokud se změnila hodnota -> Dostanu ne, tak hrana je v cestě, pokud se nezměnila, tak není. A můžu to takto udělat s každou hranou.
+
+**Úloha jako jazyk nad abecedou** - úlohu můžeme zakodovat jako slova nad vhodnou abecenou. (SAT přepíšu na binarni reprezentaci a mám konečnou abecedu). U rozhodovacích úloh můžu rozdělit instance na tzv. ANO-instance a NE-instance. Jazkyk úlohy U, značíme $L_U$ se skládá ze všech odpovídajících ANO-INSTANCÍ úlohy U.
+
+**Třída P** 
+
+Rozhodovací úloha je v třídě P, jestliže existuje TM, který rozhodne jazyk $L_U$ a pracuje v polynomiálním čase - $T(n) \in O(p(n))$ pro nějaký polynom $p(n)$
+
+**Třída NP**
+
+Rozhodovací úloha je v třídě NP, jestliže existuje nedeterministický TM, který rozhodne jazyk $L_U$ a pracuje v polynomiálním čase.
+
+Trochu problém vyrobit nedeterministický turingův stroj. Proto máme nedeterministický "algoritmus", který se skládá ze dvou fází
+1) vygeneruje náhodně řetězec s, který odpovídá řešení dané úlohy
+2) deterministický algoritmus na základě vstupu a řetězce s dá odpověd ANO nebo NEVIM (deterministicky to ověří)
+
+Pro každou ANO instanci existuje řetězec s, pro který druhá fáze odpoví ANO, pro žádnou NE instanciu neexistuje řetězec s na který fáze odpoví ANO.
+
+Nedeterministický algoritmus pracuje v čase $O(T(n))$ pokud pro 1 i pro 2 přebuju n kroků.
+
+Přiklad: Mám úlohu batohu - někdo mi dá níhodný řetězec, které předměty tam mám dát, tak já jsem schopný je tam dát, říct, jestli se tam vejdou, nebo nevejdou a případně říct, jestli ta hodnota je pod, nebo nad nějakou úrovní. To jsem schopný udělat v polynomiálním čase.
+
+Pomocí tohoto se dá ověřit, zda je úloha NP, bez nutnosti vytvářet Nondeterministic TM.
+
+**Redukce polynomiálních úloh** - porovnávání úloh. $U \vartriangleleft V$ "úloha U není těžší, než úloha V" - existuje algoritmus takový že pro každou I instanci U zkonstruuje A(I) instanci V tak, že I je ano iff A(I) je ano.
+
+Neboli - řešení jedné úlohy jsem schopen převést na řešení jiné úlohy tak, že ANO -> ANO, NE->NE.
+
+Pokud algoritmus, který provádí redukci je polynomiální značíme to jako $U\vartriangleleft_pV$
+
+Příklad - mám složitý algoritmus, nevim, jak ho řešit. Převedu to na něco, co umím řešit a to vyřeším. Tím zjistím, jestli i ten začátek byl pravda, nebo ne - celý KOčko - převod na ILP
+
+Polynomiální redukce je tranzitivní $U \vartriangleleft_p V \text{ a }V \vartriangleleft_p W \text{ pak } U \vartriangleleft_p W$
+
+**Třída NP úplná**
+
+úloha U je NP úplná, jestliže U patří do třídy NP a každá úloha se polynomiálně redukuje na U. Jinak řečeno - pokud bych uměl vyřešit NP úplnou úlohu, tak umím vyřešit všechny, protože jsem je schopný na ni zredukovat.
+
+NPC je třída všech NP úplných úloh.
+
+pokud $U \vartriangleleft_p V$ a V je v P, pak i U je v P.
+pokud $U \vartriangleleft_p V$ a U je v NP, pak i V je v NP.
+pokud $U \vartriangleleft_p V$ a U je v NPC, a v je v NP pak i V je v NPC. Hmmnot šur.
+
+NP-hard znamená že je to aspoň tak těžké jako NPC - takže to může být těžší, než NP NP-těžké ani nemusí být NP.
+
+$P \subseteq NP$
+
+**Cookova věta** 
+
+SAT je NPC - NP úplná úloha.
+
+Pro důkaz je potřeba ukázat, že
+1) SAT je v NP - jednoduché stačí použít nedeterministicky algoritmus
+2) Každá NP úloha se polynomiálně redukuje na SAT
+
+Idea důkazu je taková, že Každá NP úloha je řešitelná NTM v polynomiálním čase, takže když NTM popíšeme SATem, tak můžeme daný SAT použít jako alternativu NTM. Tedy prokaždý NTM M a dané slovo $w$ zkonstruujeme formuli $\varphi_{M,w}$ takovou, že
+
+$$
+w \in L(M) \iff \text{ $\varphi_{M,w}$ je splnitelná}
+$$
+
+**Další NP úplné úlohy**
+
+Pro ukázání, že rozhodovací úloha V je NPC, je potřeba
+1) ověřit, že $V\in NP$
+2) najít NP úplnou úlohu U, pro kterou $U \vartriangleleft_p V$  
+
+- 3-CNF SAT -> obarvení grafu 3-mi barvami -> ILP
+
+**Silně NP-complete úlohy**
+např TSP, 
+Batoh není silně NP
+
+Problém batohu se dá spočitat dynamisckým programováním se složitostí $O(nK)$ kde K je velikost batohu. Složitost je závislá na největším čísle instance K (to může být i exponenciálně velké proti n) zavedeme proto číslo instance I značeno num(I) je největší číslo, které se v instanci vyskytuje.
+
+úloha je strongly-NP-complete jestliže existuje polynom p(n) pro který je úloha, omezímeli se na instance I, kde $num(I)\leq p(n)$ stále NP-úplná
+
+Pseudopolynomiální algoritmus je alogoritmus, který řeší úlohu v čase $O(p(n,num(I)))$
+
+**aproximační algoritmy** 
+
+Aproximační algoritmus R aproximační algoritmus je algoritmus, který pro každou instanci najde přípustné řešení, ne horší, než R krát optimum
+
+příklady TSP v KO. 
+
+Ne každý NP uplny algoritmus může mít aproximační algoritmus - kdyby měl aproximační algoritmus TSP, tak v něm vyřešíme problém hamiltonovské kružnice.
+
+**co-NP**
+
+je-li jazyk L ve třídě P, pak i jeho doplněk je ve třídě P - o NP se to zatím nepovedlo dokázat.
+
 ### 2.4 Classes based on space complexity: PSPACE and NPSPACE. Savitch Theorem.
 
+**PSPACE** - jazyk L patří do třídý PSPACE, jestliže existuje deterministický turingův stroj, který přijímá jazyk L a pracuje s polynomiální paměťovou složitostí.
+
+**NPSPACE** - jazyk L patří do třídý NPSPACE, jestliže existuje nedeterministický turingův stroj, který přijímá jazyk L a pracuje s polynomiální paměťovou složitostí.
+
+Pokud TM přijímá jazyk L s paměťovou složitostí p(n), kde p je nějaký polynom, tak texistuje konstanta c taková, že M přijme slovo w délký n po nejvýše $c^{p(n)+1}$ krocích.
+
+**Savitchova věta**
+$$
+PSPACE = NPSPACE
+$$
+
+Idea důkazu: máme graf, který budeme prohledávat rekurzivní metodou reach - reach bere (s,d,m) s-start, d-destination, v m-krocích. Dostanu se z s do d v m krocích? Algoritmus to vyřeší rekurzivně a udělá to, že zavolá REACH(d,k,m/2) a REACH(k,d,m/2) pro každý vrchol k.
+
+Můžeme si představit, že každý vrchol představuje situaci NTM a hrany jsou mezi nimi tam, kde může NTM přejít. My můžeme takto rakurzivně projít strom. Jeden REACH bude mít na zásobníku maximálně p(n) a reachů bude také maximálně p(n) -> tedy bude mít složitost $p(n)^2$
+
 ### 2.5 Randomized algorithms. Randomized Turing machines. Classes based on randomization: RP, ZPP, co-RP.
+
+**RTM** je TM se dvěma, nebo více páskami, kde první páska má stejnou funkci, jako v deterministickém TM. A na druhé pásce jsou symboly 0, 1, každý s pravděpodobností 1/2. Na pásku s random číslama nelze zapisovat.
+
+Na rozdíl od TM, který má L,R pohyby, tak RTM má ještě pohyb S - stay.
+
+**RP** jazyk patří do RP, iff existuje RTM takový že:
+1) jestliže $w \notin L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností 0
+2) jestliže $w \in L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností alespoň $1\over 2$ 
+3) existuje polynom p(n) takový, že každý běh M (pro jakýkoliv obsah pásky s random čísly) trvá maximálně p(n) kroků, kde n je délka vstupního slova.
+
+RTM splňující podmínky 1,2 je typu Monte-Carlo
+
+**ZPP** jazyk patří do ZPP, iff existuje RTM M takový že:
+1) jestliže $w \notin L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností 0
+2) jestliže $w \in L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností 1
+3) střední hodnota počtu kroků je p(n), kde n je delka vstupniho slova w
+
+To znamená, že M neudělá chybu, ale nezaručuje vždy polynomiální běh, polynomiální je jen střední hodnota všeh běhů.
+
+RTM splňující tyto podmínky je typu Las-Vegas
+
+$$
+ZPP = \text{co-}ZPP
+$$
+
+Stačí prohodit stavy TM las-vegas - ze včech koncových nekoncové a z nekoncových koncové
+
+Stejné tvrzení nelze dokázat pro jazyky z RP. Ale víme, že
+
+$$
+ZPP = RP \cap \text{co-}RP
+$$
+
+Platí
+
+$$
+P \subseteq ZPP, RP \subseteq NP, \text{co-}RP \subseteq \text{co-}-NP
+$$
 
 ### 2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.
 
