@@ -1144,7 +1144,11 @@ Constrain $C_i$ is couple ($S_i, R_i$) where $S_i \subseteq X$ and $R_i$ is rela
 
 ### 4.1 Main features and economical aspects of the Application specific integrated circuits systems: full custom design, gate array, standard cells, programmable array logic;
 
+[second part of](https://moodle.fel.cvut.cz/pluginfile.php/316340/mod_resource/content/0/03-MIT-ASIC.pdf)
+
 ### 4.2 Design principles of mix-signal integrated circuits, purpose of hierarchical design, digital and analogue block interface, CAD design tools for automatic circuit generation; functional and static time analysis, formal verification; Verilog-A, Verilog-AMS, VHDL-A.
+
+[presentation](https://moodle.fel.cvut.cz/pluginfile.php/316358/mod_resource/content/0/12-AMS-Digital-I.pdf)
 
 ### 4.3 Front end design - functional specification, RTL, logic synthesis, Gate-level netlist, behavioral stimulus extraction.
 
@@ -1650,6 +1654,75 @@ if (CPU_ID == 1) {
 
 ### 6.1 USB I/O subsystem, structure and functionality of elements, protocol stack, transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.
 
+**Topology**
+ 
+USB network is Master-Slave. Only one master - the host. The network consists of Hubs(which serve more like routers) and end-point devices, which are called functions in USB standard.
+1) **The host** - guides enumebration process. One in the system. Power management. Usually implemented as root-hub
+2) **Hub** - communication infrastructure, detection of removed-added ports. Distributes/concentrates the data flow (slow downsteam peripheral is isolated, so it does not slow the other communication). Enables communication for downstream ports - importatnt for enumeration. Detekting the speed of connection. Can be self-powered or powered from bus.
+3) **Function** - bus-self-powered, max from USB is 500mA. Power management and PnP support. Different clases of function devices: HID, Mass storage, printer...
+
+**Pipes** 
+
+basic communication flow from computer application to the device. Directed, except for pipe 0 - default pipe, each device needs to implement pipe 0. Only pipe which is bidirectional. 
+
+Control pipe - mesage pipe - structured data - request - data - response. Reliable transfer (repeat if error). For control processes 10%(LS,FS) or 20% (HS) of communication capacity is reserved.
+
+Isochronous - non-reliable, for Audio-Video - stream in real-time. Bus cappacity is reserved 80%/90% for mix of isochronous and interrupt transfers.
+
+Interrupt - reliable. smaller packet size for LS/FS 
+
+Bulk - mass storage. Reliable, no capacity is reserved. 
+
+**Transaction**
+
+Transaction consists of **Token**, **Data**, **Handshare** packets. Initialized only by master - sends token. Transaction can be in or out - always form the point of view of Master.
+
+|USB Packet types|
+|:-:|
+|![Start](img/KRP_start_of_frame.png)|
+|![Tokken](img/KRP_tokken_packet.png)|
+|![Data](img/KRP_data_packet.png)|
+|![Handshake](img/KRP_handshake_packet.png)|
+
+**Start of frame** indicates start of frame. increments each frame (not uframe)
+
+**Token packet** - data which data is followed. Addres is device (gain by enumeration) and ENDP is pipe number.
+
+**Data packet** - data described in the token
+
+**Handshake** - confirmation - can be ACK, NAK, STALL
+
+**Split transactions** - for communicating with slower device. I will give directive to hub to execute the communication. THe communication with the endpoint device will be in the slow speed, and once the communicaton has ended. I can poll the hub for the response in highspeed. It isolates the slow peripherals.
+
+|PID token, data | PID handshake special|
+|:-:|:-:|
+![packet1](img/KRP_packet_PID0.png)|![Packet2](img/KRP_Packet_PID1.png)
+
+**Physical layer**
+
+4 wires - D+, D-, ground, Vbus (5V)
+
+The signal is diferential, sent on D+,D-. 
+
+Used bit-stuffing - after 6-bits of log.1 added 0 for stuffing. NRZI - non-return-to-zero-inverted - 1 constant, 0 toggle. For faster speeds the same as for PCI-E is used 8/10 or 128/130
+
+|NRZI|
+|:-:|
+![NRZI](img/KRP_nrzi.png)|
+
+**PnP** Hub has pull-down resistors on D+ and D-. The aplication device has Pull-up resistor on one D- or D+ - difference for low-speed or full-speed. Higher speeds are handeled trough data stream. The PnP is detected by the shift of voltage on the one of two wires. 
+
+**Powermanagement** uninitialized device can have only 100mA from BUS. After initialization and enumeration the full 500mA is available.
+
+**Enumeration** The host reads out the Device Descriptor, to know how he should communicate - restart - read out whole descriptor - assign address - read other descriptors - setup configuration (pipes and what not) - pass the control to the corresponding USB driver.
+
+**Descriptors**
+- Device descriptor: manufacturer, supported USB standard, device claskk...
+- Configuration descriptor: device can have multiple configurations, this descriptor describes these configurations. I can work from my power of bus power...
+- Interface descriptor: number of endpoints that together describe the interface. Again defines class of device.
+- Endpoint descriptor - descriptor for each pipe - direction, number Isochronous period of sending, interrupt period of interrupting...
+- String descriptor - if any of the descriptor needsstring, it can point to the String descriptor, where theyu are located (manufacturer name, device name...)
+
 ### 6.2 PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.
 
 ### 6.3 Ethernet based networking, VLAN, precision time protocol (PTP), stream reservation protocol (SRP), time sensitive networks (TSN).
@@ -1797,6 +1870,8 @@ Sigma-delta | Paralel ADC |
 ![Sigma Delta](img/AVS_sigma_delta_basics.png)|![Paralel ADC](img/AVS_parallel_adc.png)
 
 Source [Integrating and charge balancing](https://www.youtube.com/watch?v=f-6shAZL4Ak), [Sigma-Delta](https://www.youtube.com/watch?v=M5Vx-X66seg), [Parallel and SAR](https://www.youtube.com/watch?v=75GcoQ9_LFI)
+
+[wonderful sigma-delta simulator](https://www.analog.com/en/resources/interactive-design-tools/sigma-delta-adc-tutorial.html)
 
 **Anti-aliasing filter** - also a low-pass filter. When the sampling frequency is lower, than the frequency of the signal we are sampling, we can get garbage. It is important to know this and discard the high frequencies we are not able to reliably capture. For this we use low-pass filter. Only the low frequencies, we know we can represent are sampled, and high frequencies are ignored.
 Aliasing |
