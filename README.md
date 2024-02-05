@@ -70,7 +70,7 @@ this repository is for knowledge for final exam of Computer engineering - Open I
 
 **Notation of asymptotic complexity of algorithms**
 
-There are three main notations for asymptotic complexity. 
+There are three main notations for asymptotic complexity.
 1) Asymptotic upper bound $f(x) \in O(g(x))$ if the value of the function f is on or below the value of the function g.
 2) Asymptotic lower bound $f(x)  \in \Omega(g(x))$ if the value of the function f is on or above the value of the function g.
 3) Asymptotic tight bound $f(x) \in \Theta(g(x))$ if the value of the function f is equal to the value of the function g.
@@ -84,7 +84,7 @@ Degree - Undirected| Degree - Directed|
 |:-:|:-:|
 ![Degree Undirected Graph](img/PAL_undirected_degree.png)|![Degree Directed Graph](img/PAL_degree_directed_graph.png)
 
-Handshaking lemma: sum of all degrees in graph is 2x number of Edges. 
+Handshaking lemma: sum of all degrees in graph is 2x number of Edges.
 
 $$\sum_{v\in V} deg(v) = 2|E|$$
 
@@ -100,7 +100,7 @@ $$\sum_{v\in V} deg(v) = 2|E|$$
 
 **Connected graph** is graph where exists path between all verteces.
 
-**Three** is connected graph, where every two vertices are connected by just one path. 
+**Three** is connected graph, where every two vertices are connected by just one path.
 
 **Adjecency matrix** is matrix, where $a_{i,j} = \begin{cases} 1& \text{for } \{v_i, v_j\} \in E \\ 0& \text{otherwise}\end{cases}$. The *1* in the field *i,j* symbolises weather the nodes *i* and *j* are connected.
 
@@ -110,14 +110,14 @@ $$\sum_{v\in V} deg(v) = 2|E|$$
 
 **Incidence matrix** the matrix has $V\times N$ dimensions. Where each column symbolizes each vertex, in each column there is -1 and 1. The -1 symbolizes start node of the edge and 1 symbolizes the end node of the edge. $(I)_{i,j}=\begin{cases} -1& \text{for } e_j = (v_i, *)\\ +1& \text{for } e_j = (*, v_i)\\ 0& \text{otherwise}\end{cases}$
 
-**Adjacency list** (list of neighbours) - each node keeps track of the neighbouring nodes. 
+**Adjacency list** (list of neighbours) - each node keeps track of the neighbouring nodes.
 
 For sparse graphs the adjacency list is usually faster. Only good thing about matricies is when we want to remove edge, it is pretty easy.
 
 ### 1.2 Algorithms for minimum spanning tree (Prim-Jarník, Kruskal, Borůvka), strongly connected components (Kosaraju-Sharir, Tarjan), Euler trail. Union-find problem. Graph isomorphism, tree isomorphism.
 
 **Prim-Jarník** - greedy MST algorithm, always choose the best edge and add it, until all vertices are added.
-Rough algorithm: 
+Rough algorithm:
 1) Create priority queue and set. Choose random vertex from the graph, add the vertex to the set, and it's edges to the priority queue, the cost of the edge symbolises priority.
 2) Pop edge from queue. Check check if the destination is in the set. If not, add the vertex to the set and its vertices to the priority queue. Otherwise repeat 2)
 3) repeat until all vertices are in set.
@@ -140,7 +140,7 @@ When we call FIND on the vertex, and the dirrect parent is not root, we can modi
 
 **Kosaraju-Sharir** - algorithm finds strongly connected components in the directed graph. Rough algorithm:
 1) Create stack for nodes.
-2) Choose random unvisited node. Do recursively DFS, if the node does not have any unvisited neighbours, close the node and add it to the stack. 
+2) Choose random unvisited node. Do recursively DFS, if the node does not have any unvisited neighbours, close the node and add it to the stack.
 3) Repeat 2) until all nodes are in stack.
 4) Reverse edges.
 5) Pop vertex from stack if it is not closed do recursive DFS. The returned set of verticies by the DFS is strongly connected component. Close the verticies in the component.
@@ -166,7 +166,7 @@ fn euler_trail(v: Vertex) {
 }
 ```
 
-**Graph Isomorphism** - NP-complete proble. We can only use cleaver approach, but some graphs (mainly almost regular graphs) are unsolvable in polynomial time. 
+**Graph Isomorphism** - NP-complete proble. We can only use cleaver approach, but some graphs (mainly almost regular graphs) are unsolvable in polynomial time.
 
 When comparing graphs *g* and *g'* we can compare the graphs. Do they have same number of vertexes? Do the vertexes have same degree?... The main principle is to create mapping for graph *g* which when compared to the *g'* is identical. During mapping we can use cleaver approaches only to map the nodes with certain degree to the nodes of the certain degree. And we can also check if the neighbours have the same degree...
 
@@ -179,7 +179,7 @@ Tree Certificate|
 
 ### 1.3 Generation and enumeration of combinatorial objects - subsets, k-element subsets, permutations. Gray codes. Prime numbers, sieve of Eratosthenes. Pseudorandom numbers properties. Linear congruential generator.
 
-**Subsets** 
+**Subsets**
 
 The main terms used are *ranking function* -> function that gives a subset its number. There is also UNRANK which is inverse function to the RANK
 
@@ -223,7 +223,7 @@ $$\overbrace{\binom{10-1}{2} + \binom{10-2}{2} + \binom{10-3}{2} + \binom{10-4}{
 
 Now we know the number of subsets before {5,x,x}. Now to resolve {5,6,x} -> the 6 is the first of the subsets, that means the following number shows the rank: 10. We normalize it by subtracting the 6 = 4;
 
-That means 
+That means
 
 $$RANK(\{5,6,10\}) = 198$$
 
@@ -254,7 +254,7 @@ The lemma:
 Suppose
 - $0 \leq r \leq 2^n-1$
 - $B = n_{n-1},...,b_0$ is binary code for r
-- $G = g_{n-1},...,g_0$ is Gray code for r 
+- $G = g_{n-1},...,g_0$ is Gray code for r
 
 For every $j\in \{0,1,...,n-1\}$
 
@@ -286,25 +286,25 @@ fn GtoB (G: u32) -> u32 {
 
 **Sieve of Eratosthenes**
 
-Table for finding prime numbers. The table contains all numbers 1-n. 
+Table for finding prime numbers. The table contains all numbers 1-n.
 1) Create table full of numbers 1..n
 2) Iterate trough numbers, if the number *a* is *unused* store it as a Prime number. And go trough the table and mark every number that is multiply of *a* as used. (They are on the table indexes i $i\mod a = 0$)
 3) when the $\sqrt n$ index is reached, all the remaining *unused* numbers are all primes.
 
 **Pseudorandom number properties**
 
-The pseudorandom is not entirely random, since it is generated by deterministic algorithm. It satisfies two conditions: 
+The pseudorandom is not entirely random, since it is generated by deterministic algorithm. It satisfies two conditions:
 1) Local unpredictability (without knowing the internal structure of PC or algorithm, the output looks random)
 2) Statistical tests confirm the random behaviour.
 
 Peudorandom generators neet two important statistical properties:
 - Uniformity
 - Independence\
-Random number in a interval [a,b] must be independently drawn from a uniform distribution with probalibilty density function: 
+Random number in a interval [a,b] must be independently drawn from a uniform distribution with probalibilty density function:
 
 $$f(x) = \begin{cases} {1\over b-a}& x\in [a,b]\\ 0& \text{elsewhere}\end{cases}$$
 
-in interval [a,b] is long enough, period is b-a, generates all integers in [a,b]  
+in interval [a,b] is long enough, period is b-a, generates all integers in [a,b]
 
 To generate random float numbers in an interval [0,1) we can use the integer generator generating [a,b] integers. The float sequence can be generated using:
 
@@ -326,20 +326,20 @@ Linear congruent generator produces ${x_n}$ defined by relations
 $$0 \leq x_0 \leq M$$
 $$x_{n+1} = (Ax_n+C)\mod M; n \geq 0$$
 
-Modulus $M$, seed $x_0$ multiplier and increment $A$, $C$ 
+Modulus $M$, seed $x_0$ multiplier and increment $A$, $C$
 
 To gain the maximum period length (equal to the M), the conditions of Hull-Dorbell theorem must be met:
 1) *C* and *M* are coprimes
 2) *A-1* is divisible by each prime factor of *M*
 3) If *4* divides *M*, then also *4* divides *A-1*
 
-Integers *a* and *b* are coprimes, iff their only common devisor is 1. The numbers 4 and 9 arent prime numbers, but are coprimes. 
+Integers *a* and *b* are coprimes, iff their only common devisor is 1. The numbers 4 and 9 arent prime numbers, but are coprimes.
 
 ### 1.4 Search trees - data structures, operations, and their complexities. Binary tree, AVL tree, red-black tree (RB-tree), B-tree and B+ tree, splay tree, k-d tree. Nearest neighbor searching in k-d trees. Skip list.
- 
+
  **Binary tree** - for each node in the tree it holds, that smaler key values are held on the left, higher on the right. The tree does not have to be balanced. We can go through tree INORDER to obtain the sorted key list. The tree provides operations:
  - Find - find is binary search complexity $\log n$
- - Insert - insert is also $\log n$ find the vertex with free spot, that is closest to my number, and link it. 
+ - Insert - insert is also $\log n$ find the vertex with free spot, that is closest to my number, and link it.
  - Delete - also $\log n$ remove the key. If it was **childrenless** node - no more work requiered. If it had **one child**, pair that child with the parent. If it had **two children** then traverse the tree for finding either leftmost on the right, or rightmost on the left and put it in the place of deleted value.
 
  **AVL tree** - it is similar to the binary tree, as it has also Find, Insert and Delete operations, but the difference is, that AVL tree has additional properties to keep it reasonably balanced.
@@ -363,12 +363,12 @@ Rotation LR | Rotation RL
 The LR and RL swaps the node with the root, the root is pushed on the side. Now orphant trees of the new root are given to the old parent and old root.
 
 **RB tree** - special type of Binary obeying following rules:
-1) The node is either red or black. 
-2) The ROOT and NIL leaves are black. 
-3) If node is RED the children are BLACK. 
+1) The node is either red or black.
+2) The ROOT and NIL leaves are black.
+3) If node is RED the children are BLACK.
 4) All paths from a node to its NIL descendants contain the same number of black nodes.
 
-The longest path (node to the farthest NIL) is no more than twice the length of the shortest path (node to the nearest NIL) 
+The longest path (node to the farthest NIL) is no more than twice the length of the shortest path (node to the nearest NIL)
 
 The operations FIND, INSERT, DELETE are all $O(\log n)$ and storrage demands are also only $O(n)$ since we only need one extra bit for each node.
 
@@ -381,13 +381,13 @@ INSERT has modifications. We always insert RED node. Since it can violate some t
 
 DELETE the deletion is the same as in BST, when the root has two children the leftmost node on right is used. After the deletion the RED-BLACK properties might be violated. The ceordering simillar to the one in INSERT need to be executed.
 
-**B tree** 0 The B tree is perfectly balanced. Keys in the nodes are kept sorted. Fixed parameter k>1 dictates the same size of all nodes. 
+**B tree** 0 The B tree is perfectly balanced. Keys in the nodes are kept sorted. Fixed parameter k>1 dictates the same size of all nodes.
 - Each node contains [k; 2k] keys. And has [k+1; 2k+1] children (if it is not a leaf, then 0).
 - The root contains [1; 2k] keys. And has [2; 2k+1] children (if it is not a leaf, then 0).
 
 Alternate specification: nodes have lower and upper bound of the keys they can contain. The bounds are exressed using integer $t\geqq 2$
 - Every node must have at least *t-1* keys. Every internal node has at least *t* children. Exception is root, which can have as low as 1 key.
-- Every node may contain at most *2t-1* keys. Therefore the internal node can have at most *2t* children. 
+- Every node may contain at most *2t-1* keys. Therefore the internal node can have at most *2t* children.
 
 FIND - is trivial just check numbers and go to the appropriate child.
 
@@ -442,7 +442,7 @@ The nearest neighbour find is asymptotically close to $O(2^D+\log n)$ it is appa
 
 Trough this method we will iterate trough the linked list and find our value.
 
-Skip list| 
+Skip list|
 |:-:|
 ![Skiplist](img/PAL_skiplist.png)
 
@@ -451,8 +451,14 @@ The degree of the sentinel is choosen during insert. After finding the place, th
 When deleting, we need to also update all sentinels that pointed to that value, and pass them our pointers.
 
 The probability p of landing heads is usually 25% - it has simmilar search properties, and stores less pointers.
- 
+
 ### 1.5 Finite automata, regular expressions, operations over regular languages. Bit representation of nondeterministic finite automata. Text search algorithms - exact pattern matching, approximate pattern matching (Hamming and Levenshtein distance), dictionary automata.
+
+**Bit representation**
+
+**Exact pattern matching - hamming distance**
+
+**Approximate pattern matching - levenstein distance**
 
 ## 2. TAL - Problem/language complexity classes with respect to the time complexity of their solution and memory complexity including undecidable problems/languages. [IN CZECH, since math in english is hard for me]
 
@@ -470,7 +476,7 @@ $$
 
 říkáme, že funkce $f$ je zezhora omezana funkcí $g$
 
-2) $\Omega$. Řekneme, že funkce $f(x) \in \Omega(g(x))$, jestliže existuje konstanta $c$ a přirozené číslo $n_0$ takové, že $f(x) \geq cg(n)$ pro včechny $n \geq n_0$ 
+2) $\Omega$. Řekneme, že funkce $f(x) \in \Omega(g(x))$, jestliže existuje konstanta $c$ a přirozené číslo $n_0$ takové, že $f(x) \geq cg(n)$ pro včechny $n \geq n_0$
 
 $$
 \Omega(g(n)) = \{f(n) \mid \exist c > 0, n_0 \in \N \text{ tak, že } f(n) \geq g(n) \forall n \geq n_0\}
@@ -494,7 +500,7 @@ $$
 
 říkáme, že funkce $f$ je zezhora ostře omezana funkcí $g$
 
-5) malé $\omega$. Řekneme, že funkce $f(x) \in \omega(g(x))$, jestliže pro každou konstantu $c$ existuje přirozené číslo $n_0$ takové, že $f(x) < cg(n)$ pro včechny $n \geq n_0$ 
+5) malé $\omega$. Řekneme, že funkce $f(x) \in \omega(g(x))$, jestliže pro každou konstantu $c$ existuje přirozené číslo $n_0$ takové, že $f(x) < cg(n)$ pro včechny $n \geq n_0$
 
 $$
 \omega(g(n)) = \{f(n) \mid \forall c > 0\space\exist n_0 \in \N \text{ tak, že } f(n) < g(n) \forall n \geq n_0\}
@@ -506,26 +512,26 @@ všechny funkce asymptotického růstu jsou tranzitivní, a mimo funkce malé $o
 
 **Gausova věta** - může se hodit $n^{n\over 2} \leq n! \leq \big( {n-1\over 2} \big)^n$ užitečné pro např: $O(\log n!) = O(n \log n)$
 
-Může se také hodit věta, kde pro nezápornou neklesající funknci $f(n)$, pokud platí $f({n\over 2}) \in \Theta(f(n))$ pak 
+Může se také hodit věta, kde pro nezápornou neklesající funknci $f(n)$, pokud platí $f({n\over 2}) \in \Theta(f(n))$ pak
 
 $$
 \sum_{i=1}^n f(i) \in \Theta(nf(n))
 $$
 
 **řešení rekurzivních vztahů**
-1) Přímá metoda - odhadneme růst a matematickou indukcí ho dokážeme. 
+1) Přímá metoda - odhadneme růst a matematickou indukcí ho dokážeme.
 2) Řešení pomocí stromu rekurze - vyrobím si strom rekurze, kde v nulté hladině mám pouze hodnotu a nemám další větvení. A vypočítám posloupnost složitostí na každé úrovni stromu.
 3) Master Theorem - jdou dána přirozená čísla $a \geq 1,\space b > 1$ a nezáporná funkce $f(n)$. Předpokládáme, že funkce $T(n)$ je dána na přirozených celých číslech.
- 
+
 $$
 T(n) = a T({n\over b}) + f(n)
 $$
 
-kde $n\over b$ je $\lfloor{n\over b}\rfloor$ nebo $\lceil{n\over b}\rceil$ 
+kde $n\over b$ je $\lfloor{n\over b}\rfloor$ nebo $\lceil{n\over b}\rceil$
 
-1) jestliže $f(n) \in O(n^{\log_b a-\epsilon})$ pro nějakou konstantu $\epsilon > 0$, pak $T(n) \in \Theta(n^{\log_b a})$ 
-2) jestliže $f(n) \in \Theta(n^{\log_b a})$, pak $T(n) \in \Theta(n^{\log_b a} \log n)$ 
-3) jestliže $f(n) \in \Omega(n^{\log_b a+\epsilon})$ pro nějakou konstantu $\epsilon > 0$ a jestliže $f({n\over b}) \leq c f(n)$ pro nějakou konstantu c < 1 pro všechna dostatečně velká n, pak $T(n) \in \Theta(f(n))$ 
+1) jestliže $f(n) \in O(n^{\log_b a-\epsilon})$ pro nějakou konstantu $\epsilon > 0$, pak $T(n) \in \Theta(n^{\log_b a})$
+2) jestliže $f(n) \in \Theta(n^{\log_b a})$, pak $T(n) \in \Theta(n^{\log_b a} \log n)$
+3) jestliže $f(n) \in \Omega(n^{\log_b a+\epsilon})$ pro nějakou konstantu $\epsilon > 0$ a jestliže $f({n\over b}) \leq c f(n)$ pro nějakou konstantu c < 1 pro všechna dostatečně velká n, pak $T(n) \in \Theta(f(n))$
 
 **Time-space complexity of algorithms**
 
@@ -538,7 +544,7 @@ kde $n\over b$ je $\lfloor{n\over b}\rfloor$ nebo $\lceil{n\over b}\rceil$
 - při ukončení algoritmu zaručuje správnost řešení
 
 Příklad **MST** Primův algoritmus:
-- Variant: množina vrcholů, které se musí přidat do MST je konečná, každou iterací algoritmu snižujeme počet ještě nepřidaných vrcholů. 
+- Variant: množina vrcholů, které se musí přidat do MST je konečná, každou iterací algoritmu snižujeme počet ještě nepřidaných vrcholů.
 - Invariant: Jestliže množina $K$ (minimálníé kostra) je součástí některé minimální kostry, tak i přidáním nejlevnější hrany $e$ dle algoritmu bude součástí minimální kostry.
 
 
@@ -614,7 +620,7 @@ Příklad TSP -> mám Rozhodovací verzi. Vezmu strop součet všech hran a prov
 
 **Úloha jako jazyk nad abecedou** - úlohu můžeme zakodovat jako slova nad vhodnou abecenou. (SAT přepíšu na binarni reprezentaci a mám konečnou abecedu). U rozhodovacích úloh můžu rozdělit instance na tzv. ANO-instance a NE-instance. Jazkyk úlohy U, značíme $L_U$ se skládá ze všech odpovídajících ANO-INSTANCÍ úlohy U.
 
-**Třída P** 
+**Třída P**
 
 Rozhodovací úloha je v třídě P, jestliže existuje TM, který rozhodne jazyk $L_U$ a pracuje v polynomiálním čase - $T(n) \in O(p(n))$ pro nějaký polynom $p(n)$
 
@@ -658,7 +664,7 @@ NP-hard znamená že je to aspoň tak těžké jako NPC - takže to může být 
 
 $P \subseteq NP$
 
-**Cookova věta** 
+**Cookova věta**
 
 SAT je NPC - NP úplná úloha.
 
@@ -676,12 +682,12 @@ $$
 
 Pro ukázání, že rozhodovací úloha V je NPC, je potřeba
 1) ověřit, že $V\in NP$
-2) najít NP úplnou úlohu U, pro kterou $U \vartriangleleft_p V$  
+2) najít NP úplnou úlohu U, pro kterou $U \vartriangleleft_p V$
 
 - 3-CNF SAT -> obarvení grafu 3-mi barvami -> ILP
 
 **Silně NP-complete úlohy**
-např TSP, 
+např TSP,
 Batoh není silně NP
 
 Problém batohu se dá spočitat dynamisckým programováním se složitostí $O(nK)$ kde K je velikost batohu. Složitost je závislá na největším čísle instance K (to může být i exponenciálně velké proti n) zavedeme proto číslo instance I značeno num(I) je největší číslo, které se v instanci vyskytuje.
@@ -690,11 +696,11 @@ Problém batohu se dá spočitat dynamisckým programováním se složitostí $O
 
 Pseudopolynomiální algoritmus je alogoritmus, který řeší úlohu v čase $O(p(n,num(I)))$
 
-**aproximační algoritmy** 
+**aproximační algoritmy**
 
 Aproximační algoritmus R aproximační algoritmus je algoritmus, který pro každou instanci najde přípustné řešení, ne horší, než R krát optimum
 
-příklady TSP v KO. 
+příklady TSP v KO.
 
 Ne každý NP uplny algoritmus může mít aproximační algoritmus - kdyby měl aproximační algoritmus TSP, tak v něm vyřešíme problém hamiltonovské kružnice.
 
@@ -727,7 +733,7 @@ Na rozdíl od TM, který má L,R pohyby, tak RTM má ještě pohyb S - stay.
 
 **RP** jazyk patří do RP, iff existuje RTM takový že:
 1) jestliže $w \notin L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností 0
-2) jestliže $w \in L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností alespoň $1\over 2$ 
+2) jestliže $w \in L$, stroj se ve stavu $q_f$ zastaví s pravděpodobností alespoň $1\over 2$
 3) existuje polynom p(n) takový, že každý běh M (pro jakýkoliv obsah pásky s random čísly) trvá maximálně p(n) kroků, kde n je délka vstupního slova.
 
 RTM splňující podmínky 1,2 je typu Monte-Carlo
@@ -761,7 +767,9 @@ $$
 
 ### 2.6 Decidability and undecidability. Recursive and recursively enumerable languages. Diagonal language. Universal language and Universal Turing machine.
 
-## 3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications. 
+
+
+## 3. KO - Combinatorial optimization problems - formulation, complexity analysis, algorithms and example applications.
 
 ### 3.1 Integer Linear Programming. Shortest paths problem and traveling salesman problem ILP formulations. Branch and Bound algorithm. Problem formulations using ILP. Special ILP problems solvable in polynomial time.
 
@@ -769,7 +777,7 @@ $$
 
 the goal of the ILP is to find vector $x \in \Z^n$ such that $\bf{A}\cdot x \leq b$ and $c^T \cdot x$ is maximal.
 
-The difference with LP is that LP uses convex space, which solution space of ILP is not. 
+The difference with LP is that LP uses convex space, which solution space of ILP is not.
 
 ILP in NP-Hard.
 
@@ -778,13 +786,13 @@ ILP in NP-Hard.
 Find the shortest path from the node $v_s$ to the $v_t$ in graph $G = (V,E)$ with $n$ total nodes. The distances between nodes will be represented by distance matrix $C: V \times V \to \R_0^+$
 
 $$
-\min \sum_{i=1..n, j=1..n} x_{i,j} * c_{i,j}\\ 
+\min \sum_{i=1..n, j=1..n} x_{i,j} * c_{i,j}\\
 \text{subjects to:}\\
 \begin{alignat*}
 {3}
 \sum_{(u,t)\in E} x_{u,t} &= 1\\
 \sum_{(s,u)\in E} x_{s,u} &= 1\\
-\sum_{(i,v)\in E} x_{i,v} &= \sum_{(v,j)\in E} x_{v,j} \text{ for all } v \in V-\{s, t\}\\ 
+\sum_{(i,v)\in E} x_{i,v} &= \sum_{(v,j)\in E} x_{v,j} \text{ for all } v \in V-\{s, t\}\\
 \end{alignat*}
 $$
 
@@ -804,11 +812,11 @@ We have complete graph $G = (V,E)$ we use matrix $X$ of binary variables X where
 |:-:|
 ![Traveling salesman problem](img/KO_traveling_salesman_problem_ILP.png)|
 
-The single circle is enforced by using timestamps with each step of the used path. Where each subsequent must be greater, than previous. The only difference is the beginning and end, which is same -> that is why j goes only from 2..n 
+The single circle is enforced by using timestamps with each step of the used path. Where each subsequent must be greater, than previous. The only difference is the beginning and end, which is same -> that is why j goes only from 2..n
 
 **Branch and bound**
 
-Method is based on splitting solution space into disjointed sets. 
+Method is based on splitting solution space into disjointed sets.
 
 We solve the problem by relaxing the integers into real numbers and call the LP on it. If all returned variables by LP are integers - we solved the problem. If not, one non-integer variable $$x_i$ is chosen as *k* and we divide the solution space into two disjointed sets:
 1) $x_i \leq \lfloor k \rfloor$
@@ -822,7 +830,7 @@ The same process is called on these sets recursively, until the all-integer solu
 
 **When is solution to the ILP polynomial**
 
-The ILP is solved in polynomial time when the problem is given by a totally unimodular matrix A and integer vector b. 
+The ILP is solved in polynomial time when the problem is given by a totally unimodular matrix A and integer vector b.
 
 The matrix A is totally unimodular when every square submatrix of matrix A is equal to 1,0,-1. From that if A is totally unimodular then $a_{ij} \in {-1,0,1}$
 
@@ -839,8 +847,8 @@ If we get another limitations like we need to buy house $x_i$ or implication if 
 
 ### 3.2 Shortest paths problem. Dijkstra, Bellman-Ford, and Floyd–Warshall algorithms. Shortest paths in directed acyclic graphs. Problem formulations using shortest paths.
 
-**Dijkstra** iteratively go through a graph and add update the cost of node based on the path. The dijkstra algorithm is static (the value once assigned to the vertex is permanent). 
- 
+**Dijkstra** iteratively go through a graph and add update the cost of node based on the path. The dijkstra algorithm is static (the value once assigned to the vertex is permanent).
+
 The dijkstra can also be bi-directional (from source as well from target) which can sometimes speeup the computation.
 
 **Bellman-Ford** - find shortest paths, like dijkstra, but allows for negative edges (not negative cycles). The algorithm is based on iteratively going through each edge and updating current values. Since it uipdates the values, it is not static when compared to dijkstra.
@@ -849,10 +857,10 @@ The dijkstra can also be bi-directional (from source as well from target) which 
 
 **DAG** - directed acyclic graph - solved by dynamic programing.
 
-**Proving correctness of algorithms**: 
-- **Triangle inequality** - let l(i,j) be length of shortest path from i to j. Than holds $l(i,j) \leq l(i,k) + l(k,j)$. Either the k is allready in path - that is equal, and if is not, then it is larger. (No negative cyrcles) 
+**Proving correctness of algorithms**:
+- **Triangle inequality** - let l(i,j) be length of shortest path from i to j. Than holds $l(i,j) \leq l(i,k) + l(k,j)$. Either the k is allready in path - that is equal, and if is not, then it is larger. (No negative cyrcles)
 - **Belman's principle of optimality** - shortest path from $s \to t$, where $e$ is last vertex before $t$ contains shortest path form $s \to e$
-- **Bellman's equation** - from principle of optimality we get $l(s,w) = \min_{v \neq w}\{l(s,v) + c(v,w)\}$ - the shortest path $s \to w$ is shortest path $s \to v$ plus shortest edge $e(v,w)$ 
+- **Bellman's equation** - from principle of optimality we get $l(s,w) = \min_{v \neq w}\{l(s,v) + c(v,w)\}$ - the shortest path $s \to w$ is shortest path $s \to v$ plus shortest edge $e(v,w)$
 
 **Computing problems with shortest paths**
 
@@ -870,7 +878,7 @@ after we get the shortest paths in metrix, we can do somethign with that matrix.
 
 **maximum flow** the flow that maximizes $\sum_{e \in \delta^+(s)} - \sum_{e \in \delta^-(s)}$ (send maximum flow to t)
 
-**Formulation as LP** 
+**Formulation as LP**
 
 |Flow formulated as LP|
 |:-:|
@@ -882,7 +890,7 @@ after we get the shortest paths in metrix, we can do somethign with that matrix.
 
 **Fesible flow with balances** the graph with balances is 4-tuple (G,l,u,b) where b is balance b for every vertex, such that $\sum_{e \in \delta^+(v)}f(e) - \sum_{e \in \delta^-(v)}f(e) = b(v)$ for all $v \in G(V)$
 
-**Finding initial feasible flow** - 
+**Finding initial feasible flow** -
 1) add edge e $t \to s$ with $l(e) = 0, u(e) = \infin$
 2) modify edges with lowerbounds $f(e) = l(e) + f'(e)$ by removing the lowerbound and adding the balance to the affected nodes to retain the kirchhoff law.
 3) add s' and t' that will be new source and sink, connected to the nodes with balance. Nodes with negative balance will be connected to t' and nodes with positive balance to 's.
@@ -903,7 +911,7 @@ Goal of minimum cost flow it to find the feasible flow, that minimizes $\sum_{e 
 2) Build residual graph with f. Find negative-cost cycle C ins residual graph. In none exist - STOP
 3) Compute $\gamma = \min _{e \in E(C) u_f(e)}$ augment f along C by $\gamma$. Goto 2
 
-Residual graph can be constructed by introducing new graph where each arc is duplicated in reverse direction. 
+Residual graph can be constructed by introducing new graph where each arc is duplicated in reverse direction.
 
 |Residual Graph| Cycle cancelling|
 |:-:|:-:|
@@ -927,9 +935,9 @@ $$
 \underbrace{r J^*(I)}_{\text min} \geq J^A(I) \geq \underbrace{{1\over r} J^*(I)}_{\text{max}}
 $$
 
-The 2-approximation for knapsack problem 
+The 2-approximation for knapsack problem
 
-We sort the items by their value (cost/weight) and we either take items {1..h-1} or {h}. 
+We sort the items by their value (cost/weight) and we either take items {1..h-1} or {h}.
 
 $$
 J^A(I) = max \bigg\{\sum_{i=1}^{h-1}c_i, c_h\bigg\} \geq {\sum_{i=1}^h c_i \over 2} > {1\over 2}J^*(I)
@@ -979,7 +987,7 @@ The idea behind algorithm is simmilar to the Double tree algorithm. When we add 
 
 Idea - find hamiltonian cycle, and using local modifications we try to find better solutions (I try to remove x edges and then reconstruct cycle by adding different x)
 
-- Local search modifications are allowed, 
+- Local search modifications are allowed,
 - When to modify the solution (one possibility is, to allow improvements only)
 
 It takes k-element subset and tries to swap the edges and computes the new value and so on and on...
@@ -990,7 +998,7 @@ It takes k-element subset and tries to swap the edges and computes the new value
 
 Scheduling is assigning tasks to resources in time. Every task needs to be completed, to be feasible. This is difference from planning.
 
-Basic terms: 
+Basic terms:
 - **Tasks** T - what needs to be done, each task can be assignet at most to one resource at a time. Tasks have release data r and deadline $\~{d}$. The task needs to be completed between $\lang r, \~{d} \rang$. Tasks can have precedence - $T_1 \prec T_2$ task $T_1$ must be completed before task $T_2$. Can be preemptive/non-preemptive (tasks can be stopped adn resumed/cannot)
 - **resources** P - processors, workers... each resource is capable of executing one task at the time.
 
@@ -1013,9 +1021,9 @@ The usual is Graham notation $\alpha |\beta |\gamma$ symbolizing *resources|task
 |:-:|
 ![Fomulation of sched as ILP](img/KO_sched_ilp.png)|
 
-$x_{iq}$ - is task on the q position? $t_q$ start time of task on the q-th position. Basic idea is matrix, where rows represent tasks and columns what order they are in. (if task *a* has *1* in column 3 it is third task scheduled for processor.) 
+$x_{iq}$ - is task on the q position? $t_q$ start time of task on the q-th position. Basic idea is matrix, where rows represent tasks and columns what order they are in. (if task *a* has *1* in column 3 it is third task scheduled for processor.)
 1) First condition - Only one 1 in row
-2) second condition - only one 1 in column 
+2) second condition - only one 1 in column
 3) start time $t_q$ must be greater than release time.
 4) execution cannot start before previous task ended
 5) start time must be before deadline-processing time
@@ -1067,7 +1075,7 @@ We can improve the list scheduling using LPT - longest processing time first. Th
 
 The complexity is $O(n\cdot \text{UB}^R)$
 
-**Project scheduling with temporal constrains** 
+**Project scheduling with temporal constrains**
 
 $PS1\mid temp \mid C_{max}$
 
@@ -1080,9 +1088,9 @@ We have set of non-preemptive tasks T in directed graph (which may include negat
 Different types of $l_{ij}$
 1) $j_{ij} = p_i$ normal precedence relation
 2) $l_{ij} > p_i$ drying wall, following task needs to wait some time. Or pipelined ALU.
-3) $0<l_{ij}<p_i$ cut-trough mechanism in swithes, we need to wait only the time needed to parse the header. While the message is still being received, we can allready send it. 
+3) $0<l_{ij}<p_i$ cut-trough mechanism in swithes, we need to wait only the time needed to parse the header. While the message is still being received, we can allready send it.
 4) $l_{ij} = 0$ $T_i$ has to start at the sime time or earlier as $T_j$
-5) $l_{ij} < 0$ $T_i$ has to start earlier or at most $|l_{ij}|$ later than $T_j$ 
+5) $l_{ij} < 0$ $T_i$ has to start earlier or at most $|l_{ij}|$ later than $T_j$
 
 Graph cant have positive cycle - deadlock
 
@@ -1095,7 +1103,7 @@ ILP formulation in the picture Time-indexed ILP. The binary variable $x_jt$ repr
 3) Third condition - every task needs to be executed
 4) Fourth condition - every task must fir into $C_{max}$
 
-UB - upper bound of $C_{max}$ 
+UB - upper bound of $C_{max}$
 
 Can be drawn as graph with time with on the x axis, max value UB and each task having separate row on y axis (2D matrix of $x_{ij}$ variables).
 
@@ -1146,6 +1154,15 @@ Constrain $C_i$ is couple ($S_i, R_i$) where $S_i \subseteq X$ and $R_i$ is rela
 
 [second part of](https://moodle.fel.cvut.cz/pluginfile.php/316340/mod_resource/content/0/03-MIT-ASIC.pdf)
 
+Full design - the designer has full control over every design decision. Useful for Analog circuits or highly specific functions. Cheap only in large batches - the delevoper time needs to be paid for, and the design is completely new, so it needs to be created from the ground up. But the result should be very efective, due to optimal usage of the space.
+
+Gate array - custom, prefabricated chip with some predefined componnents. Lot of primitive gates (and or) which can be connected using mask. The manufacturer can create large quantity of prefabricated chips, and the customer only provides mask, how the componnents should be connected.
+
+Standard cells - spped up the design using predefined cellls. Like libraries. They might be more "wasteful" since they need to be compatible with wide range of applications. Also the libraries cost something. The cells used have same hight so the pouting of connections is made easier. Can be mixed and matched with the full-design to speedup the developement.
+
+PAL - somewhat less intelligent FPGA.
+
+
 ### 4.2 Design principles of mix-signal integrated circuits, purpose of hierarchical design, digital and analogue block interface, CAD design tools for automatic circuit generation; functional and static time analysis, formal verification; Verilog-A, Verilog-AMS, VHDL-A.
 
 [presentation](https://moodle.fel.cvut.cz/pluginfile.php/316358/mod_resource/content/0/12-AMS-Digital-I.pdf)
@@ -1156,14 +1173,14 @@ Constrain $C_i$ is couple ($S_i, R_i$) where $S_i \subseteq X$ and $R_i$ is rela
 
 ### 4.5 Tape out and IC fabrication process, integrated systems verification, scaling and design mapping to different technologies.
 
-## 5. PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers. 
+## 5. PAP - Advanced architectures of processors, memory and peripheral circuits and multiprocessor computers.
 
 ### 5.1 Superscalar techniques used in nodes of multiprocessor systems, data flow inside the processor, Tomasulo algorithm and its deficiencies, precise exceptions support, architectural state, register renaming, reservation station, reorder buffer, instruction fetch, decode, dispatch, issue, execute, finish, complete, reorder, branch prediction, store forwarding, hit under miss.
 
 **Data flow inside the processor**
 
 Stages of the pipeline:
-- **IF** instruction fetch - load instruction from the instruction memory. 
+- **IF** instruction fetch - load instruction from the instruction memory.
 - **ID** instruction decode - translate the instruction into correct signals for the ALU and other units, load corresponging registers
 - **EX** execute - execute the instruction like add two numbers
 - **MEM** memory access - write/load to/from memory.
@@ -1191,7 +1208,7 @@ The un-alignment can be solved by T-Logic - two way associative cache.
 ![TFETCH](img/PAP_T_LOGIC.png)
 
 - **Decode** - the complexity is wildly different when decoding CISC/RISC instructions. Tasks:
-  - indetify the infividual instructions (and even lengths for CISC)  
+  - indetify the infividual instructions (and even lengths for CISC)
   - determine instruction types
   - detect inner dependencies, determine set of independent instructions to dispatch to next stages\
 can contain Predecoding - if i-cache misses the instructions while loading from memory to the Cache are partialy decoded, to be searched for the potential jumps and identifiaction of independant instructions, which then simplyfies the Decode Process.
@@ -1209,13 +1226,13 @@ Centralized reservation station|  Distributed reservation station
 - **Execute** - usually more execution units, than the width of the pipeline. Current trend: more diversified pipelines (in past only Integer operations and Floating point operations were the major ones). More execution units - more complex hardware - need the connections to connect hazard unit to all the execution units for forewarding, reservation stations need monitor for the availability(ready state) or ready operand values(tag matching)\
 Best mix of functional units? It depends, usually 2:1:2 ALU:Branch:Load/Store
 - **Complete** - instruction is completed, when it finishes execution and updates the machine state. It is when it exits execution unit and enters completion buffer. It can wait another cycles, before it is retired.
-- **Retire** - The instruction is retired, when it leaves the completion buffer and updates Data-Cache. 
+- **Retire** - The instruction is retired, when it leaves the completion buffer and updates Data-Cache.
 
 ![Completion and reorder buffer](img/PAP_completion_reorder_buffer.png)
 
 **Tomasulo algorithm**
 
-The algorithm provides register renaming functionality. The basic example has two ALUs, one for adding and second for multiply and divide. Adding takes 2 cycles, multiply 3, divide 12. There are 3 wait stations before ADDer and 2 before Mult/Div. 
+The algorithm provides register renaming functionality. The basic example has two ALUs, one for adding and second for multiply and divide. Adding takes 2 cycles, multiply 3, divide 12. There are 3 wait stations before ADDer and 2 before Mult/Div.
 
 When we execute some instruction, lets say R1=R2+R3 we take the values from R2 and R3, put them into reservation station and store the TAG of the reservation station in the R1 register. Once the computation is complete the register will catch the result in the common data bus.
 
@@ -1240,7 +1257,7 @@ We load end issue these instructions. The architectural register and issue unit 
 |R3|5.0||
 </td><td>
 
-UnitId|Tag|Sink|Tag|Source| 
+UnitId|Tag|Sink|Tag|Source|
 |--|--|--|--|--|
 |1||4.0||5.0|
 |2|1|||4.0|
@@ -1268,13 +1285,13 @@ The exception or interrupts are events that requiere immidiate attention of CPU.
 |Hardware malfunction|No|No|No|Yes|No|
 |Power failure|No|No|No|Yes|No|
 
-The **exception is precise** iff 
+The **exception is precise** iff
 1) Processor handles exceptions in program order (Not in the execution order)
 2) Processor state is sequentially consistent before calling exception handler. (all instrtuctions before exception are completed and retired, no instruction after exception changed state of the processor or memory)
 
 There is **commit stage** stage where we are sure, that the instruction cannot throw an exception. And after that the instruction can be retired, if all instructions before it (in program order) are also commited and retired.
 
-The commiting is done in reorder buffer. From reorder buffer we can also notify the rename register file, or we can use the reorder buffer as rename for architectural registers, and after commit update the architectural register. 
+The commiting is done in reorder buffer. From reorder buffer we can also notify the rename register file, or we can use the reorder buffer as rename for architectural registers, and after commit update the architectural register.
 
 In the reorder buffer we need to also store the address of the instruction, to know where to start execution if the exception would be encountered.
 
@@ -1294,7 +1311,7 @@ The last value predictor predicts the last data. The Stride predictor is usefull
 
 **Control speculation** - speculating the program direction, branches, loops, jumps.
 
-**Branch prediction** - static or dynamic. Static in compiler (Backwards taken foreward not taken). Dynamic in computer architecture. 
+**Branch prediction** - static or dynamic. Static in compiler (Backwards taken foreward not taken). Dynamic in computer architecture.
 
 ---
 
@@ -1304,9 +1321,9 @@ Most basic **Smith's two bit predictor** with states StronglyTaken, WeaklyTaken,
 
 We can also have a global predictor - we take low bits of ProgramCounter and combine them with global branch predictor. Them match  the result in lookup table (Pattern History Table) where we can find if the jump from this address was taken or not taken.
 
-We can upgrade that to Local-History, we take the address bits, and not combine them with the result from another lookup table. 
+We can upgrade that to Local-History, we take the address bits, and not combine them with the result from another lookup table.
 
-|Pattern history table - Global History|Pattern History table - Local history| 
+|Pattern history table - Global History|Pattern History table - Local history|
 |:-:|:-:|
 ![Pattern history table - Global History](img/PAP_globalPredictorPatternHistoryTable.png)|![Oattern history table - Local history](img/PAP_LocalHistoryPHT.png)
 
@@ -1328,7 +1345,7 @@ And more and more... new processors use principles of machine learning.
 
 Without asociative PHT (with hash) we could just store the target in table, but usually it is better to store this information in separate structure. We can implement it as associative cache.
 
-This is more complicated in object-oriented languages, which requere *jr $r* - jump to register. 
+This is more complicated in object-oriented languages, which requere *jr $r* - jump to register.
 
 We could use history simmilar to the *if jump* mechanisms to access the address target cache, but this is not effective.
 
@@ -1348,8 +1365,8 @@ Usually we fill the trace cache from the Reorder buffer, after we are sure, whic
 
 **Speeding up Load-Store instructions**
 
-**Load bypassing** allows execute a load before store, if instruction are memory independent (they do not alias). If we wont find the target address in the store buffer, we can load the value from the cache knowing the store data will not change it. 
-If we find the value in the store buffer, we can use **Load Forewarding** - use the value in the store buffer for speculative execution. 
+**Load bypassing** allows execute a load before store, if instruction are memory independent (they do not alias). If we wont find the target address in the store buffer, we can load the value from the cache knowing the store data will not change it.
+If we find the value in the store buffer, we can use **Load Forewarding** - use the value in the store buffer for speculative execution.
 
 We can even reorder the load and store instructions and speculatively load the value. If the store with the conflict is encountered we need to invalidate the speculative store, and can foreward the data being stored. Described in Speculative loading picture.
 
@@ -1383,7 +1400,7 @@ Resolving Cache miss, what to toss out of the cache instead of the new data? Dif
 
 **Victim cache** - insead of throwing data away, we put the in victim cache, where the data can be accesed if it would be target for hit, and put back to the main cache. Without the hit, it will be thrown away after some time.
 
-**Assist cache** - incomming data is stored in assist cache, and only after multiple hits it is moved to the main cache. 
+**Assist cache** - incomming data is stored in assist cache, and only after multiple hits it is moved to the main cache.
 
 Complete processor|
 |:-:|
@@ -1405,7 +1422,7 @@ The Coherency is from the point of view of the memory location - I am address an
 
 *Consistency* specifies the order in which the individual processes execute their memory operations and or how is this order viewed by other processes. *Coherence* Only focuses on hypothetical sequention order to individual memory locations, but guarantees neither order nor visibility of accesses to different locations. Consistency defines what is expected behavior of sharem memory regarding all reads and writes.
 
-Very simplified: 
+Very simplified:
 - **Coherence** - which value is returned by read
 - **Consistency** - when is the written value returned by read
 
@@ -1414,7 +1431,7 @@ Very simplified:
 2) Read[address2] by processor P after Write[address2,data2] by proccessor Q, returns data2, it the operations Read and Write are sufficiently separated - by time or barrier instruction. Between these instructions, no other processor executed write on address2.
 3) Two writes executed by two different processors are seen by all processors in the same order.
 
-that can be achieved by **snooping** - each processor (or caching agent) snoops for the addresses on the bus, and if the address matches the address stored in cache, it will update the data. It is very computation demanding, so the more usual approach is that instead of update, we invalidate the data. 
+that can be achieved by **snooping** - each processor (or caching agent) snoops for the addresses on the bus, and if the address matches the address stored in cache, it will update the data. It is very computation demanding, so the more usual approach is that instead of update, we invalidate the data.
 
 For this the MESI protocol was created. MESI stands for MODIFIED, EXCLUSIVE, SHARED, INVALID, which represents the states which the data in cache can be.
 
@@ -1431,9 +1448,9 @@ The two caching agents can have states displayed in MESI table. The x symbolizes
 |:-:|:-:|
 ![MESI - Local Processor](img/PAP_MESIlocalProcessor.png)|![MESI - Snooping processor](img/PAP_MESIsnoopingProcessor.png)
 
-First we have the value as invalid. We send BusRead if we want to read. If anybody else has that value in memory, we get the value as SHARED. If only we have it we get Exclusive. 
+First we have the value as invalid. We send BusRead if we want to read. If anybody else has that value in memory, we get the value as SHARED. If only we have it we get Exclusive.
 
-When we want to write, we read value as ReadWithIndendToModify, forcing the most up-to-date value to the memory and invaliding all other copies. After that we can get the Data and modify it. If we have Exclusive access we just modify it and change state. 
+When we want to write, we read value as ReadWithIndendToModify, forcing the most up-to-date value to the memory and invaliding all other copies. After that we can get the Data and modify it. If we have Exclusive access we just modify it and change state.
 
 MOESI is similar to the MESI, but adds one more state - OWNED one cache agent is the owner with right to modify the cache. Others can read. It is duty of the OWNER to broadcast any change to other processors, if it made change to the value.
 
@@ -1449,7 +1466,7 @@ The **Flat** directory can be memory-based - information about every memory loca
 
 ### 5.3 Rules for execution synchronization and data exchange in multiprocessor systems, mutex implementation, relation to consistency models and mechanisms to achieve expected algorithms behavior on systems with relaxed consistency models (PRAM, PSO, TSO, PC, barrier instructions).
 
-With coherent and sequentially consistent machine, we still can get unexpected results, when the operations are not atomic, their order is not predetermined, when executed on multiple processors. 
+With coherent and sequentially consistent machine, we still can get unexpected results, when the operations are not atomic, their order is not predetermined, when executed on multiple processors.
 
 **Sequence consistency** - all instructions executed by single processor are viewed by all processors in correct order. We guarantee this sequentiallity only for single processor, not for all processors.
 
@@ -1465,17 +1482,17 @@ The sequential consistency results in some restrictions with out-of-order execut
 
 For that we need mutual exclusion - **Mutex** - mechanism. It is possible to implement it in software (Peterson's algorithm), but it is very expensive - usually the hardware support is needed.
 
-The mutex is usually implemented by using TEST-AND-SET instruction, which can be executed atomicaly. The instructions checks if the value in memory has expected value, and if it does, it overwrites it. This operation is atomic. 
+The mutex is usually implemented by using TEST-AND-SET instruction, which can be executed atomicaly. The instructions checks if the value in memory has expected value, and if it does, it overwrites it. This operation is atomic.
 
-The mutex requires the memory in case to be MODIFIED -> the communication on bus is high, when we would spin on the lock. This spinning would cause dead-lock. It can be made usable if we would wait some arbitrary time before next attempt. 
+The mutex requires the memory in case to be MODIFIED -> the communication on bus is high, when we would spin on the lock. This spinning would cause dead-lock. It can be made usable if we would wait some arbitrary time before next attempt.
 
 Another enhancement is to split the Test-and-set into two instructions. The first instruction does not ReadWithIntendToTodify, and only converts the value to SHARED. Then snoopes the bus, and once the lock is released it tryes to write into the address.
 
-**Load-linked** and **Store-conditional** - load linked loads the data and becomes member of data coherency (Snoops the bus and if the value of the address is changed, the value of register is changed as well). Store-conditional stores the data only if the flag set by the Load linked was not modified. Otherwise loop and load again. 
+**Load-linked** and **Store-conditional** - load linked loads the data and becomes member of data coherency (Snoops the bus and if the value of the address is changed, the value of register is changed as well). Store-conditional stores the data only if the flag set by the Load linked was not modified. Otherwise loop and load again.
 
-However this, in rare situations can create live-lock - two processors stealing the addres from the other one idefinetely. 
+However this, in rare situations can create live-lock - two processors stealing the addres from the other one idefinetely.
 
-Alternative is to execute the whole code, then check if the memory was modified, and if wasnt - propagate it, if was, abort and use lock. 
+Alternative is to execute the whole code, then check if the memory was modified, and if wasnt - propagate it, if was, abort and use lock.
 
 Test-and-set requires a lot of orchestration -the single point of interest, where the final execution is made is home directory of corresponding memory location.
 
@@ -1505,11 +1522,11 @@ The consistencies can be set up at will. What are benefits
 
 The **Relaxed consistencies**
 
-- **TSO - Total store ordering** 
+- **TSO - Total store ordering**
   - IBM: read operation can be completed before an earlier write to another address, but the read cannot return the written address until it is visible to all processors.
   - SPARC: similar to IBM, but it is loosened up: the processor can return own written value before it is visible to all others.
 
-- **PC - Processor consistency** 
+- **PC - Processor consistency**
   - Read can be completed before an earlier write is visible to all. Read can behave differently on different processors (returning old/new value and not only on writting processor).
 - **PSO - partial store ordering**
   - simmilar to the TSO, but the write consistency is only applicable to the single memory not the system.
@@ -1524,7 +1541,7 @@ All data operations before barrier have to be completed and all instructions aft
 
 Barrier instructions are processed in program order.
 
-intel has instructons **sfence** (store barrier), **lfence** (load barrier) and **mfence** (memory barrier) which we can grannualy choose, what to use. 
+intel has instructons **sfence** (store barrier), **lfence** (load barrier) and **mfence** (memory barrier) which we can grannualy choose, what to use.
 
 In openMP directive *flush* writes the variable to memory (simmilar to volatile, but this actually works)
 
@@ -1540,15 +1557,15 @@ The spin-lock can be implemented by ticket-lock the krux are two atomic variable
 
 ### 5.4 SMP and NUMA nodes interconnections networks, conflicts and rearrangeable networks, Beneš network.
 
-SMP - Shared-memory multiprocessing 
+SMP - Shared-memory multiprocessing
 
 NUMA - non-unified memory access
 
 Static networks are described in [PAG chapter 8.1](#81-describe-basic-communication-operations-used-in-parallel-algorithms-show-cost-analysis-of-one-to-all-broadcast-all-to-all-broadcast-scatter-and-all-to-all-personalized-communication-on-a-ring-mesh-and-hypercube-describe-all-reduce-and-prefix-sum-operations-and-outline-their-usage)
 
-The dynamic networks can be rearanged during runtime to provide more optimal connection. 
+The dynamic networks can be rearanged during runtime to provide more optimal connection.
 
-The simplest, but very effective network is matrix, where each input can be connected with heach output. In AXI bus it is note input/output, since established connection can be used in both directions. 
+The simplest, but very effective network is matrix, where each input can be connected with heach output. In AXI bus it is note input/output, since established connection can be used in both directions.
 
 Matrix connection|
 |:-:|
@@ -1560,7 +1577,7 @@ The Multistage interconnect network can be:
   - Broadcast
   - Multicast
 - **Buffer** - how the network is buffered
-  - Internal buffers 
+  - Internal buffers
   - External buffers
   - no buffers at all
 - **Blocking** does the one communication block?
@@ -1619,11 +1636,11 @@ To create parallel program we can use directives such as:
 - `#pragma omp critical/atomic/barrier` - synchronization between threads, critical sections
 - `schedule` - how the work should be splitted between threads? Static, dynamic, guided...
 - `private, shared` - specific directives for variables, if they are shared or not.
-- `pragma opm task/taskwait` - directive that spawns new thread - for more manual thread spawning 
+- `pragma opm task/taskwait` - directive that spawns new thread - for more manual thread spawning
 
 MPI: Message passin interface. Both for SMS and Distributed-memory system (DMS). Explicit communication.
 
-Initiate the communicator (the object that stores information about all tasks) by MPI_COMM_WORLD. The processes in the comunication world have their rank with which they can be identified. 
+Initiate the communicator (the object that stores information about all tasks) by MPI_COMM_WORLD. The processes in the comunication world have their rank with which they can be identified.
 
 Collective communication is always blocking and follows PAG conventions (all-to-all broadcast, one-to-all broadcast, scatter...).
 
@@ -1650,28 +1667,28 @@ if (CPU_ID == 1) {
 
 
 
-## 6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation. 
+## 6. KRP - I/O and network interfaces of computer and embedded systems, hardware and software implementation.
 
 ### 6.1 USB I/O subsystem, structure and functionality of elements, protocol stack, transfer - transaction - packet hierarchy, transfer types and pipes, bandwidth allocation principles, enumeration process and PnP, descriptor hierarchy, USB device implementation.
 
 **Topology**
- 
+
 USB network is Master-Slave. Only one master - the host. The network consists of Hubs(which serve more like routers) and end-point devices, which are called functions in USB standard.
 1) **The host** - guides enumebration process. One in the system. Power management. Usually implemented as root-hub
 2) **Hub** - communication infrastructure, detection of removed-added ports. Distributes/concentrates the data flow (slow downsteam peripheral is isolated, so it does not slow the other communication). Enables communication for downstream ports - importatnt for enumeration. Detekting the speed of connection. Can be self-powered or powered from bus.
 3) **Function** - bus-self-powered, max from USB is 500mA. Power management and PnP support. Different clases of function devices: HID, Mass storage, printer...
 
-**Pipes** 
+**Pipes**
 
-basic communication flow from computer application to the device. Directed, except for pipe 0 - default pipe, each device needs to implement pipe 0. Only pipe which is bidirectional. 
+basic communication flow from computer application to the device. Directed, except for pipe 0 - default pipe, each device needs to implement pipe 0. Only pipe which is bidirectional.
 
 Control pipe - mesage pipe - structured data - request - data - response. Reliable transfer (repeat if error). For control processes 10%(LS,FS) or 20% (HS) of communication capacity is reserved.
 
 Isochronous - non-reliable, for Audio-Video - stream in real-time. Bus cappacity is reserved 80%/90% for mix of isochronous and interrupt transfers.
 
-Interrupt - reliable. smaller packet size for LS/FS 
+Interrupt - reliable. smaller packet size for LS/FS
 
-Bulk - mass storage. Reliable, no capacity is reserved. 
+Bulk - mass storage. Reliable, no capacity is reserved.
 
 **Transaction**
 
@@ -1702,7 +1719,7 @@ Transaction consists of **Token**, **Data**, **Handshare** packets. Initialized 
 
 4 wires - D+, D-, ground, Vbus (5V)
 
-The signal is diferential, sent on D+,D-. 
+The signal is diferential, sent on D+,D-.
 
 Used bit-stuffing - after 6-bits of log.1 added 0 for stuffing. NRZI - non-return-to-zero-inverted - 1 constant, 0 toggle. For faster speeds the same as for PCI-E is used 8/10 or 128/130
 
@@ -1710,7 +1727,7 @@ Used bit-stuffing - after 6-bits of log.1 added 0 for stuffing. NRZI - non-retur
 |:-:|
 ![NRZI](img/KRP_nrzi.png)|
 
-**PnP** Hub has pull-down resistors on D+ and D-. The aplication device has Pull-up resistor on one D- or D+ - difference for low-speed or full-speed. Higher speeds are handeled trough data stream. The PnP is detected by the shift of voltage on the one of two wires. 
+**PnP** Hub has pull-down resistors on D+ and D-. The aplication device has Pull-up resistor on one D- or D+ - difference for low-speed or full-speed. Higher speeds are handeled trough data stream. The PnP is detected by the shift of voltage on the one of two wires.
 
 **Powermanagement** uninitialized device can have only 100mA from BUS. After initialization and enumeration the full 500mA is available.
 
@@ -1724,6 +1741,61 @@ Used bit-stuffing - after 6-bits of log.1 added 0 for stuffing. NRZI - non-retur
 - String descriptor - if any of the descriptor needsstring, it can point to the String descriptor, where theyu are located (manufacturer name, device name...)
 
 ### 6.2 PCI Express (PCI) I/O subsystems, basic differences and commons of PCI and PCIe, protocol stack, transaction types, packet routing principles, quality of service support, PnP and enumeration process.
+
+**Commons of PCI and PCI-E** same configuration space - same configuration as PCI. Old PCI-E cards were just translators of PCI-E to PCI and back.
+
+**PCI**
+
+Difference - PCI is parallel and PCI-E is serial communication - whole different communication scheme. Initially the PCI was tought it could be used as cache, so it supporst some cache-like features (read line, write invalide). PCI was created to be indepentent on the clock-speed of the system.
+
+Interesting about PCI - signals work with wave reflection - causes latency tens of nanoseconds. That is why in older computers when faster 66MHz connectoin speed was used, only 2 out of 5 slots could be used. Due to this the PCI network is devided into segments - all segments are connected by bridges. If master sends request and noone responses in some time, the bridges broadcast the request to other segments. When the bridge forewards the message it returns, it is done, without knowing it is done.
+
+One data operation is 4 bytes. I can specify the mask, which bytes are valid and thus send smaller message then 4  bytes. It does support both 32-bit and 64-bit addressing.
+
+All devices need to supoprt configuration communication. All devices, which provide some kind o memory need to support all memory opperations (they can support them falsely, trough dummy functions, but need to support them nonetherless.)
+
+Arbitration is not part of the standard - it is implementation defined.
+
+The configuration space describes, how much memory the processor needs to map for the correct functionality of the card. Command register, status register, base address register. Base address specifies if it is prefetchable - weather the reads have side-effects.
+
+**PCI-E**
+
+The newer standard - it is serial in contrast to PCI. It is hard to synchronize multiple wires in parallel communication. Serial can rech higher transaction speeds, than parallel. Parallel communication is also half-duplex. Full duplex would be to expensive, also becouse of price, the connectivity is trough bus. Serial connection allowes point-to-point connections.
+
+The PCI-E communication is provided trough serial lanes. Each line consists of two wires one for in and other for out - it is full-duplex. There are no additional wires for orchestration, all communication is done "in-band".
+
+PCI-E can access memory trough CPU. The PCI-E peripherals can also communicate with each othew, without need for the orchestartion from CPU.
+
+|PCI-E protocol stack|
+|:-:|
+|![PCI-E protocol stack](img/KRP_PCIE_Protocol_stack.png)|
+
+The communicatoin on the PCIE is provided trough routing in the direction from requester and in the form of switching in way back to the requester. In the requester packet there is address, and device, which is sending the request. The target device is found trough routing - each card has its own mem-space. The route back is switched based on the information in request - device and bus-number
+
+**QOS**
+
+If I have more devices on one card and want the switch to behave to them equally I can assign them to the viartual channel. The Swith will reserve part of the bandwidth for the device.
+
+**Transaction layer**
+
+Communication requester-completer. Supports same functons as PCI: Memread/write, io read/write, configuration read/write. + messages (emulation of PCI other wire connections)
+
+**Data link layer**
+
+It has three main functionalities:
+1) Sequence the transatcion layer packets (TLPs) that are generated and consumed on transaction layer. Packets to provide reliable communication: CRC, confirmation process.
+2) Ensuring reliable communication trough packets desctibed ^
+3) Power management
+
+Mandatory CRC, it can be on the transaction layer as well, but it is not mandatory.
+
+**Physical layer**
+
+Main responsibility is to multiplex the transmitions into multiple lanes. Scrambling, to provide enough edges and also whitening of the signal. The encoding of the bis is 8/10 on the pcie 1.0 and 2.0 and 128/130 on the pcie 3.0.
+
+**PnP** - special pins for detection if the card is inserted. The switch can detect what lines are active, but needs to know, what lanes belong to which device. The switch sends TS0, TS1, TS2... on appropriate lanes. If the test packet matches the lane of the device the device sends the ack back. If it does not match, the PAD is send. This way the switch can iteratively learn what devices are connected.
+
+**Enumeration** As depth first search, assigning bus ids, device ids and function ids.
 
 ### 6.3 Ethernet based networking, VLAN, precision time protocol (PTP), stream reservation protocol (SRP), time sensitive networks (TSN).
 
@@ -1751,7 +1823,7 @@ GPIO Schema |  Register configuration
 ![GPIO Configuration](img/AVS_gpio_structure.png) |  ![Configuration](img/AVS_configuration.png)
 
 - Mode - Output/Input/Alternate Function/Analog - Alternate function can be UART output, or the TIMER output.
-- Push-Pull / OpenDrain - Push-Pull can both provide current and sink current, the OpenDrain only sinks current. 
+- Push-Pull / OpenDrain - Push-Pull can both provide current and sink current, the OpenDrain only sinks current.
 - Pull-Up / Pull-Down / Floating - Set what is the default state of the pin.
 
 **Timers**
@@ -1770,24 +1842,24 @@ Handles interrupts to the Microcontroller. Enables multiple interrupts to be han
 
 **JTAG + SWD**
 
-Debugging interface standards. 
+Debugging interface standards.
 
-Jtag requieres 4 signal lines. 
+Jtag requieres 4 signal lines.
 
 The SWD uses 2-pin interface, that uses the same protocol. Debugger becomes another AMBA busmaster.
 
 Source: [SWJ vs JTAG debugging](https://electronics.stackexchange.com/questions/53571/jtag-vs-swd-debugging)
 
-**A/D + D/A** 
+**A/D + D/A**
 
-A/D - Analog to Digital converter. The base of the A/D is sampling the analog signal at regular intervals and converting this signal to digital value. About types and the sampling refer to the [7.4 Types of A/D](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds). 
+A/D - Analog to Digital converter. The base of the A/D is sampling the analog signal at regular intervals and converting this signal to digital value. About types and the sampling refer to the [7.4 Types of A/D](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds).
 
-D/A - Digital to Analog converter. The base of the D/A convertor in converting the digital value into the Analog signal. 
-More info in [7.4 Types of A/D](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds). 
+D/A - Digital to Analog converter. The base of the D/A convertor in converting the digital value into the Analog signal.
+More info in [7.4 Types of A/D](#74-types-of-ad-converters-sampling-theorem-anti-aliasing-filter-aaf-direct-digital-synthesis-dds).
 
-**SPI** 
+**SPI**
 
-Uses four signals to communicate. Clock, Chip select, MOSI (Master out Slave in), MISO (Master in Slave out). 
+Uses four signals to communicate. Clock, Chip select, MOSI (Master out Slave in), MISO (Master in Slave out).
 
 Chip select in 0 - communication active. Different SPI modes. Changing the idle state and on which edge (rising/falling) the data will be sampled. Supports FULL-Duplex communication and mupliple slaves by daisychaining them.
 
@@ -1811,7 +1883,7 @@ UART frame - databits (7,8,9), Optional Parity bit and number of stop bits (1, 1
 Flash is non-volatile memory (NVM). Different types, based on the type of manufacturing NOR-FLASH, NAND-FLASH, EEPROM...
 NOR-FLASH good random access - good for code storage in micro. NAND flash in consumer electronics, like flash drives. EEPROM electrically erasable programable memory - stable, ideal for external sotrrage for embedded devices.
 
-SRAM (Static Random Access Memory) is a volatile memory. More expensive and faster, than FLASH memory. Used for Cache and TCM. Cana be Synchronous of Asynchronous. Tha fastest RAMs, like in desktop PCs are Synchronous. 
+SRAM (Static Random Access Memory) is a volatile memory. More expensive and faster, than FLASH memory. Used for Cache and TCM. Cana be Synchronous of Asynchronous. Tha fastest RAMs, like in desktop PCs are Synchronous.
 
 ### 7.2 Typical architecture and main features of digital signal processors (DSP). Common used peripheral circuits. Special computational units and their features (ALU, MAC, SHIFT BARREL register, DAG).
 
@@ -1825,11 +1897,11 @@ DSP typically has Harward architecture - the Instruction and Data memory are sep
 
 **ALU** has usual operations (Add sub, div, ++, --, abs, and logical operations AND, OR, XOR...).
 
-**MAC** high speed multiply and accumulate. Multiplication is very important oparatoin in DSP. can have fractional mode 1.15 or integer mode 16.0 (for 16-bit operations). 
+**MAC** high speed multiply and accumulate. Multiplication is very important oparatoin in DSP. can have fractional mode 1.15 or integer mode 16.0 (for 16-bit operations).
 
-**DAG** (Data adress generator) - HW support for circular buffers. 
+**DAG** (Data adress generator) - HW support for circular buffers.
 
-**Shift barrel register** provides arithmetical and logical shifts. Normalization and even some derivations. 
+**Shift barrel register** provides arithmetical and logical shifts. Normalization and even some derivations.
 
 All the components are highly specialized for the targeted market (Autio, Telecommunication, Sience...)
 
@@ -1843,19 +1915,33 @@ All the components are highly specialized for the targeted market (Autio, Teleco
 
 **IDFT**
 
+**Correlation function**
+
+the correlation function measures how much are two descrete signals simmilar to each other. The higher the value of the corealation function the more the signals are similar to each other. If the number is large negative number the two funcitions are simmilar in inverse. If the value is relatively small or 0 they are not simmilar at all. When we correlate the function with itself it is called auto-correlation. The basic correlation formula is:
+
+$$
+\sum_{i=1}^n x[i]y^*[i-\tau]
+$$
+
+[nice explanation of corelation](https://www.wavewalkerdsp.com/2021/12/01/cross-correlation-explained-with-real-signals/)
+
+[nace explanation of corelation with time shift](https://www.wavewalkerdsp.com/2022/01/12/cross-correlation-explaining-time-lags/#id3690162187)
+
 ### 7.4 Types of A/D converters. Sampling theorem. Anti-aliasing filter (AAF). Direct digital synthesis (DDS).
 
 **Types of A/D converters**
 - **Succesive approximation register (SAR) ADC** - defacto binary search. We sample the $V_{in}$. And set the highest bit in DAC to 1. If the $V_{dac}$ is higher than *in* the bit is set to 0, otherwise it stays 1. Move to the less significant bit. This way we will create the value on our DAC, that is closest to the $V_{in}$.\
 Intermediete in speed and accuracy.
 - **Integrating ADC or Dual slope ADC** - high resolution 12-18 bit. Good accuracy, high stability, low cost. Low sampling rate around 10samples/s. Suitable for slowly changing measurements, like temperature.\
-The functionality is described in picture. First the $S_1$ is closed - the charge on the capacitor *C* is zero. Then the $S_2$ is closed for the number of clock cycles N resulting in charge in C. Then the $S_3$ is closed integrating the voltage back to zero, using the negative reference voltage. after time x the charge is 0. Now, knowing the time x, number of clock cycles N and reference voltage, we can count the $V_{in}$ 
-- **Paralel ADC or Flash converter** - Like thermometer. Not suitable for high resolution ADCs, but it is very fast. 
+The functionality is described in picture. First the $S_1$ is closed - the charge on the capacitor *C* is zero. Then the $S_2$ is closed for the number of clock cycles N resulting in charge in C. Then the $S_3$ is closed integrating the voltage back to zero, using the negative reference voltage. after time x the charge is 0. Now, knowing the time x, number of clock cycles N and reference voltage, we can count the $V_{in}$
+- **Paralel ADC or Flash converter** - Like thermometer. Not suitable for high resolution ADCs, but it is very fast.
 - **Charge balancing ADC** - charge balancing integrator. Voltage is translated to the frequency. The pulse is generated when integrated Voltage reaches certain treshold and integrated charge is discharged (depicted as $V_{pulse}$). Number of pulses are counted and that is then translated into the Voltage.\
 Input voltage should be lowed than $V_{ref}/2$
-- **Sigma-Delta** - engeneer is buying coffee. Based on the oversampling principle. Making many errors and then taking average. 
+- **Sigma-Delta** - engeneer is buying coffee. Based on the oversampling principle. Making many errors and then taking average.
 
-Synchronous data transfer is usually easier to handle than asynchronous, but it is dependant on the clock frequency - generates jitter. 
+Them main components are adder, integrator, comparator and DAC able to suply $+V_{ref} \text{ and } -V_{ref}$. The adder adds read voltage with the output of the DAC, and sends it to integrator. The output of integrator is percevied by the comparator. If the output is >1 sends negative $V_{ref}$ positive if othervise. This way, we can compute how many times was 0 and 1 sent and we can compute the mean of these values.
+
+Synchronous data transfer is usually easier to handle than asynchronous, but it is dependant on the clock frequency - generates jitter.
 
 SAR DAC | Integrating ADC
 |:---:|:--:|
@@ -1878,7 +1964,7 @@ Aliasing |
 |:---:|
 ![aliasing](img/AVS_aliasing.png)|
 
-**Sampling (Shannon-Kotelnik or Nyquist-Shannon) theorem** - Reverse and accurate reconstruction of a continuous frequency signal from discrete values is only possible if the sampling frequency is at least twice higher than the maximum frequency of the reconstructed signal. 
+**Sampling (Shannon-Kotelnik or Nyquist-Shannon) theorem** - Reverse and accurate reconstruction of a continuous frequency signal from discrete values is only possible if the sampling frequency is at least twice higher than the maximum frequency of the reconstructed signal.
 
 $$
 f_{s} > 2f_{sig\_max}
@@ -1891,7 +1977,7 @@ DDS with acumulator rounding|
 |:-:|
 ![Acumulator Rrounding](img/AVS_DDS_se_zaokrouhlovanim.png)|
 
-Register specifies the frequency at which the output signal will be updated. If set to 1 it will be the same as the Reference clock. Acumulator is just sum, that owerflows, once the *Acumulator>size(Lookup_table)* The Converter phase-amplitude is just fancy way of saying lookup table. The acumulator to retrieve value from lookup table and display it on the D/A. 
+Register specifies the frequency at which the output signal will be updated. If set to 1 it will be the same as the Reference clock. Acumulator is just sum, that owerflows, once the *Acumulator>size(Lookup_table)* The Converter phase-amplitude is just fancy way of saying lookup table. The acumulator to retrieve value from lookup table and display it on the D/A.
 
 Difference between rounding and not-rounding DDS is that only the high bits are used to adress the data in lookup table (depends in the size of the table). It is ideal to put low-pass filter after the D/A converter.
 
@@ -1917,7 +2003,7 @@ Usually the LCD is connected via shift-register or specialized controller connec
 
 The more complex audio requieres audio codec - single device usually connected via bus (SPI, I2C), that Encodes analog audio as digital signals and decodes digital audio back to analogsing  using ADC and DAC.
 
-**Relays** - relay can serve as the isolation of two or more Domains, in each domain there can be different signal voltage. The relay enables this isolatoin by switching the contact using magnetic force generated on the coil. 
+**Relays** - relay can serve as the isolation of two or more Domains, in each domain there can be different signal voltage. The relay enables this isolatoin by switching the contact using magnetic force generated on the coil.
 
 The relay can be in different instances - default off, default on. Or used as a switch with break first, then connect, or connect first, then break. They are called BBM and MBB (Break before Make and Make before Break)
 
@@ -1929,7 +2015,7 @@ The relay can also be semi-conductor based. Using IRED LED and light-sensitive e
 
 **Brush DC motor** - All motors are based on the magnetic field and motion created by that. The brush motor connect to the rotor using literal brushes, that concuct electricity to the part of the rotor. Around rotor, there are static magnets and field of the static magnets and the generated field try to align - creating motion. But since the brushes are not hard connected, they will stay still, not allowing the magnetic fields to align.
 
-Same probles as with relay - induction and high current needed. Can controll the motor speed using PWM. 
+Same probles as with relay - induction and high current needed. Can controll the motor speed using PWM.
 
 For both way control we can use H-bridge.
 
@@ -1960,13 +2046,13 @@ Evaluation of networks|
 |:-:|
 ![Evaluation of networks](img/PAG_evalueation_of_networks.png)
 
-The main compute is 
+The main compute is
 $$
 t_{comm}=t_s + (mt_w+t_h)l
 $$
-where $t_{comm}$ is time needed for communication. $t_s$ is startup time $t_h$ is per-hop time and $t_w$ is word transfer time. $m$ is size of the message and $l$ is number of traversed communication links. 
+where $t_{comm}$ is time needed for communication. $t_s$ is startup time $t_h$ is per-hop time and $t_w$ is word transfer time. $m$ is size of the message and $l$ is number of traversed communication links.
 
-Since $t_h$ is usually smaller than other variables, and $m$ is large, it is usually ignored. And due to usage of cut-trough routing the equation can be simplified to 
+Since $t_h$ is usually smaller than other variables, and $m$ is large, it is usually ignored. And due to usage of cut-trough routing the equation can be simplified to
 
 $$
 t_{comm}=t_s+t_wm
@@ -1980,7 +2066,7 @@ Due to cut-trough routing we can delegate sending the message to other nodes.
 
 One-to-All broadcast ring | One-to-All broadcast 3D mesh |
 |:-:|:-:|
-![One-to-all broadcast ring](img/PAG_one_to_all_broadcast.png)|![One-to-all boradcast 3D mesh](img/PAG_Hybercube_alltoonebroadcast.png)| 
+![One-to-all broadcast ring](img/PAG_one_to_all_broadcast.png)|![One-to-all boradcast 3D mesh](img/PAG_Hybercube_alltoonebroadcast.png)|
 
 **All-to-all broadcast**
 
@@ -1988,7 +2074,7 @@ The same applies for all-to-all reduction, but in reverse
 
 *Cost of all-to-all ring*:  $T=(t_s + t_wm)*(p-1)$
 
-*Cost of all-to-all mesh*: 
+*Cost of all-to-all mesh*:
 1) phase on lines: $T=(t_s+t_wm)*(\sqrt{p}-1)$
 2) phase on columns: $T=(t_s+t_wm\sqrt{p})*(\sqrt{p}-1)$
 
@@ -1996,9 +2082,9 @@ Sum of the phases: $T=2t_s+(\sqrt{p}-1)+t_wm(p-1)$
 
 *Cost of all-to-all hypercube*: again it can be devided into phases to more understand the problem, but the final sum is: $T=\sum_{k=1}^{\log p} t_s + t_wm*2^{k-1}$ which can be simplified to the $T=t_s\log p + t_wm(p-1)$
 
-All-to-All ring | All-to-All mesh | All-to-All hypercube | 
+All-to-All ring | All-to-All mesh | All-to-All hypercube |
 |:-:|:-:|:-:|
-![all-to-all broadcast ring](img/PAG_all_to_all_ring.png)|![all-to-all broadcast mesh](img/PAG_all_to_all_mesh.png)|![all-to-all boradcast 3D mesh](img/PAG_all-to-all-hypercube.png)| 
+![all-to-all broadcast ring](img/PAG_all_to_all_ring.png)|![all-to-all broadcast mesh](img/PAG_all_to_all_mesh.png)|![all-to-all boradcast 3D mesh](img/PAG_all-to-all-hypercube.png)|
 
 **Scatter - Gather** -  Scatter: one node has personalized message for the all others. The time cost is the same as the All-to-all broadcast $T=t_s\log p + t_wm(p-1)$, but here it is the same for the linear array, as well as 2D mesh.
 
@@ -2040,8 +2126,8 @@ Benefit of the parallelism - the **Speedup** can be compuded by $S={T_s \over T_
 
 Speedup can be as low as 0 (parallel program never terminates). The Speedup is in theory bounded by p, but there can be Superlinear Speedup (paralle program does less work, then serial counterpart). Example: some special example of depth first search.
 
-**Amdahl's law**: The program contains part that is naturally sequential - it cannot be speeded up by adding more processors. $T_p = \beta T_s + (1-\beta){T_s\over p}$ 
-$$S \leqq {T_s \over \beta T_s + (1-\beta){T_s\over p} } = {p\over \beta p+(1-\beta)}$$ 
+**Amdahl's law**: The program contains part that is naturally sequential - it cannot be speeded up by adding more processors. $T_p = \beta T_s + (1-\beta){T_s\over p}$
+$$S \leqq {T_s \over \beta T_s + (1-\beta){T_s\over p} } = {p\over \beta p+(1-\beta)}$$
 
 if the $p \to \infty$ then the limit is $1\over\beta$
 
@@ -2049,31 +2135,31 @@ if the $p \to \infty$ then the limit is $1\over\beta$
 
 $$E = {S\over p}$$
 
-**Cost** or work is the product of parallel runtime and the number of processing elements used 
+**Cost** or work is the product of parallel runtime and the number of processing elements used
 $p \cdot T_p$
-. Cost represents the **Sum** of time each processing element spends solving the problem. 
+. Cost represents the **Sum** of time each processing element spends solving the problem.
 
 The parallel system is cost-optimal if the cost of solving a problem on a paralle computer is asysmptotically identical to serial cost.
 
-Since 
+Since
 
 $$E = {T_s \over p T_p}$$
 
 , for cost optima systems $E=O(1)$
 
-The E can be also rewritten as 
+The E can be also rewritten as
 
 $$E={1 \over 1 + {T_o \over T_s}}$$
 
-By adding the processors the $T_o$ goes up. 
+By adding the processors the $T_o$ goes up.
 
-**Isoefficiency** describes the rate at which the problem size mut increase with respect to the number of processing elements to keep efficiency fixed. This rate determnes the **Scalability** the slower the rate, the better. 
+**Isoefficiency** describes the rate at which the problem size mut increase with respect to the number of processing elements to keep efficiency fixed. This rate determnes the **Scalability** the slower the rate, the better.
 
 Lets define W as the aysmptotic number of operations associated with the best serail algorithm to solve the problem.
 
 $$T_p = {W+ T_o(W,p) \over p}$$
 
-The resulting speedup: 
+The resulting speedup:
 
 $$S = {W\over T_p} = {W_p\over W+T_o(W,p)}$$
 
@@ -2089,7 +2175,7 @@ And if  $K = E/(1-E)$ is a constant function to be maintained we have:
 
 $$W=KT_o(W,p)$$
 
-The problem size W can usually be obtained as function of p. This function is called the **isoefficiency function**. This function determines the *ease* of maintaining constant efficiency. 
+The problem size W can usually be obtained as function of p. This function is called the **isoefficiency function**. This function determines the *ease* of maintaining constant efficiency.
 
 If the W needs to grow only linearly with respect to p then the parallel system is **highly scalable**
 
@@ -2116,7 +2202,7 @@ $$T_p = n/p + t_w \log p$$
 The cost is $p \cdot T_p = n+p\log p$ and as long as $n \in \Omega(p\log p)$ the computation is cost-optimal
 
 The isoefficiency: $W=KT_o$ ; $T_o = pT_p-W = n+pt_w\log p -n = pt_w\log p$
-That means the isoefficiency is 
+That means the isoefficiency is
 $$\Theta(p\log p)$$
 
 
@@ -2144,9 +2230,9 @@ Naive matrix multiplication|
 |:-:|
 ![Naive matrix multiplication](img/PAG_matrix_mult.png)
 
-The communication overhead is: 
+The communication overhead is:
 $$2(t_s \log\sqrt{p} + t_w{n^2\over p}(\sqrt p -1))$$
-Two broadcasts (over line and over column) of submatrix of size 
+Two broadcasts (over line and over column) of submatrix of size
 ${n\over \sqrt p}\times {n\over\sqrt p}$
 
 From that asymptotic paralel time is **APPROXIMATELY**:
@@ -2182,10 +2268,10 @@ DNS first part | DNS second part |
 
 **p=n^3**
 
-In the pictures the solution with $p=n^3$ is displayed. 
-Move each line and perform broadcast - $\log n$ time. 
+In the pictures the solution with $p=n^3$ is displayed.
+Move each line and perform broadcast - $\log n$ time.
 Each processor computes add
-computes single multiply and then accumulation is executed. The computation is constant, accumulation is again $\log n$ 
+computes single multiply and then accumulation is executed. The computation is constant, accumulation is again $\log n$
 
 The total runtime is $T_p \in \Theta(\log n)$
 
@@ -2214,9 +2300,9 @@ The isoeffitiency:
 
 $$T_o = pT_p - W = t_sp\log p + t_wp^{1\over3}n^2\log p$$
 
-From the $t_w$ the isoeffitiency is $\Theta(p\log^3 p)$ 
+From the $t_w$ the isoeffitiency is $\Theta(p\log^3 p)$
 
- 
+
 
 
 ### 8.4 Outline the principle of sorting networks and describe parallel bitonic sort, including its scalability. Explain parallel enumeration sort algorithm on PRAM model, including its scalability.
@@ -2229,7 +2315,7 @@ The main building block of the sorting networks is comparator. The comparator ha
 
 The bitonic sort uses sorting network to sort the bitonic sequence, depicted in the *Bitonic Sort* picture. The speed of the algorithm is proportional to the depth of the sorting network. The bitonic merging network contains $\log n$ columns, each column containing $n\over 2$ comparators.
 
-The depth of the network is 
+The depth of the network is
 
 $$d(n) = d({n\over2}) + \log n \to d(n) \in \Theta(\log^2n)$$
 
@@ -2251,7 +2337,7 @@ Bitonic Sort| Creating Bitonic Sequence|
 
 **Enumeration sort**
 
-The enumaration sort compares each element with every other element counting how many elements are smaller. Then places that element to the index that corresponds to the counted value. 
+The enumaration sort compares each element with every other element counting how many elements are smaller. Then places that element to the index that corresponds to the counted value.
 
 The parallel implementation takes $n^2$ processors in 2D grid. Each column represents one digit. Each processor executes one compare and then adds +1 if I am bigger or +0 to the common counter. Then the lemenet is placed to the index coresponding to the common counter.
 
@@ -2265,7 +2351,7 @@ This takes $\Theta(1)$ time.
 2) We need to combine created forrests of each processor. Merging forrest A and B uses unionfind approach. For each edge of A call *Find* to check if the vertices are in the same tree of B.
    1) If not they are united
    2) If yes, no unification is needed.
-   
+
 Merging of A and B requires at most 2(n-1) find opperations and (n-1) union operations $\to \Theta(n)$ and there are $\log p$ mergings. From that the asymptotic simplification is:
 
 $$T_p = \overbrace{\Theta({n^2\over p})}^{\text{local compute}} + \overbrace{\Theta({n\log p})}^{forest merging}$$
@@ -2282,7 +2368,7 @@ Graph for Luby|
 
 Example: in the above picture if we would use the numbers in the vertexes as a random value for the Luby algorithm, the maximum independant set would be {1,2,5,6}. That is not the biggest maximum independet set, that would be {1, 2, 7, 8, 11}. If we would colour the graph using Luby-Jones algorithm (same idea, just iteratively applied) the colouring would be following
 
-| | RED | BLUE | GREEN | PURPLE 
+| | RED | BLUE | GREEN | PURPLE
 |:-:|:-:|:-:|:-:|:-:|
 Nodes|1, 2, 5, 6| 4, 5| 7, 11, 8| 9, 10
 
@@ -2298,7 +2384,7 @@ Memory layout - each thread has its private memory space and then there is ememo
 - interpreted frame - one-per-method
 - compiled frame - includes all in-lined methods
 
-**Stack oriented machine processing** each instruction is 1 byte and manipulates data on stack (no registers). 
+**Stack oriented machine processing** each instruction is 1 byte and manipulates data on stack (no registers).
 
 **Ordinary object pointer** java fancy way of saying reference. Can be compressed 32bit or regular 64 bit.
 
@@ -2308,13 +2394,13 @@ Memory layout - each thread has its private memory space and then there is ememo
 
 on-stack replacement - optimization during execution of a method - can switch between two variants of code - i try assumption, that this code will be better - is not? Go back...
 
-**Global and local safe point** - safepoint is place in code, where the state is well defined. It is know interaction with heap - all references on stack are mapped on heap at know location. As long as thread remains in safepoint, we can manipulate heap + stack. After leaving the safepoint the threads view of world is unchanged.  
+**Global and local safe point** - safepoint is place in code, where the state is well defined. It is know interaction with heap - all references on stack are mapped on heap at know location. As long as thread remains in safepoint, we can manipulate heap + stack. After leaving the safepoint the threads view of world is unchanged.
 
 Global safepoint all threads stopped  (stop the world) used for garbage colection.
 
-time to safepoint - suspension needs to be quick, since getting all threads to safepoint contributes to garbage collection pause. 
+time to safepoint - suspension needs to be quick, since getting all threads to safepoint contributes to garbage collection pause.
 
-**Automatic memory management** garbage collection - the JVM handles all allocated memory. 
+**Automatic memory management** garbage collection - the JVM handles all allocated memory.
 - General hypotesis - **weak** most objects die young, younger objects die earlier, than older. Java uses two generations YOung, which is frequently collected during minor colection. And Old which are handeled in rare slow collections. During minor collectionsobjects can be promoted to older.
 
 Garbage collection can be executed in serial or in parallel. Another is Garbage-FIrst collector introduced in java 7. it is designed to impove predictability and lower latency.
@@ -2341,7 +2427,7 @@ Memory barrier - barrier operation, all memory operations must be done before ba
 
 **Lazy lock** - is not released after leaving critical sesction, other threads in need of that lock need to confirm, that lock can be released.
 
-**Reentrant lock** thread can re-enter the lock more than once, before giving up resource. The counter is raised each time the lock is reentered. 
+**Reentrant lock** thread can re-enter the lock more than once, before giving up resource. The counter is raised each time the lock is reentered.
 
 **Biased lock** - lock is "biased" toward the thread that first aquired the lock. Subsequent entries into that lock by the biased thread are much faster on multi-procesor machines.
 
@@ -2357,13 +2443,13 @@ Memory barrier - barrier operation, all memory operations must be done before ba
 
 ### 9.5 Networking, OSI model, C10K problem. Blocking and non-blocking input/output, threading server, event-driven server. Event-based input/output approaches. Native buffers in JVM, channels and selectors.
 
-OSI - physical, data-linked, network, transport, session, presentation, application. 
+OSI - physical, data-linked, network, transport, session, presentation, application.
 
 **C10k** 10k concurrent client connections on one server. Event-driven I/O Nginx, or thread-per-request Apache. Now C1M, C10M
 
 Event driven - epoll/poll/select
 
-**Native buffer** is buffer creates specially for handling binary data. It is stored outside of garbage collection heap in native memory, which can lead to more effitient I/O operations. Interaction with the data is provided by **Channels**. The **Selector** can be used in conjunction with channels to perform non/blocking i/o operations. With a selector thread can monitor multiple channels. 
+**Native buffer** is buffer creates specially for handling binary data. It is stored outside of garbage collection heap in native memory, which can lead to more effitient I/O operations. Interaction with the data is provided by **Channels**. The **Selector** can be used in conjunction with channels to perform non/blocking i/o operations. With a selector thread can monitor multiple channels.
 
 Basic analogy - buffer is just buffer, channel is socket and selector is epoll.
 
@@ -2386,7 +2472,7 @@ Kernel Mutex implementation is often slow, and more precise control is usually a
 
 The futex is cornerstone of other mutual exclusion mechanisms, like Semaphores, Mutexes, Conditional variables, Thread barriers, Read-write locks and so on...
 
-Futex can be tricky - what happens when process with locked futex crashes? -> deadlock. Solved by *Robus futex*. The locations of futex counters are registered in kernel at init time and when the process crashes its memory is scanned for any potential locked mutexes. 
+Futex can be tricky - what happens when process with locked futex crashes? -> deadlock. Solved by *Robus futex*. The locations of futex counters are registered in kernel at init time and when the process crashes its memory is scanned for any potential locked mutexes.
 
 **R-W lock** allows multiple readers at the same time, but only one write. The write is blocking. Writers or readers can have priority over the other. Reader priority does not make sence for R-W lock.
 
@@ -2407,7 +2493,7 @@ Since reference counting is expensive the RCU uses mechanism, where after update
 
 ### 9.7 Cache-efficient data structures and algorithms (e.g., matrix multiplication). Principles of cache memories, different kinds of cache misses. Self-evicting code, false sharing – what is it and how deal with it?
 
-**Cache basics** - spacial locality, temporal locality - data near each other might be used as well, recently used data will most likely be used again. Temporal locality is also active when we malloc/free memory. Freed memory location should be re-used, since the memory is already in cache. 
+**Cache basics** - spacial locality, temporal locality - data near each other might be used as well, recently used data will most likely be used again. Temporal locality is also active when we malloc/free memory. Freed memory location should be re-used, since the memory is already in cache.
 
 Cache hit - the data we were looking for was found in cache, miss - was not. Differend types of cache misses discussed lower.
 
@@ -2415,7 +2501,7 @@ Cache line eviction: cache line is removed from the cache to make space for new 
 
 Cache replacement policy - what to toss out, when we want new data? Least recently used, random...?
 
-Different associativity degree of cache... 
+Different associativity degree of cache...
 
 TLB - translation lookaside buffer - buffer for translated Virtual memories to physical memories.
 
@@ -2429,7 +2515,7 @@ When context switching betwen threads - the swithed thread wil encounter lot of 
 
 **Self-evicting code** - we can use wtire-trough when we know we will not need the variable in forseeable time.
 
-**False sharing/true sharing** 
+**False sharing/true sharing**
 - true sharing - code is slow, since we access the same value on multiple processors and cache coherency is expensive
 - false sharing - code is slow, but we do not use the same value on multiple processors. We just use different wariables, that happened to be on the same cache line.
 
@@ -2439,9 +2525,9 @@ When context switching betwen threads - the swithed thread wil encounter lot of 
 
 **Hardware performance counter**
 
-Special counters implemented in hardware aimed to store counts of hardware-related activities - cache misses, number of interrupts, branch misprediction... 
+Special counters implemented in hardware aimed to store counts of hardware-related activities - cache misses, number of interrupts, branch misprediction...
 
-Compared to software profiler the hardware counter has lower overhead. However it can provide more information and hardware counters very from platform to platform. 
+Compared to software profiler the hardware counter has lower overhead. However it can provide more information and hardware counters very from platform to platform.
 
 Can be implemented in software eg as event sampling or just timestamping - periodically checking where the program is at - where it spends most of the time.
 
@@ -2459,7 +2545,7 @@ Compiler translates high-level language source code into machine readable code f
 
 Common optimizations -O0 .. O3 Os Og
 
--O2 nearly all optimizations taht dont involve space-speed tradeoff. 
+-O2 nearly all optimizations taht dont involve space-speed tradeoff.
 
 The Compilation has 4 phases:
 1) **Pre-processing** - removal of comments expansion of macros, expansion of included files and conditional compilation. Conditional compilation is useful when compiling for different hardware. Result of pre-processing is *.i file.
